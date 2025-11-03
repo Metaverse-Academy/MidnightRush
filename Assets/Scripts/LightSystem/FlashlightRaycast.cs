@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class FlashlightCone : MonoBehaviour
+public class FlashlightRaycast : MonoBehaviour
 {
     [Header("Input")]
     public InputActionReference flashAction; // Right click action
@@ -41,13 +41,18 @@ public class FlashlightCone : MonoBehaviour
                 continue;
 
             // 3. Raycast to ensure visible (no wall blocking)
-            if (Physics.Raycast(flashOrigin.position, dir, out RaycastHit info, maxDistance, ~0))
+            if (Physics.Raycast(flashOrigin.position, dir, out RaycastHit info, maxDistance, obstructionMask))
             {
+                // Enemy e = info.collider.GetComponentInParent<Enemy>();
+                // if (e != null)
+                //     e.Fear();
+                // e.destroyOnFlash = true;
+
                 if (((1 << info.collider.gameObject.layer) & enemyMask) != 0)
                 {
-                    Enemy e = info.collider.GetComponentInParent<Enemy>();
-                    if (e != null)
-                        e.Fear();
+                    // Enemy e = info.collider.GetComponentInParent<Enemy>();
+                    // if (e != null)
+                    //     e.Fear();
                 }
             }
         }
