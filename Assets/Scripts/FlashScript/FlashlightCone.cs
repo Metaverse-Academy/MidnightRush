@@ -28,6 +28,7 @@ public class FlashlightCone : MonoBehaviour
     {
         // 1. Find enemies near flash
         Collider[] hits = Physics.OverlapSphere(flashOrigin.position, maxDistance, enemyMask);
+        Debug.Log($"Flash activated. Found {hits.Length} potential targets.");
 
         foreach (var hit in hits)
         {

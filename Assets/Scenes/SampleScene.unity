@@ -570,7 +570,7 @@ GameObject:
   - component: {fileID: 563087854}
   - component: {fileID: 563087853}
   - component: {fileID: 563087852}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1495,8 +1495,8 @@ Transform:
   m_GameObject: {fileID: 3129777060781339579}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.17, y: 0.16999996, z: 0.16999996}
+  m_LocalPosition: {x: 0, y: -0, z: -0.031}
+  m_LocalScale: {x: 0.09, y: 0.09, z: 0.09}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3241580010599195589}
@@ -1526,7 +1526,7 @@ Transform:
   m_GameObject: {fileID: 4721317675395893605}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.43914, y: -0.286, z: 0.278}
+  m_LocalPosition: {x: 0.196, y: -0.282, z: 0.388}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1700,7 +1700,6 @@ GameObject:
   - component: {fileID: 6893471714030533292}
   - component: {fileID: 763769112928804822}
   - component: {fileID: 8947103044512485718}
-  - component: {fileID: 8947103044512485719}
   m_Layer: 0
   m_Name: FlashLight
   m_TagString: Untagged
@@ -1843,7 +1842,7 @@ MonoBehaviour:
   interactDistance: 3
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   showDebugRay: 1
   fadeDuration: 0.2
   scalePop: 1.1
@@ -2302,7 +2301,7 @@ MonoBehaviour:
     m_ActionId: a9075037-8837-4110-9d0b-cb903ad45030
     m_ActionName: 'Player/Flash[/Mouse/rightButton]'
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 2970124079858036264}
@@ -2391,34 +2390,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1.0000001, y: 2.0000002, z: 1.0000004}
   m_Center: {x: 0.000000059604645, y: 0, z: -0.0000005662441}
---- !u!114 &8947103044512485719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3129777060781339579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3340fc2339a5dd4c87b63d00c249c9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FlashlightCone
-  flashAction: {fileID: 163256405644624679, guid: 20d7f63b1fa2f3948a553dc4c39d79a0, type: 3}
-  flashOrigin: {fileID: 1257481527097723542}
-  maxDistance: 20
-  coneAngle: 60
-  enemyMask:
-    serializedVersion: 2
-    m_Bits: 128
-  obstructionMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!81 &9051811532172715016
 AudioListener:
   m_ObjectHideFlags: 0
@@ -2442,6 +2419,7 @@ GameObject:
   - component: {fileID: 7655720718286245051}
   - component: {fileID: 1248428451414800069}
   - component: {fileID: 4674848232160543566}
+  - component: {fileID: 9134283099737603410}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Player
@@ -2449,6 +2427,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &9134283099737603410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9134283099737603409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3340fc2339a5dd4c87b63d00c249c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlashlightCone
+  flashAction: {fileID: 163256405644624679, guid: 20d7f63b1fa2f3948a553dc4c39d79a0, type: 3}
+  flashOrigin: {fileID: 1257481527097723542}
+  maxDistance: 20
+  coneAngle: 60
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 128
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &9148582905756054722
 Transform:
   m_ObjectHideFlags: 0
