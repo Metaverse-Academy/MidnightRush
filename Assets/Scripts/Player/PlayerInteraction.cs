@@ -18,6 +18,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private IInteractable currentTarget;
     private bool promptVisible;
+    public GameObject battery;
 
     private void Awake()
     {
@@ -35,6 +36,7 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Physics.Raycast(origin, dir, out RaycastHit hit, interactDistance, interactableLayer))
         {
+            battery.SetActive(false);
             if (hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
             {
                 currentTarget = interactable;
