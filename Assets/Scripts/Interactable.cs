@@ -6,7 +6,7 @@ public class Interactable : MonoBehaviour, IInteractable
 
     public string GetPrompt() => prompt;
 
-    public void Interact(GameObject interactor)
+    public virtual void Interact(GameObject interactor)
     {
         Debug.Log($"{name} was interacted with by {interactor.name}");
     }
