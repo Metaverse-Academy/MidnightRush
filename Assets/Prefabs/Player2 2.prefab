@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 6741678378311361691}
   - component: {fileID: 5182304221222594498}
   m_Layer: 0
-  m_Name: P1 Cam
+  m_Name: P2 Cam
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,7 +119,7 @@ Transform:
   m_GameObject: {fileID: 2394377384410934616}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.786, z: 0.099}
+  m_LocalPosition: {x: 16.157257, y: 0.786, z: -7.7441797}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -248,7 +248,7 @@ MonoBehaviour:
   UpdateMethod: 2
   BlendUpdateMethod: 1
   LensModeOverride:
-    Enabled: 1
+    Enabled: 0
     DefaultMode: 2
   DefaultBlend:
     Style: 1
@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 6451209200484686369}
   - component: {fileID: 591209787979739050}
   m_Layer: 0
-  m_Name: Player2 1
+  m_Name: Player2 2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -650,7 +650,7 @@ Transform:
   m_GameObject: {fileID: 8832677073486595042}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7860002, z: 0.09899974}
+  m_LocalPosition: {x: 0, y: 0.786, z: 0.099}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

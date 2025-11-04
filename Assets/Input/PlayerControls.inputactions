@@ -272,7 +272,7 @@
                 {
                     "name": "",
                     "id": "c34ed8a2-9d66-489e-b05c-a4baab0b2b98",
-                    "path": "<Pointer>/delta",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
                     "processors": "DeltaTimeScale,ScaleVector2(x=0.1,y=0.1)",
                     "groups": ";Keyboard&Mouse;Touch",
