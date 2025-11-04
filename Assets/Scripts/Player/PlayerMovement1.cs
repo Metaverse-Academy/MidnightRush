@@ -5,10 +5,13 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CapsuleCollider))]
 public class PlayerMovement2 : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private Transform cameraTransform; // assign your Camera (make it a child of the player)
+
     [Header("Move")]
     [SerializeField] private float walkSpeed = 5f;
-    [SerializeField] private float acceleration = 12f;
     [SerializeField] private float sprintSpeed = 9f;
+    [SerializeField] private float acceleration = 12f;
 
     [Header("Jump")]
     [SerializeField] private float jumpForce = 5f;
@@ -22,13 +25,25 @@ public class PlayerMovement2 : MonoBehaviour
     [SerializeField] private float standingHeight = 2.0f;
     [SerializeField] private float crouchHeight = 1.0f;
 
-    private Vector3 planarMoveDir;
+    [Header("Look")]
+    [SerializeField] private float mouseSensitivityX = 0.12f; // increase if too slow
+    [SerializeField] private float mouseSensitivityY = 0.12f; // increase if too slow
+    [SerializeField] private float minPitch = -85f;
+    [SerializeField] private float maxPitch = 85f;
+
     private Rigidbody rb;
     private CapsuleCollider capsule;
-    private Vector2 moveInput;
+
+    // inputs/state
+    private Vector2 moveInput;   // WASD / stick
+    private Vector2 lookInput;   // mouse delta / stick
     private bool isGrounded;
     private bool isSprinting;
     private bool isCrouching;
+
+    // look state
+    private float yaw;   // player body rotation around Y
+    private float pitch; // camera pitch around X
 
     private void Awake()
     {
@@ -36,7 +51,28 @@ public class PlayerMovement2 : MonoBehaviour
         capsule = GetComponent<CapsuleCollider>();
 
         rb.interpolation = RigidbodyInterpolation.Interpolate;
+        // We rotate player around Y ourselves; lock X/Z so physics don’t tip the body over
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
+        // Make sure the camera is parented to the player (so it follows position)
+        if (cameraTransform != null && cameraTransform.parent != transform)
+            cameraTransform.SetParent(transform);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        // Initialize yaw from current player rotation so there’s no snap
+        yaw = transform.eulerAngles.y;
+    }
+
+    private void Update()
+    {
+        // Ground check
+        Vector3 rayOrigin = transform.position + Vector3.up * rayStartOffset;
+        isGrounded = Physics.Raycast(rayOrigin, Vector3.down, groundDistanceCheck, groundLayer, QueryTriggerInteraction.Ignore);
+
+        // Handle look here (use Update for input feel; no physics required)
+        HandleLook();
     }
 
     private void FixedUpdate()
@@ -44,35 +80,39 @@ public class PlayerMovement2 : MonoBehaviour
         HandleMovement();
     }
 
-    private void Update()
+    private void HandleLook()
     {
-        Vector3 rayOrigin = transform.position + Vector3.up * rayStartOffset;
-        isGrounded = Physics.Raycast(rayOrigin, Vector3.down, groundDistanceCheck, groundLayer, QueryTriggerInteraction.Ignore);
+        if (!cameraTransform) return;
+
+        // Mouse deltas are per-frame from the Input System; no need to multiply by deltaTime
+        yaw   += lookInput.x * mouseSensitivityX;
+        pitch -= lookInput.y * mouseSensitivityY;
+        pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
+
+        // Apply rotations
+        transform.rotation = Quaternion.Euler(0f, yaw, 0f);         // turn the player body (yaw)
+        cameraTransform.localRotation = Quaternion.Euler(pitch, 0f, 0f); // tilt the camera (pitch)
     }
 
     private void HandleMovement()
     {
-        // Player-relative axes (NOT camera-relative anymore)
+        // Movement relative to player yaw (transform.forward/right)
         Vector3 f = transform.forward; f.y = 0f; f.Normalize();
         Vector3 r = transform.right;   r.y = 0f; r.Normalize();
 
         Vector3 desiredPlanar = f * moveInput.y + r * moveInput.x;
-        planarMoveDir = desiredPlanar.sqrMagnitude > 1e-4f ? desiredPlanar.normalized : Vector3.zero;
+        Vector3 planarMoveDir = desiredPlanar.sqrMagnitude > 1e-4f ? desiredPlanar.normalized : Vector3.zero;
 
         float targetSpeed = isCrouching ? crouchSpeed : (isSprinting ? sprintSpeed : walkSpeed);
         Vector3 targetVelH = planarMoveDir * targetSpeed;
 
-        // Use Rigidbody.velocity (not linearVelocity)
+        // Smooth horizontal linearVelocity, preserve vertical
         Vector3 v = rb.linearVelocity;
         Vector3 vH = Vector3.Lerp(new Vector3(v.x, 0f, v.z), targetVelH, acceleration * Time.fixedDeltaTime);
         rb.linearVelocity = new Vector3(vH.x, v.y, vH.z);
 
-        // Optional: rotate player to face move direction
-        if (planarMoveDir.sqrMagnitude > 1e-4f)
-        {
-            Quaternion look = Quaternion.LookRotation(planarMoveDir, Vector3.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, look, 10f * Time.fixedDeltaTime);
-        }
+        // IMPORTANT: Do NOT auto-rotate to movement direction (that causes “circling” with mouse look).
+        // (We removed that block from your old script.)
     }
 
     private void ApplyCrouchState()
@@ -91,11 +131,16 @@ public class PlayerMovement2 : MonoBehaviour
         Gizmos.DrawLine(rayOrigin, rayOrigin + Vector3.down * groundDistanceCheck);
     }
 
-    #region Input System Callbacks
+    // ===== Input System callbacks =====
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
         moveInput = ctx.ReadValue<Vector2>();
+    }
+
+    public void OnLook(InputAction.CallbackContext ctx)
+    {
+        lookInput = ctx.ReadValue<Vector2>();
     }
 
     public void OnJump(InputAction.CallbackContext ctx)
@@ -140,6 +185,4 @@ public class PlayerMovement2 : MonoBehaviour
             }
         }
     }
-
-    #endregion
 }
