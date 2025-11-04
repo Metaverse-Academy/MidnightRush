@@ -917,7 +917,7 @@ Transform:
   m_GameObject: {fileID: 805321042}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.819, y: 0, z: 2.97}
+  m_LocalPosition: {x: -2.819, y: 0, z: 2.172}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1103,6 +1103,12 @@ MonoBehaviour:
   lampBattery: {fileID: 504643144}
   lampLight: {fileID: 1970399465}
   batteryLifetime: 10
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  repelDistance: 30
+  repelCapsuleRadius: 3
+  direction: {x: 0, y: 0, z: 0}
 --- !u!1 &964456678
 GameObject:
   m_ObjectHideFlags: 0
@@ -2508,14 +2514,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b29199b38568dcd48a4012deae98938c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
-  cameraTransform: {fileID: 1378421429618432216}
+  cameraTransform: {fileID: 3425719916129508023}
   promptCanvas: {fileID: 1205262937}
   promptText: {fileID: 1571481769}
   interactDistance: 3
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 448
-  showDebugRay: 1
+    m_Bits: 320
+  showDebugRay: 0
   fadeDuration: 0.2
   scalePop: 1.1
 --- !u!1 &4721317675395893605
@@ -2827,6 +2833,8 @@ MonoBehaviour:
       Input:
         InputAction: {fileID: -8818210345356645471, guid: 20d7f63b1fa2f3948a553dc4c39d79a0, type: 3}
         Gain: 1
+        LegacyInput: 
+        LegacyGain: 1
         CancelDeltaTime: 0
       InputValue: 0
       Driver:
@@ -2838,6 +2846,8 @@ MonoBehaviour:
       Input:
         InputAction: {fileID: -8818210345356645471, guid: 20d7f63b1fa2f3948a553dc4c39d79a0, type: 3}
         Gain: -1
+        LegacyInput: 
+        LegacyGain: 1
         CancelDeltaTime: 0
       InputValue: 0
       Driver:
