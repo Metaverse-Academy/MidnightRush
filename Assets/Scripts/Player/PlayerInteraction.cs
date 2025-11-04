@@ -15,11 +15,10 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private bool showDebugRay = false;
     [SerializeField] private float fadeDuration = 0.2f;
     [SerializeField] private float scalePop = 1.1f;
+    public bool IsHoldingBattery { get; set; } = false;
 
     private IInteractable currentTarget;
     private bool promptVisible;
-    public GameObject battery;
-
     private void Awake()
     {
         if (promptCanvas)
@@ -36,7 +35,6 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Physics.Raycast(origin, dir, out RaycastHit hit, interactDistance, interactableLayer))
         {
-            battery.SetActive(false);
             if (hit.collider.TryGetComponent<IInteractable>(out IInteractable interactable))
             {
                 currentTarget = interactable;

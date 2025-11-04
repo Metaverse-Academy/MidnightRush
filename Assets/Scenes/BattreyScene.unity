@@ -133,7 +133,6 @@ GameObject:
   - component: {fileID: 217948520}
   - component: {fileID: 217948519}
   - component: {fileID: 217948525}
-  - component: {fileID: 217948526}
   m_Layer: 8
   m_Name: GroundBattrey
   m_TagString: Untagged
@@ -276,19 +275,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GroundBattery
   prompt: Press [E] to interact
   handBattery: {fileID: 223786571}
---- !u!114 &217948526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 217948518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49ee63707326b3740a6a398088617892, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  prompt: Press [E] to Colli the Battrey
 --- !u!1 &223786571
 GameObject:
   m_ObjectHideFlags: 0
