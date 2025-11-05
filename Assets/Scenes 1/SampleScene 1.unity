@@ -590,7 +590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightRepeller
   lightSource: {fileID: 1649313692}
-  isLightActive: 1
+  flashlightController: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -3767,7 +3767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightRepeller
   lightSource: {fileID: 1223241135}
-  isLightActive: 1
+  flashlightController: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -4078,7 +4078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightRepeller
   lightSource: {fileID: 1398672289}
-  isLightActive: 1
+  flashlightController: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -5982,6 +5982,7 @@ GameObject:
   - component: {fileID: 1910604584}
   - component: {fileID: 1910604583}
   - component: {fileID: 1910604582}
+  - component: {fileID: 1910604587}
   m_Layer: 6
   m_Name: LightObj
   m_TagString: Untagged
@@ -6005,9 +6006,10 @@ MonoBehaviour:
   handBattery: {fileID: 922953284}
   lampBattery: {fileID: 1444812249}
   lampLight: {fileID: 2064956174}
+  lightRaycastController: {fileID: 1910604587}
   batteryLifetime: 5
-  placeBatteryPrompt: EEEEE
-  noBatteryPrompt: EEEEEEEEEEEE
+  placeBatteryPrompt: E
+  noBatteryPrompt: E
 --- !u!135 &1910604583
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6102,6 +6104,34 @@ Transform:
   - {fileID: 2064956176}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1910604587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910604581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f219b987f60ba4c4d907381f31a59a7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightRaycast
+  cameraTransform: {fileID: 1910604586}
+  promptCanvas: {fileID: 0}
+  promptText: {fileID: 0}
+  interactDistance: 3
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  showDebugRay: 0
+  fadeDuration: 100
+  scalePop: 1.1
+  lightSource: {fileID: 2064956176}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  repelDistance: 20
+  repelRadius: 0.5
 --- !u!1 &1931202469
 GameObject:
   m_ObjectHideFlags: 0
@@ -6770,7 +6800,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2064956173}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}

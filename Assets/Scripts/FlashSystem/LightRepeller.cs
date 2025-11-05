@@ -49,12 +49,6 @@ public class LightRepeller : MonoBehaviour
                 enemy.TriggerRepel();
                 Debug.Log("Light repelled enemy: " + enemy.name);
             }
-            // Debug.Log("Repeller hit: " + hit.collider.name + ". Deactivating.");
-            // if (hit.collider.CompareTag("Enemy"))
-            // {
-            //     Debug.Log("Repeller hit: " + hit.collider.name + ". Deactivating.");
-            //     hit.collider.gameObject.SetActive(false);
-            // }
         }
     }
 

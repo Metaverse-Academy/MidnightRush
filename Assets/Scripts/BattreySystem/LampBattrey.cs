@@ -7,6 +7,8 @@ public class LampBattrey : Interactable
     [SerializeField] private GameObject handBattery;
     [SerializeField] private GameObject lampBattery;
     [SerializeField] private Light lampLight;
+    [Header("Dependencies")]
+    [SerializeField] private LightRaycast lightRaycastController;
 
     [Header("Battery Lifetime")]
     [Tooltip("Lifetime of the battery in seconds")]
@@ -60,6 +62,10 @@ public class LampBattrey : Interactable
         if (lampBattery != null) lampBattery.SetActive(true);
 
         if (lampLight != null) lampLight.enabled = true;
+        if (lightRaycastController != null)
+    {
+        lightRaycastController.enabled = true;
+    }
 
         player.IsHoldingBattery = false;
         hasBattery = true;
@@ -84,6 +90,10 @@ public class LampBattrey : Interactable
         {
             lampBattery.SetActive(false);
         }
+        if (lightRaycastController != null)
+    {
+        lightRaycastController.enabled = false;
+    }
 
         hasBattery = false;
         batteryDestroyCoroutine = null;
