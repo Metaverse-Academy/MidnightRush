@@ -15,6 +15,7 @@ public class FlashlightController : MonoBehaviour, IFlashable
     private float currentBattery;
     private float rechargeTimer;
     private bool isRecharging = false;
+    private Vector2 OnFlashInput;
 
     public bool IsWorking => !isRecharging && currentBattery > 0;
     public bool IsOn => flashlightLight.enabled && IsWorking;
@@ -50,6 +51,20 @@ public class FlashlightController : MonoBehaviour, IFlashable
             }
         }
     }
+    public void OnFlash(InputAction.CallbackContext ctx)
+{
+    if (ctx.performed) // fires when button is pressed
+    {
+        if (IsWorking && !IsOn)
+        {
+            TurnOn();
+        }
+        else if (IsOn)
+        {
+            TurnOff();
+        }
+    }
+}
 
     private void HandleBattery()
     {
