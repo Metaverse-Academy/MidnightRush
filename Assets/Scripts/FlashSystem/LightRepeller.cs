@@ -1,4 +1,4 @@
-// using UnityEditor.EditorTools;
+using UnityEditor.EditorTools;
 using UnityEngine;
 
 public class LightRepeller : MonoBehaviour
@@ -8,7 +8,7 @@ public class LightRepeller : MonoBehaviour
     [SerializeField] private Transform lightSource;
 
     [Header("Repel Settings")]
-    public bool isLightActive = true;
+    [SerializeField] private FlashlightController flashlightController;
 
     [Tooltip("Layer that the enemy belongs to")]
     [SerializeField] private LayerMask enemyLayer;
@@ -18,6 +18,7 @@ public class LightRepeller : MonoBehaviour
 
     [Tooltip("Radius of the light ray")]
     [SerializeField] private float repelRadius = 0.5f;
+    public bool isLightActive => flashlightController != null && flashlightController.IsOn;
 
     private void Awake()
     {
@@ -25,41 +26,43 @@ public class LightRepeller : MonoBehaviour
         {
             lightSource = transform;
         }
+        if (flashlightController == null)
+        {
+            flashlightController = FindAnyObjectByType<FlashlightController>();
+        }
     }
-
     private void Update()
     {
-        if (!isLightActive) return;
-
-        PerformRepelCast();
+        if (isLightActive)
+        {
+            PerformRepelCast();
+        }
     }
-
     private void PerformRepelCast()
     {
-        Vector3 origin = lightSource.position;
-        Vector3 direction = lightSource.forward;
-
-        if (Physics.CapsuleCast(origin, origin, repelRadius, direction, out RaycastHit hit, repelDistance, enemyLayer))
+        if (!isLightActive) return;
+        if (Physics.Raycast(lightSource.position, lightSource.forward, out RaycastHit hit, repelDistance, enemyLayer))
         {
-            Debug.Log("Repeller hit: " + hit.collider.name + ". Deactivating.");
-            if (hit.collider.CompareTag("Enemy"))
+            EnemyAi enemy = hit.collider.GetComponent<EnemyAi>();
+            if (enemy != null)
             {
-                Debug.Log("Repeller hit: " + hit.collider.name + ". Deactivating.");
-
-                hit.collider.gameObject.SetActive(false);
+                enemy.TriggerRepel();
+                Debug.Log("Light repelled enemy: " + enemy.name);
             }
+            // Debug.Log("Repeller hit: " + hit.collider.name + ". Deactivating.");
+            // if (hit.collider.CompareTag("Enemy"))
+            // {
+            //     Debug.Log("Repeller hit: " + hit.collider.name + ". Deactivating.");
+            //     hit.collider.gameObject.SetActive(false);
+            // }
         }
+    }
 
-#if UNITY_EDITOR
-        Debug.DrawRay(origin, direction * repelDistance, Color.cyan);
-#endif
-    }
-    public void ActivateLight()
+    void OnDrawGizmos()
     {
-        isLightActive = true;
-    }
-    public void DeactivateLight()
-    {
-        isLightActive = false;
+        Gizmos.color = isLightActive ? Color.yellow : Color.white;
+        Vector3 origin = lightSource != null ? lightSource.position : transform.position;
+        Vector3 direction = lightSource != null ? lightSource.forward : transform.forward;
+        Gizmos.DrawRay(origin, direction * repelDistance);
     }
 }
