@@ -207,6 +207,10 @@ public class EnemyAi : MonoBehaviour
     }
 
     // ===== CORE BEHAVIOUR =====
+    public void TriggerRepel()
+    {
+        Repel();
+    }
 
     private void Repel()
     {
