@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using System;
 
 public class LampBattrey : Interactable
 {
@@ -10,68 +9,71 @@ public class LampBattrey : Interactable
     [SerializeField] private Light lampLight;
 
     [Header("Battery Lifetime")]
+    [Tooltip("Lifetime of the battery in seconds")]
     [SerializeField] private float batteryLifetime = 10f;
 
-    [Header("Enemy Repel Settings")]
-    [SerializeField] private LayerMask enemyLayer;
-    [SerializeField] private float repelDistance = 20f;
-    [SerializeField] private float repelCapsuleRadius = 0.5f;
-    public Vector3 direction;
+    [Header("UI Feedback")]
+    [SerializeField] private string placeBatteryPrompt = "To place the battery, press 'E'";
+    [SerializeField] private string noBatteryPrompt = "You need a battery to power the lamp.";
 
-    private bool isLightOn = false;
     private bool hasBattery = false;
-
-    private void Update()
-    {
-        if (!isLightOn) return;
-
-        PerformRepelCast();
-    }
-
-    private void PerformRepelCast()
-    {
-        if (lampLight == null) return;
-
-        Vector3 origin = lampLight.transform.position;
-        Vector3 direction = lampLight.transform.forward;
-
-        if (Physics.SphereCast(origin, repelCapsuleRadius, direction, out RaycastHit hit, repelDistance, enemyLayer))
-        {
-            if (hit.collider.TryGetComponent<EnemyAi>(out EnemyAi enemy))
-            {
-                enemy.TriggerRepel();
-            }
-        }
-
-        Debug.DrawRay(origin, direction * repelDistance, Color.yellow);
-    }
+    private Coroutine batteryDestroyCoroutine;
 
     public override void Interact(GameObject interactor)
     {
         PlayerInteraction player = interactor.GetComponent<PlayerInteraction>();
+
         if (player != null && player.IsHoldingBattery && !hasBattery)
         {
             PlaceBattery(player);
-            StartCoroutine(DestroyBatteryAfterDelay());
+        }
+        else if (player != null && !player.IsHoldingBattery && !hasBattery)
+        {
+            Debug.Log(noBatteryPrompt);
         }
     }
 
+    public new string GetPrompt()
+    {
+        if (hasBattery)
+        {
+            return "The lamp has a battery installed.";
+        }
+        else
+        {
+            GameObject player = GameObject.FindWithTag("Player");
+            if (player != null)
+            {
+                PlayerInteraction playerInteraction = player.GetComponent<PlayerInteraction>();
+                if (playerInteraction != null && playerInteraction.IsHoldingBattery)
+                {
+                    return placeBatteryPrompt;
+                }
+            }
+            return noBatteryPrompt;
+        }
+    }
     private void PlaceBattery(PlayerInteraction player)
     {
         if (handBattery != null) handBattery.SetActive(false);
+
         if (lampBattery != null) lampBattery.SetActive(true);
+
         if (lampLight != null) lampLight.enabled = true;
 
         player.IsHoldingBattery = false;
         hasBattery = true;
-        isLightOn = true;
 
-        Debug.Log("Battery placed. It will be destroyed after " + batteryLifetime + " seconds.");
+        Debug.Log("You have placed the battery in the lamp. It will last for " + batteryLifetime + " seconds.");
+
+        batteryDestroyCoroutine = StartCoroutine(DestroyBatteryAfterDelay());
     }
 
     private IEnumerator DestroyBatteryAfterDelay()
     {
         yield return new WaitForSeconds(batteryLifetime);
+
+        Debug.Log("The battery has expired and has been destroyed. You can now place a new battery.");
 
         if (lampLight != null)
         {
@@ -80,18 +82,30 @@ public class LampBattrey : Interactable
 
         if (lampBattery != null)
         {
-            Destroy(lampBattery);
+            lampBattery.SetActive(false);
         }
+
         hasBattery = false;
-        isLightOn = false;
+        batteryDestroyCoroutine = null;
     }
-    void OnDrawGizmos()
+
+    public bool HasBattery()
     {
-        Gizmos.color = Color.yellow;
-        Vector3 origin = lampLight.transform.position;
-        Vector3 endpoint = origin + lampLight.transform.forward * repelDistance;
-        // Gizmos.DrawLine(origin, endpoint);
-        // Gizmos.DrawWireSphere(endpoint, repelCapsuleRadius);
-        Gizmos.DrawWireSphere(origin, repelCapsuleRadius);
+        return hasBattery;
+    }
+
+    public float GetRemainingBatteryTime()
+    {
+        if (!hasBattery || batteryDestroyCoroutine == null)
+            return 0f;
+
+        return batteryLifetime;
+    }
+    private void OnDestroy()
+    {
+        if (batteryDestroyCoroutine != null)
+        {
+            StopCoroutine(batteryDestroyCoroutine);
+        }
     }
 }

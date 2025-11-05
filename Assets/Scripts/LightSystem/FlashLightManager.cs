@@ -20,7 +20,6 @@ public class FlashLightManager : MonoBehaviour
         bool canInteract = false;
         string promptMessage = "";
 
-        // تحقق من اللمبات القريبة
         foreach (var light in ceilingLights)
         {
             if (IsNearLight(light.transform))
@@ -38,7 +37,6 @@ public class FlashLightManager : MonoBehaviour
             }
         }
 
-        // عرض رسالة التفاعل
         if (interactionPrompt != null)
         {
             interactionPrompt.SetActive(canInteract);
@@ -60,7 +58,6 @@ public class FlashLightManager : MonoBehaviour
         return false;
     }
 
-    // دالة لتشغيل الفلاش من سكربت خارجي
     public void ActivateFlashlight()
     {
         if (flashlight != null && flashlight.IsWorking)
