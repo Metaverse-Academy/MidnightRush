@@ -1,58 +1,70 @@
+// LightRaycast.cs  — drop-in replacement that supports Area lamps cleanly
 using UnityEngine;
 
-public class LightRaycast : PlayerInteraction
+public class LightRaycast : MonoBehaviour
 {
-    [Header("Light Source")]
-    [SerializeField] private Transform lightSource;
+    [Header("Area Lamp Settings")]
+    [SerializeField] private Transform lightSource;     // center of the lamp; defaults to this.transform
+    [SerializeField] private LayerMask enemyLayer = ~0; // include the enemy's layer
+    [SerializeField] private float areaRadius = 4f;     // how far the lamp reaches
 
-    [Tooltip("Layer that the enemy belongs to")]
-    [SerializeField] private LayerMask enemyLayer;
+    [Header("DarknessZone Painting (optional)")]
+    [SerializeField] private bool paintDarkness = true;
+    [SerializeField] private float injectStrength = 1f;      // 0..1
+    [SerializeField] private float decayPerSecond = 0.8f;
 
-    [Tooltip("Distance the light ray will repel enemies")]
-    [SerializeField] private float repelDistance = 20f;
+    [Header("Debug")]
+    [SerializeField] private bool drawGizmos = true;
 
-    [Tooltip("Radius of the light ray")]
-    [SerializeField] private float repelRadius = 0.5f;
     private bool isRaycastActive = false;
+    private DarknessZone[] zones;
 
     private void Awake()
     {
-        if (lightSource == null)
-        {
-            lightSource = transform;
-        }
+        if (!lightSource) lightSource = transform;
+        zones = FindObjectsByType<DarknessZone>(FindObjectsSortMode.None);
     }
+
     private void Update()
     {
-        if (isRaycastActive)
-        {
-            PerformRepelCast();
-        }
-    }
-    private void PerformRepelCast()
-    {
+        if (!isRaycastActive) return;
 
-        if (Physics.SphereCast(lightSource.position, repelRadius, lightSource.forward, out RaycastHit hit, repelDistance, enemyLayer))
+        // 1) Repel any enemies inside the lit area
+        Vector3 origin = lightSource.position;
+        var hits = Physics.OverlapSphere(origin, areaRadius, enemyLayer, QueryTriggerInteraction.Ignore);
+        for (int i = 0; i < hits.Length; i++)
         {
-            EnemyAi enemy = hit.collider.GetComponent<EnemyAi>();
-            if (enemy != null)
+            var enemy = hits[i].GetComponentInParent<EnemyAi>() ?? hits[i].GetComponent<EnemyAi>();
+            if (enemy != null) enemy.TriggerRepel();
+        }
+
+        // 2) (Optional) brighten darkness zones so AI avoids this area
+        if (paintDarkness && zones != null)
+        {
+            float r2 = areaRadius * areaRadius;
+            for (int z = 0; z < zones.Length; z++)
             {
-                enemy.TriggerRepel();
-                Debug.Log("Light repelled enemy: " + enemy.name);
+                var dz = zones[z];
+                if (!dz) continue;
+                if ((dz.transform.position - origin).sqrMagnitude <= r2)
+                    dz.InjectLight(injectStrength, decayPerSecond);
             }
         }
     }
+
     public void SetActive(bool isActive)
     {
         isRaycastActive = isActive;
-        Debug.Log("Light raycast " + (isActive ? "activated" : "deactivated"));
+#if UNITY_EDITOR
+        Debug.Log($"[LightRaycast] Area lamp {(isActive ? "ON" : "OFF")}");
+#endif
     }
 
-    void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
+        if (!drawGizmos) return;
+        Vector3 origin = lightSource ? lightSource.position : transform.position;
         Gizmos.color = isRaycastActive ? Color.yellow : Color.gray;
-        Vector3 origin = lightSource != null ? lightSource.position : transform.position;
-        Vector3 direction = lightSource != null ? lightSource.forward : transform.forward;
-        Gizmos.DrawSphere(origin + direction * repelDistance, repelRadius);
+        Gizmos.DrawWireSphere(origin, areaRadius);
     }
 }

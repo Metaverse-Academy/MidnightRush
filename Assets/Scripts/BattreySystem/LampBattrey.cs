@@ -20,6 +20,8 @@ public class LampBattrey : Interactable
 
     private bool hasBattery = false;
     private Coroutine batteryDestroyCoroutine;
+     public bool IsOn => lampLight != null && lampLight.enabled;   // <— ADD
+
 
     public override void Interact(GameObject interactor)
     {
@@ -63,6 +65,8 @@ public class LampBattrey : Interactable
 
         if (lampLight != null) lampLight.enabled = true;
         if (lightRaycastController != null)
+         lightRaycastController.SetActive(true);               // <— CHANGE (was: enabled = true)
+
     {
         lightRaycastController.enabled = true;
     }
@@ -91,6 +95,8 @@ public class LampBattrey : Interactable
             lampBattery.SetActive(false);
         }
         if (lightRaycastController != null)
+        lightRaycastController.SetActive(false);              // <— CHANGE (was: enabled = false)
+
     {
         lightRaycastController.enabled = false;
     }
