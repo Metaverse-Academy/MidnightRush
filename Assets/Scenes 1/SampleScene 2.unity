@@ -4658,7 +4658,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.016666668
+  m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: bea98b6533552bb499aad98413b89c7a, type: 2}
   m_BuildHeightMesh: 0
@@ -6165,15 +6165,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f219b987f60ba4c4d907381f31a59a7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightRaycast
+  cameraTransform: {fileID: 1910604586}
+  promptCanvas: {fileID: 0}
+  promptText: {fileID: 0}
+  interactDistance: 3
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  showDebugRay: 0
+  fadeDuration: 100
+  scalePop: 1.1
   lightSource: {fileID: 2064956176}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  areaRadius: 11.69
-  paintDarkness: 1
-  injectStrength: 1
-  decayPerSecond: 0.8
-  drawGizmos: 1
+  repelDistance: 20
+  repelRadius: 0.5
 --- !u!1 &1931202469
 GameObject:
   m_ObjectHideFlags: 0
