@@ -37,6 +37,8 @@ public class LightRepeller : MonoBehaviour
         {
             PerformRepelCast();
         }
+
+        Debug.Log($"[LightRepeller] Light is {(isLightActive ? "ON" : "OFF")}");
     }
     private void PerformRepelCast()
     {
