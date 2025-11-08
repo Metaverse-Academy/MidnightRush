@@ -11,14 +11,15 @@ public class FlashlightController : MonoBehaviour, IFlashable
 
     [Header("UI")]
     [SerializeField] private UnityEngine.UI.Slider batterySlider;
-
     private float currentBattery;
     private float rechargeTimer;
     private bool isRecharging = false;
     private Vector2 OnFlashInput;
-
     public bool IsWorking => !isRecharging && currentBattery > 0;
     public bool IsOn => flashlightLight.enabled && IsWorking;
+    [Header("Audio")]
+    [SerializeField] private AudioClip flashlightOnClip;
+    [SerializeField] private AudioClip flashlightOffClip;
 
     private void Start()
     {
@@ -52,19 +53,19 @@ public class FlashlightController : MonoBehaviour, IFlashable
         }
     }
     public void OnFlash(InputAction.CallbackContext ctx)
-{
-    if (ctx.performed) // fires when button is pressed
     {
-        if (IsWorking && !IsOn)
+        if (ctx.performed) // fires when button is pressed
         {
-            TurnOn();
-        }
-        else if (IsOn)
-        {
-            TurnOff();
+            if (IsWorking && !IsOn)
+            {
+                TurnOn();
+            }
+            else if (IsOn)
+            {
+                TurnOff();
+            }
         }
     }
-}
 
     private void HandleBattery()
     {
@@ -89,27 +90,31 @@ public class FlashlightController : MonoBehaviour, IFlashable
             }
         }
     }
-
     public void TurnOn()
     {
         if (IsWorking)
         {
             flashlightLight.enabled = true;
         }
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySound(flashlightOnClip);
+        }
     }
-
     public void TurnOff()
     {
         flashlightLight.enabled = false;
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySound(flashlightOffClip);
+        }
     }
-
     public void StartRecharge()
     {
         isRecharging = true;
         rechargeTimer = rechargeDuration;
         TurnOff();
     }
-
     private void UpdateUI()
     {
         if (batterySlider != null)
