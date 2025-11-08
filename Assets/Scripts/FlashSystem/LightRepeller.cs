@@ -8,7 +8,7 @@ public class LightRepeller : MonoBehaviour
     [SerializeField] private Transform lightSource;
 
     [Header("Repel Settings")]
-    [SerializeField] private FlashlightController flashlightController;
+    private FlashlightController flashlightController;
 
     [Tooltip("Layer that the enemy belongs to")]
     [SerializeField] private LayerMask enemyLayer;
