@@ -20,7 +20,7 @@ public class LampBattrey : Interactable
 
     private bool hasBattery = false;
     private Coroutine batteryDestroyCoroutine;
-     public bool IsOn => lampLight != null && lampLight.enabled;   // <— ADD
+    public bool IsOn => lampLight != null && lampLight.enabled;   // <— ADD
 
 
     public override void Interact(GameObject interactor)
@@ -64,17 +64,14 @@ public class LampBattrey : Interactable
         if (lampBattery != null) lampBattery.SetActive(true);
 
         if (lampLight != null) lampLight.enabled = true;
-        if (lightRaycastController != null)
-         lightRaycastController.SetActive(true);               // <— CHANGE (was: enabled = true)
 
-    {
-        lightRaycastController.enabled = true;
-    }
+        if (lightRaycastController != null)
+            lightRaycastController.enabled = true;
 
         player.IsHoldingBattery = false;
         hasBattery = true;
 
-        Debug.Log("You have placed the battery in the lamp. It will last for " + batteryLifetime + " seconds.");
+        Debug.Log("the battrey has been placed in the lamp.");
 
         batteryDestroyCoroutine = StartCoroutine(DestroyBatteryAfterDelay());
     }
@@ -83,8 +80,7 @@ public class LampBattrey : Interactable
     {
         yield return new WaitForSeconds(batteryLifetime);
 
-        Debug.Log("The battery has expired and has been destroyed. You can now place a new battery.");
-
+        Debug.Log("The battery has expired. You can now place a new battery.");
         if (lampLight != null)
         {
             lampLight.enabled = false;
@@ -94,17 +90,13 @@ public class LampBattrey : Interactable
         {
             lampBattery.SetActive(false);
         }
-        if (lightRaycastController != null)
-        lightRaycastController.SetActive(false);              // <— CHANGE (was: enabled = false)
 
-    {
-        lightRaycastController.enabled = false;
-    }
+        if (lightRaycastController != null)
+            lightRaycastController.enabled = false;
 
         hasBattery = false;
         batteryDestroyCoroutine = null;
     }
-
     public bool HasBattery()
     {
         return hasBattery;

@@ -1,70 +1,77 @@
-// LightRaycast.cs  — drop-in replacement that supports Area lamps cleanly
 using UnityEngine;
 
-public class LightRaycast : MonoBehaviour
+public class LightRaycast : MonoBehaviour // تم تغيير الوراثة إلى MonoBehaviour فقط
 {
-    [Header("Area Lamp Settings")]
-    [SerializeField] private Transform lightSource;     // center of the lamp; defaults to this.transform
-    [SerializeField] private LayerMask enemyLayer = ~0; // include the enemy's layer
-    [SerializeField] private float areaRadius = 4f;     // how far the lamp reaches
+    [Header("Light Source")]
+    [SerializeField] private Transform lightSource;
+    [SerializeField] private Light lampLight; // المكون Light الخاص بالأباجورة
 
-    [Header("DarknessZone Painting (optional)")]
-    [SerializeField] private bool paintDarkness = true;
-    [SerializeField] private float injectStrength = 1f;      // 0..1
-    [SerializeField] private float decayPerSecond = 0.8f;
+    [Header("Repel Settings")]
+    [Tooltip("Layer that the enemy belongs to")]
+    [SerializeField] private LayerMask enemyLayer;
 
-    [Header("Debug")]
-    [SerializeField] private bool drawGizmos = true;
+    [Tooltip("Distance the light ray will repel enemies")]
+    [SerializeField] private float repelDistance = 20f;
 
-    private bool isRaycastActive = false;
-    private DarknessZone[] zones;
+    [Tooltip("Radius of the light ray")]
+    [SerializeField] private float repelRadius = 0.5f;
+
+    // خاصية للتحقق من حالة الضوء
+    // الضوء يكون نشطًا إذا كان مكون Light موجودًا ومفعلًا
+    public bool isLightActive => lampLight != null && lampLight.enabled;
 
     private void Awake()
     {
-        if (!lightSource) lightSource = transform;
-        zones = FindObjectsByType<DarknessZone>(FindObjectsSortMode.None);
+        // إذا لم يتم تعيين lightSource، استخدم Transform الخاص بهذا الكائن
+        if (lightSource == null)
+        {
+            lightSource = transform;
+        }
+        // إذا لم يتم تعيين lampLight، حاول إيجاده في هذا الكائن
+        if (lampLight == null)
+        {
+            lampLight = GetComponent<Light>();
+        }
     }
 
     private void Update()
     {
-        if (!isRaycastActive) return;
-
-        // 1) Repel any enemies inside the lit area
-        Vector3 origin = lightSource.position;
-        var hits = Physics.OverlapSphere(origin, areaRadius, enemyLayer, QueryTriggerInteraction.Ignore);
-        for (int i = 0; i < hits.Length; i++)
+        // نفذ الـ Raycast فقط إذا كان الضوء نشطًا
+        if (isLightActive)
         {
-            var enemy = hits[i].GetComponentInParent<EnemyAi>() ?? hits[i].GetComponent<EnemyAi>();
-            if (enemy != null) enemy.TriggerRepel();
+            PerformRepelCast();
         }
+    }
 
-        // 2) (Optional) brighten darkness zones so AI avoids this area
-        if (paintDarkness && zones != null)
+    private void PerformRepelCast()
+    {
+        // SphereCast ينطلق من مصدر الضوء وفي اتجاهه
+        if (Physics.SphereCast(lightSource.position, repelRadius, lightSource.forward, out RaycastHit hit, repelDistance, enemyLayer))
         {
-            float r2 = areaRadius * areaRadius;
-            for (int z = 0; z < zones.Length; z++)
+            // محاولة الحصول على سكربت TheEnemyAI
+            TheEnemyAI enemy = hit.collider.GetComponent<TheEnemyAI>();
+
+            if (enemy != null)
             {
-                var dz = zones[z];
-                if (!dz) continue;
-                if ((dz.transform.position - origin).sqrMagnitude <= r2)
-                    dz.InjectLight(injectStrength, decayPerSecond);
+                // استدعاء دالة العمى والهروب
+                enemy.TriggerBlindness();
+                Debug.Log("Lamp Light blinded enemy: " + enemy.name);
             }
         }
     }
 
-    public void SetActive(bool isActive)
+    void OnDrawGizmos()
     {
-        isRaycastActive = isActive;
-#if UNITY_EDITOR
-        Debug.Log($"[LightRaycast] Area lamp {(isActive ? "ON" : "OFF")}");
-#endif
-    }
+        // رسم Gizmos لتوضيح نطاق الـ Raycast في محرر Unity
+        Gizmos.color = isLightActive ? Color.yellow : Color.white;
 
-    private void OnDrawGizmosSelected()
-    {
-        if (!drawGizmos) return;
-        Vector3 origin = lightSource ? lightSource.position : transform.position;
-        Gizmos.color = isRaycastActive ? Color.yellow : Color.gray;
-        Gizmos.DrawWireSphere(origin, areaRadius);
+        Vector3 origin = lightSource != null ? lightSource.position : transform.position;
+        Vector3 direction = lightSource != null ? lightSource.forward : transform.forward;
+
+        // رسم كرة في نهاية نطاق الـ Raycast
+        Gizmos.DrawWireSphere(origin + direction * repelDistance, repelRadius);
+
+        // رسم خط يمثل اتجاه الـ Raycast
+        Gizmos.DrawLine(origin, origin + direction * repelDistance);
     }
 }
