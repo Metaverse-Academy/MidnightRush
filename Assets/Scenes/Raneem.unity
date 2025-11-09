@@ -934,7 +934,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightRepeller
   lightSource: {fileID: 283209070}
-  flashlightController: {fileID: 231901432}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -1061,6 +1060,8 @@ MonoBehaviour:
   flashlightLight: {fileID: 1453963711}
   flashlightModel: {fileID: 1453963708}
   batterySlider: {fileID: 0}
+  flashlightOnClip: {fileID: 8300000, guid: b4bbe80c50106d548b10e451df7a986c, type: 3}
+  flashlightOffClip: {fileID: 8300000, guid: a17bb8a55a31b5e40a9b2f63ee165423, type: 3}
 --- !u!1 &249482841
 GameObject:
   m_ObjectHideFlags: 0
@@ -6090,7 +6091,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightRepeller
   lightSource: {fileID: 170869511}
-  flashlightController: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -6113,6 +6113,8 @@ MonoBehaviour:
   flashlightLight: {fileID: 2085501053}
   flashlightModel: {fileID: 2085501050}
   batterySlider: {fileID: 0}
+  flashlightOnClip: {fileID: 0}
+  flashlightOffClip: {fileID: 0}
 --- !u!65 &1720804773
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6427,7 +6429,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.016666668
+  m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 909d7a5c142e4d9419122a55dd8d427f, type: 2}
   m_BuildHeightMesh: 0
@@ -8568,7 +8570,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightRepeller
   lightSource: {fileID: 1295710646}
-  flashlightController: {fileID: 2144958148}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -8695,6 +8696,8 @@ MonoBehaviour:
   flashlightLight: {fileID: 586025618}
   flashlightModel: {fileID: 586025615}
   batterySlider: {fileID: 0}
+  flashlightOnClip: {fileID: 8300000, guid: b4bbe80c50106d548b10e451df7a986c, type: 3}
+  flashlightOffClip: {fileID: 8300000, guid: a17bb8a55a31b5e40a9b2f63ee165423, type: 3}
 --- !u!33 &215592838976114729
 MeshFilter:
   m_ObjectHideFlags: 0
