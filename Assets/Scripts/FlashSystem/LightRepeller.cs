@@ -43,10 +43,10 @@ public class LightRepeller : MonoBehaviour
         if (!isLightActive) return;
         if (Physics.Raycast(lightSource.position, lightSource.forward, out RaycastHit hit, repelDistance, enemyLayer))
         {
-            EnemyAi enemy = hit.collider.GetComponent<EnemyAi>();
+            TheEnemyAI enemy = hit.collider.GetComponent<TheEnemyAI>();
             if (enemy != null)
             {
-                enemy.TriggerRepel();
+                enemy.TriggerBlindness();
                 Debug.Log("Light repelled enemy: " + enemy.name);
             }
         }
