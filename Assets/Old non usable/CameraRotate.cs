@@ -33,7 +33,7 @@ public class CameraRotate : MonoBehaviour
         HandleRotation();
     }
 
-    private void HandleRotation()
+    void HandleRotation()
     {
         Vector3 flatFwd = cameraTransform.forward; flatFwd.y = 0f;
         if (flatFwd.sqrMagnitude < 1e-6f) return;

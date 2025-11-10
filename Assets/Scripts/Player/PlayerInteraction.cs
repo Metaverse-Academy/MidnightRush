@@ -15,9 +15,10 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private bool showDebugRay = false;
     [SerializeField] private float fadeDuration = 0.2f;
     [SerializeField] private float scalePop = 1.1f;
-    public bool IsHoldingBattery { get; set; } = false;
+
     private IInteractable currentTarget;
     private bool promptVisible;
+
     private void Awake()
     {
         if (promptCanvas)
@@ -26,6 +27,7 @@ public class PlayerInteraction : MonoBehaviour
             promptCanvas.transform.localScale = Vector3.one;
         }
     }
+
     private void Update()
     {
         Vector3 origin = cameraTransform.position;
@@ -45,6 +47,7 @@ public class PlayerInteraction : MonoBehaviour
         if (showDebugRay)
             Debug.DrawRay(origin, dir * interactDistance, currentTarget != null ? Color.green : Color.red);
     }
+
     private void ShowPrompt(string text)
     {
         if (!promptCanvas) return;
@@ -62,6 +65,7 @@ public class PlayerInteraction : MonoBehaviour
             LeanTween.alphaCanvas(promptCanvas, 1f, fadeDuration);
         }
     }
+
     private void HidePrompt()
     {
         if (!promptCanvas || !promptVisible) return;
@@ -72,6 +76,8 @@ public class PlayerInteraction : MonoBehaviour
         LeanTween.scale(promptCanvas.gameObject, Vector3.one * 0.8f, fadeDuration).setEaseInBack();
         LeanTween.alphaCanvas(promptCanvas, 0f, fadeDuration);
     }
+
+    // --- Input System ---
     public void OnInteract(InputAction.CallbackContext ctx)
     {
         if (ctx.performed && currentTarget != null)
