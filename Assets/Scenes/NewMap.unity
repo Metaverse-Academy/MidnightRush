@@ -19565,6 +19565,7 @@ GameObject:
   - component: {fileID: 6668104267609195317}
   - component: {fileID: 606515373655720252}
   - component: {fileID: 6668104267609195318}
+  - component: {fileID: 6668104267609195319}
   m_Layer: 0
   m_Name: kids bedroom drawer.001
   m_TagString: Untagged
@@ -20002,6 +20003,7 @@ GameObject:
   - component: {fileID: 8899248597954202291}
   - component: {fileID: 5847829911941972902}
   - component: {fileID: 8899248597954202292}
+  - component: {fileID: 8899248597954202293}
   m_Layer: 0
   m_Name: Chair.001
   m_TagString: Untagged
@@ -21138,6 +21140,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2820419008368985685}
+  - component: {fileID: 2820419008368985686}
   m_Layer: 0
   m_Name: Old Heater
   m_TagString: Untagged
@@ -21294,6 +21297,7 @@ GameObject:
   - component: {fileID: 1492923735155323968}
   - component: {fileID: 4912253087130451063}
   - component: {fileID: 4912253087130451064}
+  - component: {fileID: 4912253087130451065}
   m_Layer: 0
   m_Name: Chair.004
   m_TagString: Untagged
@@ -21436,6 +21440,7 @@ GameObject:
   - component: {fileID: 8858420421549933878}
   - component: {fileID: 5230592599698481375}
   - component: {fileID: 8858420421549933879}
+  - component: {fileID: 8858420421549933880}
   m_Layer: 0
   m_Name: living room drawer.001
   m_TagString: Untagged
@@ -21621,6 +21626,7 @@ GameObject:
   - component: {fileID: 6607481249047276730}
   - component: {fileID: 1153551735383680046}
   - component: {fileID: 6607481249047276731}
+  - component: {fileID: 6607481249047276732}
   m_Layer: 0
   m_Name: Kids closet
   m_TagString: Untagged
@@ -21724,6 +21730,7 @@ GameObject:
   - component: {fileID: 8257131460463146407}
   - component: {fileID: 5729930135331888371}
   - component: {fileID: 8257131460463146408}
+  - component: {fileID: 8257131460463146409}
   m_Layer: 0
   m_Name: Chair.003
   m_TagString: Untagged
@@ -22176,6 +22183,22 @@ Transform:
   - {fileID: 364359425348933776}
   m_Father: {fileID: 543450652396405523}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &2820419008368985686
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920382537817598643}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!33 &2821272760535417787
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -22249,6 +22272,7 @@ GameObject:
   - component: {fileID: 246159506686989783}
   - component: {fileID: 2340106088859711333}
   - component: {fileID: 6271621790169523109}
+  - component: {fileID: 6271621790169523110}
   m_Layer: 0
   m_Name: kids bedroom drawer.002
   m_TagString: Untagged
@@ -22321,6 +22345,7 @@ GameObject:
   - component: {fileID: 7692171741514077090}
   - component: {fileID: 3546946874438987883}
   - component: {fileID: 7692171741514077091}
+  - component: {fileID: 7692171741514077092}
   m_Layer: 0
   m_Name: living room shelves
   m_TagString: Untagged
@@ -22952,6 +22977,7 @@ GameObject:
   - component: {fileID: 3822160551179565803}
   - component: {fileID: 5445439689543764329}
   - component: {fileID: 6244299936478430411}
+  - component: {fileID: 6244299936478430412}
   m_Layer: 0
   m_Name: Old Rustic Wood Conttainer.001
   m_TagString: Untagged
@@ -23121,6 +23147,7 @@ GameObject:
   - component: {fileID: 5049860901436247414}
   - component: {fileID: 4684737057937444191}
   - component: {fileID: 5785692497788614546}
+  - component: {fileID: 5785692497788614547}
   m_Layer: 0
   m_Name: Old Rustic Wood Conttainer
   m_TagString: Untagged
@@ -23140,6 +23167,7 @@ GameObject:
   - component: {fileID: 6260990757088167821}
   - component: {fileID: 1619334642346254374}
   - component: {fileID: 6260990757088167822}
+  - component: {fileID: 6260990757088167823}
   m_Layer: 0
   m_Name: Old Crate.002
   m_TagString: Untagged
@@ -23221,6 +23249,7 @@ GameObject:
   - component: {fileID: 3648761900697903975}
   - component: {fileID: 493054160030529821}
   - component: {fileID: 8001512853454219483}
+  - component: {fileID: 8001512853454219484}
   m_Layer: 0
   m_Name: Kids closet drawer.003
   m_TagString: Untagged
@@ -23240,6 +23269,7 @@ GameObject:
   - component: {fileID: 3599615886668338382}
   - component: {fileID: 1107792125877891393}
   - component: {fileID: 7513663531859234224}
+  - component: {fileID: 7513663531859234225}
   m_Layer: 0
   m_Name: Kids closet drawer.002
   m_TagString: Untagged
@@ -23356,6 +23386,7 @@ GameObject:
   - component: {fileID: 8018784701325282211}
   - component: {fileID: 1287094766395471213}
   - component: {fileID: 8018784701325282212}
+  - component: {fileID: 8018784701325282213}
   m_Layer: 0
   m_Name: Old Rustic Wood Conttainer.003
   m_TagString: Untagged
@@ -26185,6 +26216,7 @@ GameObject:
   - component: {fileID: 6431422613060042357}
   - component: {fileID: 1913621558208205997}
   - component: {fileID: 6431422613060042358}
+  - component: {fileID: 6431422613060042359}
   m_Layer: 0
   m_Name: Kids closet drawer.001
   m_TagString: Untagged
@@ -26372,6 +26404,7 @@ GameObject:
   - component: {fileID: 8465856118812792630}
   - component: {fileID: 9097657757026933746}
   - component: {fileID: 9097657757026933747}
+  - component: {fileID: 9097657757026933748}
   m_Layer: 0
   m_Name: living room drawer
   m_TagString: Untagged
@@ -26543,6 +26576,7 @@ GameObject:
   - component: {fileID: 5349649913126069336}
   - component: {fileID: 515936220726742145}
   - component: {fileID: 5349649913126069337}
+  - component: {fileID: 5349649913126069338}
   m_Layer: 0
   m_Name: Cube.049
   m_TagString: Untagged
@@ -26620,6 +26654,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 9162622013225082336, guid: 4a21c2323720c4b40b62654a863519f3, type: 3}
+--- !u!208 &4912253087130451065
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2148147223660219388}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.035, y: 0.066, z: 0.039}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.47900003, y: -0.86500007, z: -3.6390002}
+  m_TimeToStationary: 0.5
 --- !u!1 &4912714375019797818
 GameObject:
   m_ObjectHideFlags: 0
@@ -26700,6 +26750,7 @@ GameObject:
   - component: {fileID: 9091363902911816859}
   - component: {fileID: 731059587901770199}
   - component: {fileID: 9091363902911816860}
+  - component: {fileID: 9091363902911816861}
   m_Layer: 0
   m_Name: Old Crate.001
   m_TagString: Untagged
@@ -26727,6 +26778,7 @@ GameObject:
   - component: {fileID: 59830373446399619}
   - component: {fileID: 5411833104282191936}
   - component: {fileID: 8484100802479582577}
+  - component: {fileID: 8484100802479582578}
   m_Layer: 0
   m_Name: kids bedroom drawer
   m_TagString: Untagged
@@ -27114,6 +27166,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1845154, y: 0.09532124, z: 0.16850793}
   m_Center: {x: 0.021498263, y: 0.21879399, z: 0.90162164}
+--- !u!208 &5349649913126069338
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4896947688693924818}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.09200001, y: 0.048, z: 0.08400001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.021000002, y: 0.21900001, z: 0.90200007}
+  m_TimeToStationary: 0.5
 --- !u!1 &5353805881048405617
 GameObject:
   m_ObjectHideFlags: 0
@@ -27980,6 +28048,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.08051455, y: 0.08051461, z: 0.1341908}
   m_Center: {x: -0.85029995, y: -0.89267826, z: -3.3433485}
+--- !u!208 &5785692497788614547
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3600485362378993551}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.040000003, y: 0.040000003, z: 0.067}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.85, y: -0.89300007, z: -3.3430002}
+  m_TimeToStationary: 0.5
 --- !u!23 &5787983352097307533
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28048,6 +28132,7 @@ GameObject:
   - component: {fileID: 5940242392093791652}
   - component: {fileID: 4680257397446338410}
   - component: {fileID: 5940242392093791653}
+  - component: {fileID: 5940242392093791654}
   m_Layer: 0
   m_Name: living room table.001
   m_TagString: Untagged
@@ -28074,6 +28159,7 @@ GameObject:
   - component: {fileID: 5134136588787493141}
   - component: {fileID: 5383179512758712363}
   - component: {fileID: 8616184511993807218}
+  - component: {fileID: 8616184511993807219}
   m_Layer: 0
   m_Name: Cube.028
   m_TagString: Untagged
@@ -28190,6 +28276,7 @@ GameObject:
   - component: {fileID: 8407996821011726157}
   - component: {fileID: 501046431259047142}
   - component: {fileID: 8407996821011726158}
+  - component: {fileID: 8407996821011726159}
   m_Layer: 0
   m_Name: Old Rustic Wood Conttainer.002
   m_TagString: Untagged
@@ -28303,6 +28390,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.2791686, y: 0.0771091, z: 0.2791685}
   m_Center: {x: 0, y: 0.09430614, z: -1.5066333}
+--- !u!208 &5940242392093791654
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5797961893297486468}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.14, y: 0.039, z: 0.14}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0.094000004, z: -1.5070001}
+  m_TimeToStationary: 0.5
 --- !u!23 &5944507179039252242
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28379,6 +28482,7 @@ GameObject:
   - component: {fileID: 2873168750829376348}
   - component: {fileID: 1275922659697223599}
   - component: {fileID: 8241722781811254555}
+  - component: {fileID: 8241722781811254556}
   m_Layer: 0
   m_Name: Kids bed.001
   m_TagString: Untagged
@@ -28506,6 +28610,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7474572736535842133}
+  - component: {fileID: 7474572736535842134}
   m_Layer: 0
   m_Name: Old Table
   m_TagString: Untagged
@@ -28549,6 +28654,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.08051467, y: 0.08051461, z: 0.1341908}
   m_Center: {x: -0.97318065, y: -0.89267826, z: -3.3433485}
+--- !u!208 &6244299936478430412
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3514041664773065039}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.040000003, y: 0.040000003, z: 0.067}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.97300005, y: -0.89300007, z: -3.3430002}
+  m_TimeToStationary: 0.5
 --- !u!23 &6255158397652532144
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28626,6 +28747,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.09749824, y: 0.0977236, z: 0.097723484}
   m_Center: {x: -0.95674074, y: -0.77750665, z: -2.432529}
+--- !u!208 &6260990757088167823
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3608512208977508068}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.049000002, y: 0.049000002, z: 0.049000002}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.957, y: -0.77800006, z: -2.433}
+  m_TimeToStationary: 0.5
 --- !u!4 &6271621790169523108
 Transform:
   m_ObjectHideFlags: 0
@@ -28663,6 +28800,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.2537298, y: 0.25651506, z: 0.15488625}
   m_Center: {x: 0.021498311, y: 0.17280428, z: 0.90758157}
+--- !u!208 &6271621790169523110
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2879644170941561357}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.127, y: 0.128, z: 0.07700001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.021000002, y: 0.17300001, z: 0.90800005}
+  m_TimeToStationary: 0.5
 --- !u!23 &6275833174712902415
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28827,6 +28980,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1316768, y: 0.067646325, z: 0.4100139}
   m_Center: {x: -0.87793416, y: 0.3876887, z: -0.18094376}
+--- !u!208 &6431422613060042359
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4578167944058617836}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.066, y: 0.034, z: 0.20500001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.878, y: 0.388, z: -0.18100001}
+  m_TimeToStationary: 0.5
 --- !u!1 &6458859408094054036
 GameObject:
   m_ObjectHideFlags: 0
@@ -28997,6 +29166,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.12837833, y: 0.7866719, z: 0.5074985}
   m_Center: {x: -0.9196713, y: 0.43434966, z: -0.18094371}
+--- !u!208 &6607481249047276732
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2382347044087628471}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.064, y: 0.393, z: 0.254}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.92, y: 0.43400002, z: -0.18100001}
+  m_TimeToStationary: 0.5
 --- !u!4 &6644650672162131801
 Transform:
   m_ObjectHideFlags: 0
@@ -29056,6 +29241,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.15488619, y: 0.25651506, z: 0.25372976}
   m_Center: {x: 0.96355724, y: 0.17280428, z: -0.8049494}
+--- !u!208 &6668104267609195319
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 607373250883578940}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.07700001, y: 0.128, z: 0.127}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.96400005, y: 0.17300001, z: -0.80500007}
+  m_TimeToStationary: 0.5
 --- !u!33 &6694604015681991576
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -29394,6 +29595,7 @@ GameObject:
   - component: {fileID: 5924574885405164496}
   - component: {fileID: 8395574288967986376}
   - component: {fileID: 8395574288967986377}
+  - component: {fileID: 8395574288967986378}
   m_Layer: 0
   m_Name: living room table
   m_TagString: Untagged
@@ -29413,6 +29615,7 @@ GameObject:
   - component: {fileID: 470614522662670395}
   - component: {fileID: 5691526892748711729}
   - component: {fileID: 6885738900806789507}
+  - component: {fileID: 6885738900806789508}
   m_Layer: 0
   m_Name: Chair.002
   m_TagString: Untagged
@@ -29442,6 +29645,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -7292569847554373119, guid: 4a21c2323720c4b40b62654a863519f3, type: 3}
+--- !u!208 &6885738900806789508
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6885738900806789506}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.035, y: 0.066, z: 0.039}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.70400006, y: -0.86500007, z: -3.3660002}
+  m_TimeToStationary: 0.5
 --- !u!4 &6902885693571752417
 Transform:
   m_ObjectHideFlags: 0
@@ -30197,6 +30416,22 @@ Transform:
   - {fileID: 8978888792152877902}
   m_Father: {fileID: 543450652396405523}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!208 &7474572736535842134
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6202816115979417037}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!4 &7513663531859234223
 Transform:
   m_ObjectHideFlags: 0
@@ -30233,6 +30468,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1316768, y: 0.059656054, z: 0.4100139}
   m_Center: {x: -0.87793416, y: 0.2983619, z: -0.18094376}
+--- !u!208 &7513663531859234225
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3677877832960688811}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.066, y: 0.030000001, z: 0.20500001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.878, y: 0.298, z: -0.18100001}
+  m_TimeToStationary: 0.5
 --- !u!1 &7514273486165175047
 GameObject:
   m_ObjectHideFlags: 0
@@ -30245,6 +30496,7 @@ GameObject:
   - component: {fileID: 6735080277458639883}
   - component: {fileID: 5439161201953598929}
   - component: {fileID: 7514273486165175048}
+  - component: {fileID: 7514273486165175049}
   m_Layer: 0
   m_Name: living room chair
   m_TagString: Untagged
@@ -30273,6 +30525,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5628615, y: 0.09891489, z: 0.21000671}
   m_Center: {x: -0.0014571846, y: 0.10470922, z: -1.1392434}
+--- !u!208 &7514273486165175049
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7514273486165175047}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.28100002, y: 0.101, z: 0.105000004}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.001, y: 0.157, z: -1.139}
+  m_TimeToStationary: 0.5
 --- !u!33 &7518533538161406723
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -30513,6 +30781,7 @@ GameObject:
   - component: {fileID: 5990541619876967839}
   - component: {fileID: 5638347133665789914}
   - component: {fileID: 7661041501134725104}
+  - component: {fileID: 7661041501134725105}
   m_Layer: 0
   m_Name: Old Crate
   m_TagString: Untagged
@@ -30541,6 +30810,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.09749824, y: 0.0977236, z: 0.097723246}
   m_Center: {x: -0.95674074, y: -0.88046694, z: -2.4882703}
+--- !u!208 &7661041501134725105
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7661041501134725103}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.049000002, y: 0.049000002, z: 0.049000002}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.957, y: -0.88000005, z: -2.4880002}
+  m_TimeToStationary: 0.5
 --- !u!4 &7684804156350652678
 Transform:
   m_ObjectHideFlags: 0
@@ -30606,6 +30891,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.08347666, y: 0.47888738, z: 0.37374675}
   m_Center: {x: -1.0317037, y: 0.2948524, z: -1.8350639}
+--- !u!208 &7692171741514077092
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2999726918394560103}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.042000003, y: 0.23900001, z: 0.187}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -1.0320001, y: 0.29500002, z: -1.835}
+  m_TimeToStationary: 0.5
 --- !u!33 &7878872568216741652
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -30797,6 +31098,7 @@ GameObject:
   - component: {fileID: 5793405176031248573}
   - component: {fileID: 4106739220123072112}
   - component: {fileID: 7931490059596634263}
+  - component: {fileID: 7931490059596634264}
   m_Layer: 0
   m_Name: Kids closet drawer
   m_TagString: Untagged
@@ -30825,6 +31127,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1316768, y: 0.079535544, z: 0.4100139}
   m_Center: {x: -0.87793416, y: 0.12952378, z: -0.18094376}
+--- !u!208 &7931490059596634264
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7931490059596634262}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.066, y: 0.040000003, z: 0.20500001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.878, y: 0.13000001, z: -0.18100001}
+  m_TimeToStationary: 0.5
 --- !u!4 &7948661034866151825
 Transform:
   m_ObjectHideFlags: 0
@@ -30892,6 +31210,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1316768, y: 0.04789102, z: 0.4100139}
   m_Center: {x: -0.87793416, y: 0.21891272, z: -0.18094376}
+--- !u!208 &8001512853454219484
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3675830490214352133}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.066, y: 0.024, z: 0.20500001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.878, y: 0.21900001, z: -0.18100001}
+  m_TimeToStationary: 0.5
 --- !u!33 &8018784701325282211
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -30921,6 +31255,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.09691954, y: 0.058151662, z: 0.058151484}
   m_Center: {x: -0.4890377, y: -0.77810967, z: -3.4589062}
+--- !u!208 &8018784701325282213
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3793009440455836030}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.048, y: 0.029000001, z: 0.029000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.48900002, y: -0.77800006, z: -3.459}
+  m_TimeToStationary: 0.5
 --- !u!4 &8037074168734108969
 Transform:
   m_ObjectHideFlags: 0
@@ -31164,6 +31514,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7948661034866151825}
+  - component: {fileID: 8235593270774806338}
   m_Layer: 0
   m_Name: Old Chair
   m_TagString: Untagged
@@ -31171,6 +31522,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!208 &8235593270774806338
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8235593270774806337}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!4 &8241722781811254554
 Transform:
   m_ObjectHideFlags: 0
@@ -31207,6 +31574,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.45117462, y: 0.078864336, z: 0.78651345}
   m_Center: {x: -0.45553917, y: 0.24951577, z: 0.5661858}
+--- !u!208 &8241722781811254556
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6005919412012665949}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.22600001, y: 0.19500001, z: 0.393}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.45600003, y: 0.23600002, z: 0.56600004}
+  m_TimeToStationary: 0.5
 --- !u!33 &8257131460463146407
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -31237,6 +31620,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5447637273788417547, guid: 4a21c2323720c4b40b62654a863519f3, type: 3}
+--- !u!208 &8257131460463146409
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2459340861370341225}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.035, y: 0.066, z: 0.039}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.33400002, y: -0.86500007, z: -3.3230002}
+  m_TimeToStationary: 0.5
 --- !u!23 &8288233902587309388
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31440,6 +31839,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.38911736, y: 0.026743457, z: 0.08951473}
   m_Center: {x: -0.07005194, y: 0.23238921, z: -2.0865974}
+--- !u!208 &8395574288967986378
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6880281619594667406}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.19500001, y: 0.094000004, z: 0.045}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.07, y: 0.15200001, z: -2.0870001}
+  m_TimeToStationary: 0.5
 --- !u!33 &8407996821011726157
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -31469,6 +31884,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.13419092, y: 0.08051461, z: 0.08051419}
   m_Center: {x: -0.91303086, y: -0.81821585, z: -3.3469253}
+--- !u!208 &8407996821011726159
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5896852460846132367}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.067, y: 0.040000003, z: 0.040000003}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.91300005, y: -0.818, z: -3.3470001}
+  m_TimeToStationary: 0.5
 --- !u!33 &8446591961260492651
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -31614,6 +32045,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.15488619, y: 0.25651506, z: 0.25372976}
   m_Center: {x: 0.96355724, y: 0.17280428, z: -0.47369638}
+--- !u!208 &8484100802479582578
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4951767387483725906}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.07700001, y: 0.128, z: 0.127}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.96400005, y: 0.17300001, z: -0.47400004}
+  m_TimeToStationary: 0.5
 --- !u!33 &8488548203610871318
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -31631,6 +32078,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 36980950423285734}
+  - component: {fileID: 8493015187193352607}
   m_Layer: 0
   m_Name: Chair
   m_TagString: Untagged
@@ -31638,6 +32086,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!208 &8493015187193352607
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493015187193352606}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!33 &8547323235650214443
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -31854,6 +32318,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &8616184511993807219
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5813186244306521763}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.072000004, y: 0.075, z: 0.179}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.9710001, y: -0.86300004, z: -3.653}
+  m_TimeToStationary: 0.5
 --- !u!23 &8628502784439665251
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31944,6 +32424,7 @@ GameObject:
   - component: {fileID: 5544614938666344476}
   - component: {fileID: 2614318992721160967}
   - component: {fileID: 8685042230627618335}
+  - component: {fileID: 8685042230627618336}
   m_Layer: 0
   m_Name: Chair.005
   m_TagString: Untagged
@@ -31973,6 +32454,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 8129720142723837363, guid: 4a21c2323720c4b40b62654a863519f3, type: 3}
+--- !u!208 &8685042230627618336
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8685042230627618334}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.112, y: 0.12200001, z: 0.113000005}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.9250001, y: -0.80700004, z: -3.7050002}
+  m_TimeToStationary: 0.5
 --- !u!23 &8698790354292410782
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -32388,6 +32885,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.14076176, y: 0.14184825, z: 0.09608483}
   m_Center: {x: 0.43541372, y: 0.12842658, z: -1.0779438}
+--- !u!208 &8858420421549933880
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2243384899848303701}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.07, y: 0.071, z: 0.048}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.43500003, y: 0.128, z: -1.0780001}
+  m_TimeToStationary: 0.5
 --- !u!1 &8873083838503518330
 GameObject:
   m_ObjectHideFlags: 0
@@ -32400,6 +32913,7 @@ GameObject:
   - component: {fileID: 771960645032595816}
   - component: {fileID: 2198111168784372100}
   - component: {fileID: 8873083838503518331}
+  - component: {fileID: 8873083838503518332}
   m_Layer: 0
   m_Name: Kids bed
   m_TagString: Untagged
@@ -32428,6 +32942,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.4511745, y: 0.09925681, z: 0.78651345}
   m_Center: {x: 0.49065936, y: 0.2500483, z: 0.5661858}
+--- !u!208 &8873083838503518332
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8873083838503518330}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.22600001, y: 0.19500001, z: 0.393}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.49100003, y: 0.23600002, z: 0.56600004}
+  m_TimeToStationary: 0.5
 --- !u!4 &8877983549767490816
 Transform:
   m_ObjectHideFlags: 0
@@ -32495,6 +33025,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4564847448827134883, guid: 4a21c2323720c4b40b62654a863519f3, type: 3}
+--- !u!208 &8899248597954202293
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907544226655077395}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.035, y: 0.066, z: 0.039}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.62100005, y: -0.86500007, z: -3.647}
+  m_TimeToStationary: 0.5
 --- !u!4 &8906773800213259311
 Transform:
   m_ObjectHideFlags: 0
@@ -32727,6 +33273,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.09749824, y: 0.0977236, z: 0.097723484}
   m_Center: {x: -0.95674074, y: -0.88046694, z: -2.3802094}
+--- !u!208 &9091363902911816861
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4937983613014665134}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.049000002, y: 0.049000002, z: 0.049000002}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.957, y: -0.88000005, z: -2.38}
+  m_TimeToStationary: 0.5
 --- !u!23 &9097657757026933746
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -32796,6 +33358,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.14076173, y: 0.14184825, z: 0.09608483}
   m_Center: {x: -0.39003646, y: 0.12842658, z: -1.0779438}
+--- !u!208 &9097657757026933748
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4742726361595785409}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.07, y: 0.071, z: 0.048}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.39000002, y: 0.128, z: -1.0780001}
+  m_TimeToStationary: 0.5
 --- !u!1 &9099809136827267910
 GameObject:
   m_ObjectHideFlags: 0
