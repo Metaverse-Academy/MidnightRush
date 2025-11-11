@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,7 +17,8 @@ public class FlashlightController : MonoBehaviour, IFlashable
     private bool isRecharging = false;
     private Vector2 OnFlashInput;
     public bool IsWorking => !isRecharging && currentBattery > 0;
-    public bool IsOn => flashlightLight.enabled && IsWorking;
+    private bool isFlashlightActive = false;
+    public bool IsOn => isFlashlightActive && IsWorking;
     [Header("Audio")]
     [SerializeField] private AudioClip flashlightOnClip;
     [SerializeField] private AudioClip flashlightOffClip;
@@ -42,30 +44,34 @@ public class FlashlightController : MonoBehaviour, IFlashable
     {
         if (Mouse.current.rightButton.wasPressedThisFrame)
         {
-            if (IsWorking && !IsOn)
+            if (!isFlashlightActive)
             {
                 TurnOn();
             }
-            else if (IsOn)
+            else
             {
                 TurnOff();
             }
         }
     }
+
     public void OnFlash(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed) // fires when button is pressed
+        // تأكد من أن الزر تم ضغطه (وليس تحريره أو أي شيء آخر)
+        if (ctx.performed)
         {
-            if (IsWorking && !IsOn)
+            // استخدم نفس المنطق البسيط والمباشر
+            if (!isFlashlightActive)
             {
                 TurnOn();
             }
-            else if (IsOn)
+            else
             {
                 TurnOff();
             }
         }
     }
+
 
     private void HandleBattery()
     {
@@ -94,6 +100,7 @@ public class FlashlightController : MonoBehaviour, IFlashable
     {
         if (IsWorking)
         {
+            isFlashlightActive = true; // <-- تغيير هنا
             flashlightLight.enabled = true;
         }
         if (AudioManager.Instance != null)
@@ -101,8 +108,10 @@ public class FlashlightController : MonoBehaviour, IFlashable
             AudioManager.Instance.PlaySound(flashlightOnClip);
         }
     }
+
     public void TurnOff()
     {
+        isFlashlightActive = false; // <-- تغيير هنا
         flashlightLight.enabled = false;
         if (AudioManager.Instance != null)
         {
