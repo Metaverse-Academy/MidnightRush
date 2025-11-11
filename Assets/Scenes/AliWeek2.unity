@@ -389,6 +389,7 @@ MonoBehaviour:
   promptCanvas: {fileID: 1205262937}
   promptText: {fileID: 1571481769}
   interactDistance: 3
+  interactDebounce: 0.12
   interactableLayer:
     serializedVersion: 2
     m_Bits: 320
@@ -9989,8 +9990,8 @@ MonoBehaviour:
   - {fileID: 1040395972776448693}
   - {fileID: 4536350035181348159}
   respawnTime: 10
-  chaseDistance: 5
-  attackDistance: 2
+  chaseDistance: 10
+  attackDistance: 0.1
   escapeDistance: 15
   attackRate: 1.5
   panicDuration: 2
