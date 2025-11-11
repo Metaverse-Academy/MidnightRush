@@ -21,6 +21,12 @@ public class LampBattrey : Interactable
     private bool hasBattery = false;
     private Coroutine batteryDestroyCoroutine;
     public bool IsOn => lampLight != null && lampLight.enabled;   // <— ADD
+     [SerializeField] private AudioClip LightOnSound; // Sound to play when the light is turned on
+    [SerializeField] private AudioClip LightOffSound; // Sound to play when the light    [SerializeField] private AudioClip dooropenClip;
+    [SerializeField] private AudioSource audioSource; 
+    [SerializeField] private AudioClip BattryPlaceSound;
+// AudioSource component to play the sound
+
 
 
     public override void Interact(GameObject interactor)
@@ -74,6 +80,10 @@ public class LampBattrey : Interactable
         Debug.Log("the battrey has been placed in the lamp.");
 
         batteryDestroyCoroutine = StartCoroutine(DestroyBatteryAfterDelay());
+        audioSource.PlayOneShot(BattryPlaceSound);
+        audioSource.PlayOneShot(LightOnSound);
+
+
     }
 
     private IEnumerator DestroyBatteryAfterDelay()
@@ -115,5 +125,7 @@ public class LampBattrey : Interactable
         {
             StopCoroutine(batteryDestroyCoroutine);
         }
+        audioSource.PlayOneShot(LightOffSound);
+
     }
 }

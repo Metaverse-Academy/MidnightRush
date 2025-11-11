@@ -1,10 +1,14 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     private AudioSource audioSource;
+    [SerializeField] private AudioClip BackgroundMusicClip;
     private void Awake()
     {
+        audioSource.PlayOneShot(BackgroundMusicClip);
+
         if (Instance == null)
         {
             Instance = this;

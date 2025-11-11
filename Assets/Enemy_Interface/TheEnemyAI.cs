@@ -33,7 +33,12 @@ public class TheEnemyAI : MonoBehaviour
     private Transform targetPlayer;
     private Renderer objectRenderer; // للتحكم في شفافية العدو
     private Collider objectCollider; // لتعطيل الاصطدام عند التلاشي
-
+    
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip ChaseSound; // Sound to play when the enemy is chasing
+    [SerializeField] private AudioClip AttackSound; // Sound to play when the enemy is
+    [SerializeField] private AudioClip EscapeSound;
+    [SerializeField] private AudioClip DisapearSound; // AudioSource component to play the sound
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -131,6 +136,25 @@ public class TheEnemyAI : MonoBehaviour
         currentState = State.Chase;
     }
 
+         private LightRaycast currentLightBarrier;
+    
+    // Add this method to check for light barriers before moving
+    private bool CanMoveToPosition(Vector3 targetPosition)
+    {
+        // Find all light barriers in the scene
+        LightRaycast[] lightBarriers = FindObjectsByType<LightRaycast>(FindObjectsSortMode.None);
+        
+        foreach (LightRaycast barrier in lightBarriers)
+        {
+            if (barrier != null && barrier.IsPositionInBarrier(targetPosition))
+            {
+                Debug.Log("Cannot move to " + targetPosition + " - blocked by light barrier");
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     // --- نظام المطاردة والهجوم (بدون تغيير) ---
     void Chase()
@@ -138,6 +162,46 @@ public class TheEnemyAI : MonoBehaviour
         if (targetPlayer == null) return;
         agent.isStopped = false;
         agent.SetDestination(targetPlayer.position);
+        audioSource.PlayOneShot(ChaseSound);
+
+
+         if (targetPlayer == null || agent == null || !agent.isActiveAndEnabled || !agent.isOnNavMesh)
+        {
+            return;
+        }
+
+        // Check if player position is accessible (not in light barrier)
+        if (!CanMoveToPosition(targetPlayer.position))
+        {
+            // Player is in protected area, find an alternative position
+            Vector3 directionAwayFromLight = (transform.position - targetPlayer.position).normalized;
+            Vector3 alternativePosition = transform.position + directionAwayFromLight * 5f;
+            
+            // Try to find a safe position near the player but outside barriers
+            if (CanMoveToPosition(alternativePosition))
+            {
+                agent.SetDestination(alternativePosition);
+                Debug.Log("Moving to alternative position to avoid light barrier");
+            }
+            else
+            {
+                // If no safe position found, stop chasing
+                agent.isStopped = true;
+                Debug.Log("Cannot approach player - surrounded by light barriers");
+            }
+            return;
+        }
+
+        // Original chase code
+        try
+        {
+            agent.isStopped = false;
+            agent.SetDestination(targetPlayer.position);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("NavMeshAgent SetDestination failed: " + e.Message);
+        }
     }
 
     void Attack()
@@ -145,6 +209,7 @@ public class TheEnemyAI : MonoBehaviour
         if (targetPlayer == null) return;
         agent.isStopped = true;
         transform.LookAt(targetPlayer);
+        audioSource.PlayOneShot(AttackSound);
 
         if (Time.time >= nextAttackTime)
         {
@@ -158,6 +223,7 @@ public class TheEnemyAI : MonoBehaviour
     {
         if (currentState == State.Panic || currentState == State.Escape) return;
         StartCoroutine(PanicRoutine());
+        audioSource.PlayOneShot(EscapeSound);
     }
 
     IEnumerator PanicRoutine()
@@ -192,6 +258,7 @@ public class TheEnemyAI : MonoBehaviour
 
         agent.isStopped = false;
         agent.SetDestination(escapePoint);
+        audioSource.PlayOneShot(DisapearSound);
 
         // 2. ابدأ في التلاشي أثناء الحركة
         StartCoroutine(FadeOutAndRespawn());
@@ -240,8 +307,8 @@ public class TheEnemyAI : MonoBehaviour
     void SetEnemyActive(bool isActive)
     {
         // تفعيل/إلغاء تفعيل المكونات الرئيسية للعدو
-        if (objectRenderer) objectRenderer.enabled = isActive;
-        if (objectCollider) objectCollider.enabled = isActive;
+        //if (objectRenderer) objectRenderer.enabled = isActive;
+        //if (objectCollider) objectCollider.enabled = isActive;
         if (agent) agent.enabled = isActive;
 
         // إعادة لون المادة إلى طبيعته عند التفعيل
