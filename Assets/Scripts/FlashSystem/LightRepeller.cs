@@ -26,13 +26,28 @@ public class LightRepeller : MonoBehaviour
         {
             lightSource = transform;
         }
+
+        // --- الجزء المهم ---
         if (flashlightController == null)
         {
             flashlightController = FindAnyObjectByType<FlashlightController>();
         }
+
+        // أضف هذا الشرط للتحقق
+        if (flashlightController == null)
+        {
+            Debug.LogError("theFlashlightController Does not exist in the scene! Please ensure there is a FlashlightController component present.");
+        }
+        else
+        {
+            Debug.Log("Success: Found and linked FlashlightController successfully!", flashlightController.gameObject);
+        }
+        // -----------------
     }
+
     private void Update()
     {
+        // Debug.Log("LightRepeller isLightActive: " + isLightActive);
         if (isLightActive)
         {
             PerformRepelCast();
@@ -41,8 +56,13 @@ public class LightRepeller : MonoBehaviour
     private void PerformRepelCast()
     {
         if (!isLightActive) return;
-        if (Physics.Raycast(lightSource.position, lightSource.forward, out RaycastHit hit, repelDistance, enemyLayer))
+
+        // قمنا بإزالة enemyLayer مؤقتاً
+        if (Physics.Raycast(lightSource.position, lightSource.forward, out RaycastHit hit, repelDistance))
         {
+            // اطبع اسم كل شيء يصطدم به الشعاع
+            Debug.Log("Raycast hit: " + hit.collider.name + " on layer: " + LayerMask.LayerToName(hit.collider.gameObject.layer));
+
             TheEnemyAI enemy = hit.collider.GetComponent<TheEnemyAI>();
             if (enemy != null)
             {
