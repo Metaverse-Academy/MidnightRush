@@ -542,6 +542,7 @@ GameObject:
   - component: {fileID: 7136318845907982830}
   - component: {fileID: 8414848721960796197}
   - component: {fileID: 2612213190666373818}
+  - component: {fileID: 8414848721960796198}
   m_Layer: 0
   m_Name: boy
   m_TagString: Untagged
@@ -783,6 +784,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1061702197922881990}
   m_Mesh: {fileID: -6497202718259346592, guid: 86ca262d2884c4543971480c82c8063f, type: 3}
+--- !u!95 &8414848721960796198
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061702197922881990}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 971767edef4dca64ca772afe182189e0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8910370711028705884
 GameObject:
   m_ObjectHideFlags: 0
