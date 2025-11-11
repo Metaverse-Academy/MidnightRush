@@ -4,7 +4,7 @@ public class Interactable : MonoBehaviour, IInteractable
 {
     [SerializeField] private string prompt = "Press [E] to interact";
 
-    public string GetPrompt() => prompt;
+    public virtual string GetPrompt() => prompt;
 
     public virtual void Interact(GameObject interactor)
     {

@@ -11,6 +11,7 @@ public class PlayerInteraction : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private float interactDistance = 3f;
+    [SerializeField] private float interactDebounce = 0.12f;
     [SerializeField] private LayerMask interactableLayer;
     [SerializeField] private bool showDebugRay = false;
     [SerializeField] private float fadeDuration = 0.2f;
@@ -18,6 +19,8 @@ public class PlayerInteraction : MonoBehaviour
     public bool IsHoldingBattery { get; set; } = false;
     private IInteractable currentTarget;
     private bool promptVisible;
+     private float cooldownUntil;
+
     private void Awake()
     {
         if (promptCanvas)
@@ -45,7 +48,56 @@ public class PlayerInteraction : MonoBehaviour
         if (showDebugRay)
             Debug.DrawRay(origin, dir * interactDistance, currentTarget != null ? Color.green : Color.red);
     }
-    private void ShowPrompt(string text)
+
+    public void OnInteract(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed && currentTarget != null)
+        {
+            currentTarget.Interact(gameObject);
+        }
+        if (!ctx.performed) return;
+
+    var carry = GetComponent<PlayerCarry>(); // on the player
+
+        if (currentTarget != null)
+        {
+            currentTarget.Interact(gameObject);
+        }
+        else if (carry && carry.IsHolding)
+        {
+            // Drop a bit in front of the player
+            Vector3 dropPos = cameraTransform.position + cameraTransform.forward * 1.0f;
+            // Try to put it on the ground if there is one below the dropPos
+            if (Physics.Raycast(dropPos + Vector3.up, Vector3.down, out var hit, 2.0f, ~0, QueryTriggerInteraction.Ignore))
+                dropPos = hit.point;
+
+            carry.DropTo(dropPos, Quaternion.identity);
+        }
+        if (carry && carry.IsHolding)
+        {
+            // If we’re holding: place if socket, otherwise drop
+            if (currentTarget is PlacePoint socket)
+            {
+                socket.Interact(gameObject);            // socket will call DropTo + snap
+            }
+            else
+            {
+                carry.Drop();                           // drop anywhere
+            }
+            cooldownUntil = Time.time + interactDebounce;
+            return;
+        }
+
+        // Not holding → call the looked-at interactable (e.g., PickableItem)
+        if (currentTarget != null)
+        {
+            currentTarget.Interact(gameObject);
+            cooldownUntil = Time.time + interactDebounce;
+        }
+    
+    }
+    
+     private void ShowPrompt(string text)
     {
         if (!promptCanvas) return;
 
@@ -72,11 +124,5 @@ public class PlayerInteraction : MonoBehaviour
         LeanTween.scale(promptCanvas.gameObject, Vector3.one * 0.8f, fadeDuration).setEaseInBack();
         LeanTween.alphaCanvas(promptCanvas, 0f, fadeDuration);
     }
-    public void OnInteract(InputAction.CallbackContext ctx)
-    {
-        if (ctx.performed && currentTarget != null)
-        {
-            currentTarget.Interact(gameObject);
-        }
-    }
+    
 }
