@@ -1,68 +1,88 @@
 using UnityEngine;
-using System.Collections; // لإضافة الكوروتين
+using System.Collections;
 
 public class LightRoomTrigger : MonoBehaviour
 {
     [Header("Light Settings")]
-    [Tooltip("اسحب هنا اللمبة (Light Component) التي تتحكم في هذه المنطقة")]
     [SerializeField] private Light roomLight;
-
-    [Tooltip("المدة التي تبقى فيها اللمبة مضاءة (بالثواني)")]
     [SerializeField] private float lightOnDuration = 30f;
-
-    [Tooltip("المدة التي تبقى فيها اللمبة مطفأة (بالثواني)")]
     [SerializeField] private float lightOffDuration = 20f;
 
-    private Collider triggerCollider; // الكولايدر الخاص بمنطقة الضوء
+    private Collider triggerCollider;
+    private bool isLightOn = false;
+    public bool IsLightOn() => isLightOn; // دالة ليقرأها الشبح
 
     void Awake()
     {
         triggerCollider = GetComponent<Collider>();
-        if (triggerCollider == null || !triggerCollider.isTrigger)
-        {
-            Debug.LogError("LightRoomTrigger needs a Collider set to 'Is Trigger' on the same GameObject.", this);
-            this.enabled = false;
-            return;
-        }
-
-        if (roomLight == null)
-        {
-            Debug.LogError("Room Light has not been assigned in the Inspector!", this);
-            this.enabled = false;
-        }
+        triggerCollider.isTrigger = true; // تأكد دائمًا أنه Trigger
     }
 
     void Start()
     {
-        // ابدأ دورة الإضاءة والإطفاء التلقائية
         StartCoroutine(LightCycleRoutine());
     }
 
-    // هذا الكوروتين يدير دورة حياة اللمبة
     private IEnumerator LightCycleRoutine()
     {
-        // اللعبة تبدأ والضوء مطفأ (يمكنك عكس هذا إذا أردت)
-        while (true) // حلقة لا نهائية لتبديل الضوء
+        while (true)
         {
-            // --- مرحلة الإطفاء ---
             SetLightState(false);
             yield return new WaitForSeconds(lightOffDuration);
 
-            // --- مرحلة الإضاءة ---
             SetLightState(true);
             yield return new WaitForSeconds(lightOnDuration);
         }
     }
 
-    // دالة مركزية لتغيير حالة الضوء والـ Trigger
-    public void SetLightState(bool isLightOn)
+    private void SetLightState(bool state)
     {
-        // 1. تحكم في اللمبة الفعلية
-        roomLight.enabled = isLightOn;
+        isLightOn = state;
+        roomLight.enabled = state;
 
-        // 2. تحكم في الـ Trigger Collider (هذا هو الجزء الأهم)
-        // إذا كان الضوء شغالاً، يجب أن يكون الـ Trigger فعالاً ليتمكن اللاعب من اكتشافه.
-        // إذا كان الضوء مطفأ، نعطل الـ Trigger، وبالتالي لن يكتشفه اللاعب ويعتبر في الظلام.
-        triggerCollider.enabled = isLightOn;
+        // إذا اشتغل الضوء، تحقق مما إذا كان الشبح بالداخل لطرده
+        if (isLightOn)
+        {
+            CheckForGhostInside();
+        }
+    }
+
+    // عند دخول أي مجسم للـ Trigger
+    void OnTriggerEnter(Collider other)
+    {
+        // إذا كان لاعباً، حدث حالته
+        var playerState = other.GetComponent<PlayerLightState>();
+        if (playerState != null)
+        {
+            playerState.SetInDark(false);
+        }
+    }
+
+    // عند خروج أي مجسم من الـ Trigger
+    void OnTriggerExit(Collider other)
+    {
+        // إذا كان لاعباً، حدث حالته
+        var playerState = other.GetComponent<PlayerLightState>();
+        if (playerState != null)
+        {
+            playerState.SetInDark(true);
+        }
+    }
+
+    // دالة للتحقق من وجود الشبح عند إضاءة الغرفة
+    private void CheckForGhostInside()
+    {
+        // قم بتوسيع نطاق التحقق قليلاً ليشمل حدود الـ Trigger
+        Collider[] objectsInside = Physics.OverlapBox(triggerCollider.bounds.center, triggerCollider.bounds.extents, transform.rotation);
+
+        foreach (var objCollider in objectsInside)
+        {
+            var ghost = objCollider.GetComponent<GhostAI>();
+            if (ghost != null)
+            {
+                // وجدنا الشبح! أمره بالاختفاء
+                ghost.VanishFromLitRoom();
+            }
+        }
     }
 }

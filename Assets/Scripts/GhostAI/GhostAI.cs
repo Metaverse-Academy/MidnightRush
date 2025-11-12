@@ -1,141 +1,174 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections;
+using System.Linq;
 
 public class GhostAI : MonoBehaviour
 {
-    [Header("Target Settings")]
-    public Transform player;
-    private PlayerLightState playerLightState; // سيتم الحصول عليه تلقائياً
-
     [Header("AI Behavior")]
     public NavMeshAgent agent;
-    [Tooltip("المسافة التي يبدأ عندها الشبح المطاردة")]
-    public float chaseDistance = 20f;
-    [Tooltip("المسافة التي يتوقف عندها الشبح عن اللاعب")]
-    public float stoppingDistance = 1.5f;
-    [Tooltip("الوقت الذي ينتظره الشبح قبل أن ينسحب بعد دخول اللاعب للضوء")]
-    public float hesitationTime = 2f;
+    public string playerTag = "Player";
+    [Tooltip("المسافة التي يتوقف عندها الشبح عن اللاعب ليمسكه")]
+    public float catchDistance = 1.5f;
+    [Tooltip("سرعة تلاشي الشبح عند تعرضه للضوء")]
+    public float fadeOutDuration = 1.5f;
 
-    // نظام الحالات ليكون أكثر وضوحاً
-    private enum State { Idle, Chasing, Hesitating, Searching }
-    private State currentState = State.Idle;
+    [Header("Respawn")]
+    [Tooltip("الوقت الذي يستغرقه الشبح للظهور مرة أخرى")]
+    public float respawnTime = 10f;
+    [Tooltip("نقاط الرسبنة المظلمة فقط")]
+    public Transform[] spawnPoints;
 
-    private Coroutine hesitationCoroutine;
+    private Transform currentTarget;
+    private bool isVanishing = false; // لمنع تنفيذ الأوامر أثناء التلاشي
 
     void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        if (player == null)
-        {
-            // محاولة العثور على اللاعب تلقائياً إذا لم يتم تعيينه
-            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-            if (playerObj != null)
-            {
-                player = playerObj.transform;
-            }
-            else
-            {
-                Debug.LogError("GhostAI: Player not assigned and could not be found by tag 'Player'!");
-                this.enabled = false; // عطّل السكربت إذا لم يتم العثور على اللاعب
-                return;
-            }
-        }
-        playerLightState = player.GetComponent<PlayerLightState>();
-        if (playerLightState == null)
-        {
-            Debug.LogError("GhostAI: Player is missing the 'PlayerLightState' script!");
-            this.enabled = false;
-        }
+        agent.stoppingDistance = catchDistance;
     }
 
     void Start()
     {
-        // تأكد من أن قيمة stoppingDistance في NavMeshAgent تتطابق مع ما نريده
-        agent.stoppingDistance = this.stoppingDistance;
+        // ابدأ الشبح في حالة خمول ومخفي
+        gameObject.SetActive(false);
+        StartCoroutine(RespawnRoutine());
     }
 
     void Update()
     {
-        // لا تفعل شيئاً إذا لم يكن هناك لاعب أو NavMeshAgent
-        if (player == null || agent == null) return;
-
-        // قم بتحديث الحالة الحالية بناءً على الظروف
-        UpdateState();
-
-        // نفّذ السلوك بناءً على الحالة المحدثة
-        ExecuteStateBehavior();
-    }
-
-    private void UpdateState()
-    {
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        bool isPlayerInDark = playerLightState.isInDark;
-
-        // إذا كان الشبح متردداً، لا تغير حالته حتى ينتهي التردد
-        if (currentState == State.Hesitating)
+        // إذا كان الشبح يتلاشى أو ليس لديه هدف، لا تفعل شيئًا
+        if (isVanishing || currentTarget == null)
         {
+            agent.isStopped = true;
             return;
         }
 
-        // الشرط الأساسي للمطاردة
-        if (isPlayerInDark && distanceToPlayer <= chaseDistance)
+        // طارد الهدف الحالي باستمرار
+        agent.isStopped = false;
+        agent.SetDestination(currentTarget.position);
+
+        // تحقق من المسافة لمسك اللاعب
+        if (Vector3.Distance(transform.position, currentTarget.position) <= catchDistance)
         {
-            // إذا كان متردداً أو يبحث، أوقف تلك العمليات وابدأ المطاردة فوراً
-            if (hesitationCoroutine != null)
+            CatchPlayer(currentTarget);
+        }
+    }
+
+    // --- نظام البحث عن الهدف ---
+    private void FindBestTarget()
+    {
+        // ابحث عن كل اللاعبين
+        GameObject[] players = GameObject.FindGameObjectsWithTag(playerTag);
+
+        Transform bestTarget = null;
+        float shortestDistance = Mathf.Infinity;
+
+        foreach (var playerObject in players)
+        {
+            // تحقق مما إذا كان اللاعب في الظلام
+            var lightState = playerObject.GetComponent<PlayerLightState>();
+            if (lightState != null && lightState.isInDark)
             {
-                StopCoroutine(hesitationCoroutine);
-                hesitationCoroutine = null;
+                float distance = Vector3.Distance(transform.position, playerObject.transform.position);
+                if (distance < shortestDistance)
+                {
+                    shortestDistance = distance;
+                    bestTarget = playerObject.transform;
+                }
             }
-            currentState = State.Chasing;
         }
-        // إذا كان يطارد واللاعب دخل الضوء
-        else if (currentState == State.Chasing && !isPlayerInDark)
+        currentTarget = bestTarget;
+    }
+
+    // --- نظام الخوف من الضوء ---
+
+    // يتم استدعاؤها من سكربت الفلاش لايت
+    public void VanishFromFlashlight()
+    {
+        Debug.Log("Ghost is hit by flashlight! Vanishing...");
+        StartCoroutine(VanishAndRespawn());
+    }
+
+    // يتم استدعاؤها من سكربت منطقة الضوء
+    public void VanishFromLitRoom()
+    {
+        Debug.Log("Ghost is trapped in a lit room! Vanishing...");
+        StartCoroutine(VanishAndRespawn());
+    }
+
+    // --- نظام الرسبنة والتلاشي ---
+    private IEnumerator VanishAndRespawn()
+    {
+        if (isVanishing) yield break; // لا تتلاشى إذا كنت تتلاشى بالفعل
+
+        isVanishing = true;
+        agent.isStopped = true;
+        agent.ResetPath();
+
+        // يمكنك إضافة أنيميشن أو صوت تلاشي هنا
+
+        // منطق التلاشي (يمكنك استخدام نفس الكود السابق للتلاشي البصري)
+        float timer = 0;
+        while (timer < fadeOutDuration)
         {
-            // ابدأ التردد (الانتظار قبل الانسحاب)
-            currentState = State.Hesitating;
-            hesitationCoroutine = StartCoroutine(HesitateThenSearch());
+            // قم بتخفيض شفافية الشبح هنا
+            timer += Time.deltaTime;
+            yield return null;
         }
-        // إذا كان اللاعب بعيداً جداً أو في الضوء (ولم يكن يطارد)
-        else if (currentState != State.Searching)
+
+        // إخفاء الشبح وبدء مؤقت الرسبنة
+        gameObject.SetActive(false);
+        isVanishing = false;
+        StartCoroutine(RespawnRoutine());
+    }
+
+    private IEnumerator RespawnRoutine()
+    {
+        yield return new WaitForSeconds(respawnTime);
+
+        // ابحث عن نقطة رسبنة صالحة (مظلمة)
+        Transform spawnPoint = GetRandomDarkSpawnPoint();
+        if (spawnPoint != null)
         {
-            currentState = State.Idle;
+            transform.position = spawnPoint.position;
+            gameObject.SetActive(true);
+            agent.Warp(transform.position); // تأكد من الالتصاق بالـ NavMesh
+            Debug.Log("Ghost has respawned.");
+            // ابدأ بالبحث عن هدف بعد الرسبنة
+            FindBestTarget();
+        }
+        else
+        {
+            // إذا كانت كل الأماكن مضاءة، حاول مرة أخرى لاحقًا
+            Debug.Log("All spawn points are lit. Retrying respawn later...");
+            StartCoroutine(RespawnRoutine());
         }
     }
 
-    private void ExecuteStateBehavior()
+    private Transform GetRandomDarkSpawnPoint()
     {
-        switch (currentState)
-        {
-            case State.Chasing:
-                // طارد اللاعب
-                agent.isStopped = false;
-                agent.SetDestination(player.position);
-                // يمكنك إضافة أنيميشن أو صوت هنا
-                break;
+        // قم بخلط نقاط الرسبنة للعشوائية
+        var shuffledPoints = spawnPoints.OrderBy(x => Random.value).ToList();
 
-            case State.Idle:
-            case State.Searching:
-            case State.Hesitating:
-                // توقف عن الحركة في جميع الحالات الأخرى
-                agent.isStopped = true;
-                // يمكنك إضافة أنيميشن الوقوف أو البحث هنا
-                break;
+        foreach (var point in shuffledPoints)
+        {
+            // تحقق مما إذا كانت النقطة داخل أي منطقة مضاءة
+            Collider[] colliders = Physics.OverlapSphere(point.position, 0.5f);
+            bool inLight = colliders.Any(c => c.GetComponent<LightRoomTrigger>() != null && c.GetComponent<LightRoomTrigger>().IsLightOn());
+            
+            if (!inLight)
+            {
+                return point; // وجدنا نقطة مظلمة
+            }
         }
+        return null; // لم نجد أي نقطة مظلمة
     }
 
-    // كوروتين للتردد ثم البحث
-    IEnumerator HesitateThenSearch()
+    private void CatchPlayer(Transform player)
     {
-        // توقف وانتظر
-        yield return new WaitForSeconds(hesitationTime);
-
-        // بعد الانتظار، ابدأ البحث
-        currentState = State.Searching;
-        yield return new WaitForSeconds(4f); // مدة البحث
-
-        // بعد البحث، عد إلى حالة الخمول
-        currentState = State.Idle;
-        hesitationCoroutine = null;
+        Debug.Log("GAME OVER! Ghost caught " + player.name);
+        // ضع هنا منطق نهاية اللعبة
+        // مثال: Time.timeScale = 0; أو SceneManager.LoadScene("GameOver");
     }
 }

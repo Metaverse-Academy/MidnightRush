@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class PlayerLightState : MonoBehaviour
 {
-    public bool isInDark = true;
-
+    public bool isInDark { get; private set; } = true;
+    public void SetInDark(bool state)
+    {
+        isInDark = state;
+    }
     void OnTriggerEnter(Collider other)
     {
         // تحقق مما إذا كان المجسم الذي دخلت فيه يحتوي على سكربت LightRoomTrigger
