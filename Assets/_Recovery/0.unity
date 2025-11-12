@@ -5756,12 +5756,8 @@ MonoBehaviour:
   playerTag: Player
   catchDistance: 1.5
   fadeOutDuration: 1.5
-  respawnTime: 1
-  spawnPoints:
-  - {fileID: 1555900117}
-  - {fileID: 1299504767}
-  - {fileID: 1769762673}
-  - {fileID: 1792875544}
+  respawnTime: 10
+  spawnPoints: []
 --- !u!114 &640073436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9118,7 +9114,6 @@ GameObject:
   - component: {fileID: 1256056096}
   - component: {fileID: 1256056097}
   - component: {fileID: 1256056098}
-  - component: {fileID: 1256056099}
   m_Layer: 9
   m_Name: Player2
   m_TagString: Player
@@ -9489,18 +9484,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 100
---- !u!114 &1256056099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1256056087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 776e8dbbc2c56a84aa5a6306a65d5287, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerLightState
 --- !u!1 &1271203772
 GameObject:
   m_ObjectHideFlags: 0
