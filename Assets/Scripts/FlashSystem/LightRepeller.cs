@@ -1,4 +1,3 @@
-using UnityEditor.EditorTools;
 using UnityEngine;
 
 public class LightRepeller : MonoBehaviour
@@ -66,7 +65,7 @@ public class LightRepeller : MonoBehaviour
             TheEnemyAI enemy = hit.collider.GetComponent<TheEnemyAI>();
             if (enemy != null)
             {
-                enemy.TriggerBlindness();
+                enemy.TriggerFlashLight();
                 Debug.Log("Light repelled enemy: " + enemy.name);
             }
         }

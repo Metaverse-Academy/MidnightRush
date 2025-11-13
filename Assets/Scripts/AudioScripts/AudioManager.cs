@@ -7,7 +7,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip BackgroundMusicClip;
     private void Awake()
     {
-        audioSource.PlayOneShot(BackgroundMusicClip);
+        // audioSource.PlayOneShot(BackgroundMusicClip);
 
         if (Instance == null)
         {
