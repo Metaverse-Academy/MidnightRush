@@ -20,7 +20,9 @@ public class FramePuzzle : MonoBehaviour
     private bool solved = false;
     private InteractableFrame selectedFrame = null;
     private Dictionary<InteractableFrame, Transform> frameToPositionMap = new Dictionary<InteractableFrame, Transform>();
-    
+
+    public object Frames { get; internal set; }
+
     private void Start()
     {
         if (framePositions.Length != frames.Length)
@@ -28,9 +30,10 @@ public class FramePuzzle : MonoBehaviour
             Debug.LogError($"FramePuzzle: Need exactly {frames.Length} positions for {frames.Length} frames!");
             return;
         }
-        
+
         InitializeFrames();
         ShuffleFrames();
+
     }
     
     private void InitializeFrames()
@@ -40,6 +43,7 @@ public class FramePuzzle : MonoBehaviour
         {
             frame.SetPuzzleController(this);
         }
+        
         
         // Initially assign each frame to a position
         for (int i = 0; i < frames.Length; i++)
