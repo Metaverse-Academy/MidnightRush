@@ -26,13 +26,11 @@ public class LightRepeller : MonoBehaviour
             lightSource = transform;
         }
 
-        // --- الجزء المهم ---
         if (flashlightController == null)
         {
             flashlightController = FindAnyObjectByType<FlashlightController>();
         }
 
-        // أضف هذا الشرط للتحقق
         if (flashlightController == null)
         {
             Debug.LogError("theFlashlightController Does not exist in the scene! Please ensure there is a FlashlightController component present.");

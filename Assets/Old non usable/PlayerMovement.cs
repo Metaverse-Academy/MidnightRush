@@ -107,6 +107,13 @@ public class PlayerMovement : MonoBehaviour
         if (ctx.performed) isSprinting = true;
         else if (ctx.canceled) isSprinting = false;
     }
+    public void OnLook(InputAction.CallbackContext ctx)
+    {
+        if (cameraTransform == null) return;
+        Vector2 lookInput = ctx.ReadValue<Vector2>();
+        Vector3 euler = cameraTransform.eulerAngles;
+    }
+
 
     public void OnCrouch(InputAction.CallbackContext ctx)
     {

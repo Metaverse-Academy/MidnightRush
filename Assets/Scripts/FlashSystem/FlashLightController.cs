@@ -57,10 +57,8 @@ public class FlashlightController : MonoBehaviour, IFlashable
 
     public void OnFlash(InputAction.CallbackContext ctx)
     {
-        // تأكد من أن الزر تم ضغطه (وليس تحريره أو أي شيء آخر)
         if (ctx.performed)
         {
-            // استخدم نفس المنطق البسيط والمباشر
             if (!isFlashlightActive)
             {
                 TurnOn();
