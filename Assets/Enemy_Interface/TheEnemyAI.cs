@@ -136,7 +136,7 @@ public class TheEnemyAI : MonoBehaviour
         currentState = State.Chase;
     }
 
-         private LightRaycast currentLightBarrier;
+        private LightRaycast currentLightBarrier;
     
     // Add this method to check for light barriers before moving
     private bool CanMoveToPosition(Vector3 targetPosition)
@@ -165,7 +165,7 @@ public class TheEnemyAI : MonoBehaviour
         audioSource.PlayOneShot(ChaseSound);
 
 
-         if (targetPlayer == null || agent == null || !agent.isActiveAndEnabled || !agent.isOnNavMesh)
+        if (targetPlayer == null || agent == null || !agent.isActiveAndEnabled || !agent.isOnNavMesh)
         {
             return;
         }
@@ -264,7 +264,7 @@ public class TheEnemyAI : MonoBehaviour
         StartCoroutine(FadeOutAndRespawn());
 
         // انتظر حتى يصل العدو إلى وجهته أو يقترب منها
-        while (agent.pathPending || agent.remainingDistance > 1.5f)
+        while (agent.enabled && agent.isOnNavMesh && agent.hasPath && agent.remainingDistance < 0.5f)
         {
             yield return null; // انتظر الإطار التالي
         }
