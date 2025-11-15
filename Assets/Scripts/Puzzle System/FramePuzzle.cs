@@ -5,18 +5,18 @@ public class FramePuzzle : MonoBehaviour
 {
     [Header("Frame Positions - Assign empty GameObjects here")]
     [SerializeField] private Transform[] framePositions; // 5 set positions for frames
-    
+
     [Header("Picture Frames - Assign frame objects here")]
     [SerializeField] private InteractableFrame[] frames;
-    
+
     [Header("Door to Open")]
     [SerializeField] private DoorController doorToOpen;
-    
+
     [Header("Visual Settings")]
     [SerializeField] private float swapSpeed = 2f;
     [SerializeField] private Color selectedColor = Color.yellow;
     [SerializeField] private Color solvedColor = Color.green;
-    
+
     private bool solved = false;
     private InteractableFrame selectedFrame = null;
     private Dictionary<InteractableFrame, Transform> frameToPositionMap = new Dictionary<InteractableFrame, Transform>();
@@ -35,7 +35,7 @@ public class FramePuzzle : MonoBehaviour
         ShuffleFrames();
 
     }
-    
+
     private void InitializeFrames()
     {
         // Register all frames with this puzzle
@@ -43,17 +43,18 @@ public class FramePuzzle : MonoBehaviour
         {
             frame.SetPuzzleController(this);
         }
-        
-        
+
+
         // Initially assign each frame to a position
         for (int i = 0; i < frames.Length; i++)
         {
+            frames[i].transform.SetParent(null, true);
             frames[i].transform.position = framePositions[i].position;
             frames[i].transform.rotation = framePositions[i].rotation;
             frameToPositionMap[frames[i]] = framePositions[i];
         }
     }
-    
+
     private void ShuffleFrames()
     {
         // Create a list of frame indices to shuffle
@@ -62,7 +63,7 @@ public class FramePuzzle : MonoBehaviour
         {
             indices.Add(i);
         }
-        
+
         // Fisher-Yates shuffle
         for (int i = indices.Count - 1; i > 0; i--)
         {
@@ -71,24 +72,25 @@ public class FramePuzzle : MonoBehaviour
             indices[i] = indices[randomIndex];
             indices[randomIndex] = temp;
         }
-        
+
         // Assign frames to shuffled positions
         for (int i = 0; i < frames.Length; i++)
         {
+            frames[i].transform.SetParent(null, true);
             frames[i].transform.position = framePositions[indices[i]].position;
             frames[i].transform.rotation = framePositions[indices[i]].rotation;
             frameToPositionMap[frames[i]] = framePositions[indices[i]];
         }
-        
+
         Debug.Log("Frames shuffled to set positions!");
     }
-    
+
     public void OnFrameInteracted(InteractableFrame frame)
     {
         if (solved) return;
-        
+
         Debug.Log($"Frame interacted: {frame.name}");
-        
+
         if (selectedFrame == null)
         {
             // First selection
@@ -105,7 +107,7 @@ public class FramePuzzle : MonoBehaviour
                 SwapFrames(selectedFrame, frame);
                 selectedFrame.SetSelected(false, Color.white);
                 selectedFrame = null;
-                
+
                 CheckSolution();
             }
             else
@@ -117,27 +119,27 @@ public class FramePuzzle : MonoBehaviour
             }
         }
     }
-    
+
     private void SwapFrames(InteractableFrame frame1, InteractableFrame frame2)
     {
         // Swap their positions in the map
         Transform tempPos = frameToPositionMap[frame1];
         frameToPositionMap[frame1] = frameToPositionMap[frame2];
         frameToPositionMap[frame2] = tempPos;
-        
+
         // Start swap animation
         StartCoroutine(SwapAnimation(frame1.transform, frame2.transform));
     }
-    
+
     private System.Collections.IEnumerator SwapAnimation(Transform frame1, Transform frame2)
     {
         Vector3 startPos1 = frame1.position;
         Vector3 startPos2 = frame2.position;
         Quaternion startRot1 = frame1.rotation;
         Quaternion startRot2 = frame2.rotation;
-        
+
         float elapsed = 0f;
-        
+
         while (elapsed < 1f)
         {
             elapsed += Time.deltaTime * swapSpeed;
@@ -147,19 +149,19 @@ public class FramePuzzle : MonoBehaviour
             frame2.rotation = Quaternion.Lerp(startRot2, startRot1, elapsed);
             yield return null;
         }
-        
+
         // Ensure exact final positions
         frame1.position = startPos2;
         frame2.position = startPos1;
         frame1.rotation = startRot2;
         frame2.rotation = startRot1;
     }
-    
+
     private void CheckSolution()
     {
         // Check if each frame is at its original correct position
         bool allCorrect = true;
-        
+
         for (int i = 0; i < frames.Length; i++)
         {
             // Frame is correct if it's at the position with the same index
@@ -169,19 +171,19 @@ public class FramePuzzle : MonoBehaviour
                 break;
             }
         }
-        
+
         if (allCorrect)
         {
             solved = true;
             Debug.Log("✅ Frame puzzle solved!");
-            
+
             // Visual feedback for all frames
             foreach (var frame in frames)
             {
                 frame.SetSolved(solvedColor);
                 frame.SetInteractable(false);
             }
-            
+
             if (doorToOpen != null)
             {
                 doorToOpen.OpenDoor();
@@ -192,12 +194,12 @@ public class FramePuzzle : MonoBehaviour
             Debug.Log("Puzzle not solved yet");
         }
     }
-    
+
     // Visualize positions in editor
     private void OnDrawGizmosSelected()
     {
         if (framePositions == null) return;
-        
+
         Gizmos.color = Color.cyan;
         foreach (var pos in framePositions)
         {

@@ -3393,16 +3393,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FramePuzzle
   framePositions:
-  - {fileID: 294660544}
-  - {fileID: 1620623877}
-  - {fileID: 1872845942}
-  - {fileID: 214028867}
-  - {fileID: 269237927}
+  - {fileID: 1373549942}
+  - {fileID: 1495138851}
+  - {fileID: 1014937992}
+  - {fileID: 882182268}
+  - {fileID: 1340662801}
   frames:
   - {fileID: 294660545}
   - {fileID: 1620623878}
   - {fileID: 1872845943}
-  - {fileID: 1872845943}
+  - {fileID: 214028868}
   - {fileID: 269237928}
   doorToOpen: {fileID: 9220239198077165571}
   swapSpeed: 2
