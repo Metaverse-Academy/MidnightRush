@@ -23952,7 +23952,7 @@ MonoBehaviour:
   - {fileID: 731429147}
   - {fileID: 1962702101}
   - {fileID: 499854849}
-  respawnTime: 10
+  respawnTime: 3
   chaseDistance: 10
   attackDistance: 0.1
   escapeDistance: 15
