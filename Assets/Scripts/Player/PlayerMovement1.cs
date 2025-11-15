@@ -8,40 +8,46 @@ public class PlayerMovement2 : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform cameraTransform;
 
-    [Header("Move")]
+    [Header("Movement Settings")]
     [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private float sprintSpeed = 9f;
     [SerializeField] private float acceleration = 12f;
 
-    [Header("Jump")]
+    [Header("Jump Settings")]
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float groundDistanceCheck = 0.3f;
     [SerializeField] private float rayStartOffset = 0.06f;
 
-    [Header("Crouch")]
+    [Header("Crouch Settings")]
     [SerializeField] private bool useToggleCrouch = true;
     [SerializeField] private float crouchSpeed = 2.5f;
     [SerializeField] private float standingHeight = 2.0f;
     [SerializeField] private float crouchHeight = 1.0f;
 
-    [Header("Look")]
+    [Header("Look Settings")]
     [SerializeField] private float mouseSensitivityX = 0.12f;
     [SerializeField] private float mouseSensitivityY = 0.12f;
     [SerializeField] private float minPitch = -85f;
     [SerializeField] private float maxPitch = 85f;
 
+    // Components
     private Rigidbody rb;
     private CapsuleCollider capsule;
 
-    // inputs/state
+    // Input
     private Vector2 moveInput;
     private Vector2 lookInput;
-    private bool isGrounded;
-    private bool isSprinting;
-    private bool isCrouching;
+    
+    // Public properties for animation controller to access
+    public bool IsGrounded { get; private set; }
+    public bool IsMoving => moveInput.magnitude > 0.1f;
+    public bool IsSprinting { get; private set; }
+    public bool IsCrouching { get; private set; }
+    public bool IsJumping { get; private set; }
+    public Vector3 Velocity => rb.linearVelocity;
 
-    // look state
+    // Look state
     private float yaw;
     private float pitch;
 
@@ -64,15 +70,19 @@ public class PlayerMovement2 : MonoBehaviour
 
     private void Update()
     {
-        Vector3 rayOrigin = transform.position + Vector3.up * rayStartOffset;
-        isGrounded = Physics.Raycast(rayOrigin, Vector3.down, groundDistanceCheck, groundLayer, QueryTriggerInteraction.Ignore);
-
+        CheckGrounded();
         HandleLook();
     }
 
     private void FixedUpdate()
     {
         HandleMovement();
+    }
+
+    private void CheckGrounded()
+    {
+        Vector3 rayOrigin = transform.position + Vector3.up * rayStartOffset;
+        IsGrounded = Physics.Raycast(rayOrigin, Vector3.down, groundDistanceCheck, groundLayer, QueryTriggerInteraction.Ignore);
     }
 
     private void HandleLook()
@@ -95,32 +105,24 @@ public class PlayerMovement2 : MonoBehaviour
         Vector3 desiredPlanar = f * moveInput.y + r * moveInput.x;
         Vector3 planarMoveDir = desiredPlanar.sqrMagnitude > 1e-4f ? desiredPlanar.normalized : Vector3.zero;
 
-        float targetSpeed = isCrouching ? crouchSpeed : (isSprinting ? sprintSpeed : walkSpeed);
+        float targetSpeed = IsCrouching ? crouchSpeed : (IsSprinting ? sprintSpeed : walkSpeed);
         Vector3 targetVelH = planarMoveDir * targetSpeed;
 
         Vector3 v = rb.linearVelocity;
         Vector3 vH = Vector3.Lerp(new Vector3(v.x, 0f, v.z), targetVelH, acceleration * Time.fixedDeltaTime);
         rb.linearVelocity = new Vector3(vH.x, v.y, vH.z);
-
-        // IMPORTANT: Do NOT auto-rotate to movement direction (that causes “circling” with mouse look).
-        // (We removed that block from your old script.)
     }
 
     private void ApplyCrouchState()
     {
         if (capsule)
-            capsule.height = isCrouching ? crouchHeight : standingHeight;
+            capsule.height = IsCrouching ? crouchHeight : standingHeight;
 
-        if (isCrouching)
-            isSprinting = false;
+        if (IsCrouching)
+            IsSprinting = false;
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Vector3 rayOrigin = transform.position + Vector3.up * rayStartOffset;
-        Gizmos.DrawLine(rayOrigin, rayOrigin + Vector3.down * groundDistanceCheck);
-    }
+    // INPUT METHODS
     public void OnMove(InputAction.CallbackContext ctx)
     {
         moveInput = ctx.ReadValue<Vector2>();
@@ -133,20 +135,29 @@ public class PlayerMovement2 : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed && isGrounded)
+        if (ctx.performed && IsGrounded)
         {
             Vector3 cur = rb.linearVelocity;
             if (cur.y < 0f) cur.y = 0f;
             rb.linearVelocity = cur;
 
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            IsJumping = true;
+            
+            // Reset jumping state after a short time
+            Invoke(nameof(ResetJump), 0.5f);
         }
+    }
+
+    private void ResetJump()
+    {
+        IsJumping = false;
     }
 
     public void OnSprint(InputAction.CallbackContext ctx)
     {
-        if (ctx.performed) isSprinting = true;
-        else if (ctx.canceled) isSprinting = false;
+        if (ctx.performed) IsSprinting = true;
+        else if (ctx.canceled) IsSprinting = false;
     }
 
     public void OnCrouch(InputAction.CallbackContext ctx)
@@ -155,7 +166,7 @@ public class PlayerMovement2 : MonoBehaviour
         {
             if (ctx.performed)
             {
-                isCrouching = !isCrouching;
+                IsCrouching = !IsCrouching;
                 ApplyCrouchState();
             }
         }
@@ -163,12 +174,12 @@ public class PlayerMovement2 : MonoBehaviour
         {
             if (ctx.performed)
             {
-                isCrouching = true;
+                IsCrouching = true;
                 ApplyCrouchState();
             }
             else if (ctx.canceled)
             {
-                isCrouching = false;
+                IsCrouching = false;
                 ApplyCrouchState();
             }
         }
