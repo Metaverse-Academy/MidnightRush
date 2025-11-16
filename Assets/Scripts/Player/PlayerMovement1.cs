@@ -57,7 +57,7 @@ public class PlayerMovement2 : MonoBehaviour
         capsule = GetComponent<CapsuleCollider>();
 
         rb.interpolation = RigidbodyInterpolation.Interpolate;
-        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
 
         if (cameraTransform != null && cameraTransform.parent != transform)
             cameraTransform.SetParent(transform);
@@ -111,6 +111,7 @@ public class PlayerMovement2 : MonoBehaviour
         Vector3 v = rb.linearVelocity;
         Vector3 vH = Vector3.Lerp(new Vector3(v.x, 0f, v.z), targetVelH, acceleration * Time.fixedDeltaTime);
         rb.linearVelocity = new Vector3(vH.x, v.y, vH.z);
+
     }
 
     private void ApplyCrouchState()

@@ -21876,7 +21876,7 @@ MonoBehaviour:
     m_ActionId: a9075037-8837-4110-9d0b-cb903ad45030
     m_ActionName: 'Player/Flash[/Mouse/rightButton]'
   m_NeverAutoSwitchControlSchemes: 1
-  m_DefaultControlScheme: Gamepad
+  m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 419694341}
@@ -22228,7 +22228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &4444868152552357354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22272,7 +22272,7 @@ MonoBehaviour:
   ChaseSound: {fileID: 0}
   AttackSound: {fileID: 0}
   EscapeSound: {fileID: 0}
-  DisapearSound: {fileID: 0}
+  DisapearSound: {fileID: 8300000, guid: 2fe4f8dab87e03e4c9f905b3df70e0b8, type: 3}
 --- !u!195 &4444868152552357356
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -24158,12 +24158,12 @@ MonoBehaviour:
   handBattery: {fileID: 1171514988}
   lampBattery: {fileID: 713168374}
   lampLight: {fileID: 1172963743}
-  lightRaycastController: {fileID: 0}
+  lightRaycastController: {fileID: 5451326114872574117}
   batteryLifetime: 10
-  placeBatteryPrompt: E
-  noBatteryPrompt: E
-  LightOnSound: {fileID: 0}
-  LightOffSound: {fileID: 0}
+  placeBatteryPrompt: '[]'
+  noBatteryPrompt: '[]'
+  LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
+  LightOffSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
   audioSource: {fileID: 0}
   BattryPlaceSound: {fileID: 0}
 --- !u!114 &5451326114872574117
@@ -24179,7 +24179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightRaycast
   lightSource: {fileID: 1172963741}
-  lampLight: {fileID: 0}
+  lampLight: {fileID: 1172963743}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -24296,12 +24296,12 @@ MonoBehaviour:
   handBattery: {fileID: 1171514988}
   lampBattery: {fileID: 977771842}
   lampLight: {fileID: 2143441713}
-  lightRaycastController: {fileID: 0}
+  lightRaycastController: {fileID: 5520674336174390682}
   batteryLifetime: 10
-  placeBatteryPrompt: E
-  noBatteryPrompt: E
-  LightOnSound: {fileID: 0}
-  LightOffSound: {fileID: 0}
+  placeBatteryPrompt: '[]'
+  noBatteryPrompt: '[]'
+  LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
+  LightOffSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
   audioSource: {fileID: 0}
   BattryPlaceSound: {fileID: 0}
 --- !u!114 &5520674336174390682
@@ -24317,7 +24317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightRaycast
   lightSource: {fileID: 2143441711}
-  lampLight: {fileID: 0}
+  lampLight: {fileID: 2143441713}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -25883,12 +25883,12 @@ MonoBehaviour:
   handBattery: {fileID: 1171514988}
   lampBattery: {fileID: 1271203772}
   lampLight: {fileID: 1004827410}
-  lightRaycastController: {fileID: 0}
+  lightRaycastController: {fileID: 6777355440937954890}
   batteryLifetime: 10
-  placeBatteryPrompt: E
-  noBatteryPrompt: E
-  LightOnSound: {fileID: 0}
-  LightOffSound: {fileID: 0}
+  placeBatteryPrompt: '[]'
+  noBatteryPrompt: '[]'
+  LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
+  LightOffSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
   audioSource: {fileID: 0}
   BattryPlaceSound: {fileID: 0}
 --- !u!114 &6777355440937954890
@@ -25904,7 +25904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightRaycast
   lightSource: {fileID: 1004827408}
-  lampLight: {fileID: 0}
+  lampLight: {fileID: 1004827410}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -26530,12 +26530,12 @@ MonoBehaviour:
   handBattery: {fileID: 1171514988}
   lampBattery: {fileID: 914590569}
   lampLight: {fileID: 540036643}
-  lightRaycastController: {fileID: 0}
+  lightRaycastController: {fileID: 7100075340544214979}
   batteryLifetime: 10
-  placeBatteryPrompt: E
-  noBatteryPrompt: E
-  LightOnSound: {fileID: 0}
-  LightOffSound: {fileID: 0}
+  placeBatteryPrompt: '[]'
+  noBatteryPrompt: '[]'
+  LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
+  LightOffSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
   audioSource: {fileID: 0}
   BattryPlaceSound: {fileID: 0}
 --- !u!114 &7100075340544214979
@@ -26551,7 +26551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightRaycast
   lightSource: {fileID: 540036641}
-  lampLight: {fileID: 0}
+  lampLight: {fileID: 540036643}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
