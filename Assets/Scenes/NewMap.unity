@@ -4399,7 +4399,8 @@ GameObject:
   - component: {fileID: 617575714}
   - component: {fileID: 617575713}
   - component: {fileID: 617575712}
-  m_Layer: 9
+  - component: {fileID: 617575715}
+  m_Layer: 8
   m_Name: Battary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4500,6 +4501,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 617575710}
   m_Mesh: {fileID: 2534964839176971238, guid: fb5625dc91c2c594fbc1bb0478703766, type: 3}
+--- !u!114 &617575715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617575710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49ee63707326b3740a6a398088617892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  prompt: Press [E] to interact
 --- !u!1 &653434143
 GameObject:
   m_ObjectHideFlags: 0
@@ -5533,7 +5547,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 754467532}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 617e76080b780a448bbd1474f9215040, type: 3}
   m_Name: 
@@ -8961,7 +8975,8 @@ GameObject:
   - component: {fileID: 1182883693}
   - component: {fileID: 1182883692}
   - component: {fileID: 1182883691}
-  m_Layer: 9
+  - component: {fileID: 1182883694}
+  m_Layer: 8
   m_Name: Battary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9062,6 +9077,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1182883689}
   m_Mesh: {fileID: 2534964839176971238, guid: fb5625dc91c2c594fbc1bb0478703766, type: 3}
+--- !u!114 &1182883694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182883689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49ee63707326b3740a6a398088617892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  prompt: Press [E] to interact
 --- !u!1 &1212762441
 GameObject:
   m_ObjectHideFlags: 0
@@ -15120,7 +15148,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052859228}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 617e76080b780a448bbd1474f9215040, type: 3}
   m_Name: 
@@ -17039,6 +17067,7 @@ GameObject:
   - component: {fileID: 3999859733987371030}
   - component: {fileID: 3999859733987371029}
   - component: {fileID: 3999859733987371038}
+  - component: {fileID: 3999859733987371039}
   m_Layer: 9
   m_Name: Girl
   m_TagString: Player
@@ -21151,6 +21180,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimationController
   playerMovement: {fileID: 3999859733987371034}
   animator: {fileID: 3999859733987371037}
+--- !u!114 &3999859733987371039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821431967651986699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617e76080b780a448bbd1474f9215040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlashlightController
+  workingDuration: 10
+  rechargeDuration: 10
+  flashlightLight: {fileID: 684742318}
+  flashlightModel: {fileID: 754467532}
+  batterySlider: {fileID: 996265749}
+  sliderFillImage: {fileID: 1921695127}
+  batteryText: {fileID: 386580293}
+  rechargeIndicator: {fileID: 0}
+  rechargeText: {fileID: 0}
+  fullBatteryColor: {r: 0, g: 1, b: 0, a: 1}
+  mediumBatteryColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  lowBatteryColor: {r: 1, g: 0, b: 0, a: 1}
+  rechargingColor: {r: 0, g: 1, b: 0.9731083, a: 1}
+  flashlightOnClip: {fileID: 8300000, guid: b4bbe80c50106d548b10e451df7a986c, type: 3}
+  flashlightOffClip: {fileID: 8300000, guid: a17bb8a55a31b5e40a9b2f63ee165423, type: 3}
 --- !u!4 &4000331453469213854
 Transform:
   m_ObjectHideFlags: 0
@@ -21613,6 +21669,7 @@ GameObject:
   - component: {fileID: 4381959486574337574}
   - component: {fileID: 4381959486574337573}
   - component: {fileID: 4381959486574337582}
+  - component: {fileID: 4381959486574337583}
   m_Layer: 9
   m_Name: Boy
   m_TagString: Player
@@ -21955,6 +22012,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimationController
   playerMovement: {fileID: 4381959486574337578}
   animator: {fileID: 4381959486574337581}
+--- !u!114 &4381959486574337583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4381959486574337572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617e76080b780a448bbd1474f9215040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlashlightController
+  workingDuration: 10
+  rechargeDuration: 20
+  flashlightLight: {fileID: 850114904}
+  flashlightModel: {fileID: 2052859228}
+  batterySlider: {fileID: 1816519234}
+  sliderFillImage: {fileID: 1040962792}
+  batteryText: {fileID: 96847193}
+  rechargeIndicator: {fileID: 0}
+  rechargeText: {fileID: 0}
+  fullBatteryColor: {r: 0, g: 1, b: 0, a: 1}
+  mediumBatteryColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  lowBatteryColor: {r: 1, g: 0, b: 0, a: 1}
+  rechargingColor: {r: 0, g: 1, b: 0.9764706, a: 1}
+  flashlightOnClip: {fileID: 8300000, guid: b4bbe80c50106d548b10e451df7a986c, type: 3}
+  flashlightOffClip: {fileID: 8300000, guid: a17bb8a55a31b5e40a9b2f63ee165423, type: 3}
 --- !u!4 &4401174692306100492
 Transform:
   m_ObjectHideFlags: 0
