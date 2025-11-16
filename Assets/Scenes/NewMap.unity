@@ -8583,6 +8583,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1145736803}
   - component: {fileID: 1145736802}
+  - component: {fileID: 1145736804}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -8620,6 +8621,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1145736804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145736801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc82e70530399c6438b2f99ad0d9263a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  BackgroundMusicClip: {fileID: 8300000, guid: 909a8ab6777c8344e8543586ba48d705, type: 3}
+  loopBackgroundMusic: 1
+  musicVolume: 0.2
 --- !u!1 &1153996898
 GameObject:
   m_ObjectHideFlags: 0
