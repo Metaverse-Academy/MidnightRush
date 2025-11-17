@@ -3162,6 +3162,7 @@ GameObject:
   - component: {fileID: 419916574}
   - component: {fileID: 419916576}
   - component: {fileID: 419916575}
+  - component: {fileID: 419916577}
   m_Layer: 0
   m_Name: Point Light
   m_TagString: Untagged
@@ -3179,7 +3180,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.0144, y: 0.3788, z: 0.9161}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.9534, y: 2.9534, z: 2.9534}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8563365114007119600}
@@ -3278,6 +3279,27 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!135 &419916577
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419916573}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &426421305
 GameObject:
   m_ObjectHideFlags: 0
@@ -20588,7 +20610,7 @@ Transform:
   m_GameObject: {fileID: 4444868152552357353}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.11, y: 0, z: -8.02}
+  m_LocalPosition: {x: 0.23, y: -0.034, z: -7.709}
   m_LocalScale: {x: 0.57, y: 0.57, z: 0.57}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -21950,7 +21972,6 @@ GameObject:
   - component: {fileID: 2787627533376150588}
   - component: {fileID: 4444868152552357358}
   - component: {fileID: 4444868152552357357}
-  - component: {fileID: 4444868152552357356}
   - component: {fileID: 4444868152552357355}
   - component: {fileID: 4444868152552357354}
   m_Layer: 0
@@ -21959,7 +21980,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &4444868152552357354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21986,46 +22007,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TheEnemyAI
   currentState: 0
+  players:
+  - {fileID: 1256056095}
+  - {fileID: 289050651}
+  speed: 0.1
+  maxChaseDistance: 20
   spawnPoints:
   - {fileID: 743644590}
   - {fileID: 731429147}
   - {fileID: 1962702101}
   - {fileID: 499854849}
-  respawnTime: 10
-  chaseDistance: 10
-  attackDistance: 0.1
-  escapeDistance: 15
-  attackRate: 1.5
-  panicDuration: 2
-  blindParticlePrefab: {fileID: 2787556212050310887, guid: 57970c6bb711ec24b8d98424b1806f3b, type: 3}
-  fadeOutDuration: 2
+  panicHideTime: 3
+  escapeRespawnTime: 10
+  enemyBody: {fileID: 0}
   audioSource: {fileID: 0}
-  ChaseSound: {fileID: 0}
-  AttackSound: {fileID: 0}
-  EscapeSound: {fileID: 0}
-  DisapearSound: {fileID: 8300000, guid: 2fe4f8dab87e03e4c9f905b3df70e0b8, type: 3}
---- !u!195 &4444868152552357356
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4444868152552357353}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 0.8
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 0.5
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  chaseSound: {fileID: 0}
+  panicSound: {fileID: 0}
+  escapeSound: {fileID: 0}
 --- !u!136 &4444868152552357357
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -26480,24 +26478,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TheEnemyAI
   currentState: 0
+  players: []
+  speed: 4
+  maxChaseDistance: 20
   spawnPoints:
   - {fileID: 743644590}
   - {fileID: 731429147}
   - {fileID: 1962702101}
   - {fileID: 499854849}
-  respawnTime: 3
-  chaseDistance: 10
-  attackDistance: 0.1
-  escapeDistance: 15
-  attackRate: 1.5
-  panicDuration: 2
-  blindParticlePrefab: {fileID: 2787556212050310887, guid: 57970c6bb711ec24b8d98424b1806f3b, type: 3}
-  fadeOutDuration: 2
+  panicHideTime: 3
+  escapeRespawnTime: 10
+  enemyBody: {fileID: 0}
   audioSource: {fileID: 0}
-  ChaseSound: {fileID: 0}
-  AttackSound: {fileID: 0}
-  EscapeSound: {fileID: 0}
-  DisapearSound: {fileID: 0}
+  chaseSound: {fileID: 0}
+  panicSound: {fileID: 0}
+  escapeSound: {fileID: 0}
 --- !u!23 &7247207586756185145
 MeshRenderer:
   m_ObjectHideFlags: 0
