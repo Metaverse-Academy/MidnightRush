@@ -105,7 +105,7 @@ public class TheEnemyAI : MonoBehaviour
         }
 
         Vector3 direction = (targetPlayer.position - transform.position).normalized;
-        transform.position += direction * speed * Time.deltaTime;
+        transform.position += new Vector3(direction.x, direction.y, direction.z) * speed * Time.deltaTime;
 
         if (audioSource != null && chaseSound != null && !audioSource.isPlaying)
         {
