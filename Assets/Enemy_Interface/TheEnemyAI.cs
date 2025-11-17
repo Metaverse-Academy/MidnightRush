@@ -25,13 +25,23 @@ public class TheEnemyAI : MonoBehaviour
     [Tooltip("the GameObject representing the enemy's body to hide and show")]
     public GameObject enemyBody;
     [Tooltip("the AudioSource component to play sound effects")]
-    public AudioSource audioSource;
     public AudioClip chaseSound;
     public AudioClip panicSound;
     public AudioClip escapeSound;
     private Transform targetPlayer;
     private Vector3 homePosition;
     private bool isRoutineActive = false;
+
+    [Header("Effects")]
+    public GameObject blindParticlePrefab;
+
+    [Header("Audio Clips")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip ChaseSound; // Sound to play when the enemy is chasing
+    [SerializeField] private AudioClip AttackSound; // Sound to play when the enemy is
+    [SerializeField] private AudioClip EscapeSound;
+    [SerializeField] private AudioClip DisapearSound; // AudioSource component to play the sound
+
 
     void OnEnable()
     {
@@ -148,6 +158,11 @@ public class TheEnemyAI : MonoBehaviour
         currentState = State.Panic;
 
         if (audioSource != null && panicSound != null) audioSource.PlayOneShot(panicSound);
+        if (blindParticlePrefab != null)
+        {
+            GameObject blindEffect = Instantiate(blindParticlePrefab, transform.position, Quaternion.identity);
+            blindEffect.transform.SetParent(transform);
+        }
         if (enemyBody != null) enemyBody.SetActive(false);
 
         yield return new WaitForSeconds(panicHideTime);
