@@ -26,7 +26,7 @@ public class PlayerCarry : MonoBehaviour
                 hp.SetParent(cam, false);
                 hp.localPosition = defaultLocalOffset;
                 hp.localRotation = Quaternion.identity;
-                hp.localScale    = Vector3.one;           // IMPORTANT: Prevent scale inheritance issues
+                // hp.localScale    = Vector3.one;           // IMPORTANT: Prevent scale inheritance issues
                 holdPoint = hp;
             }
             else
