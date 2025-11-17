@@ -1456,7 +1456,7 @@ MonoBehaviour:
   jumpForce: 3
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 4104
   groundDistanceCheck: 0.3
   rayStartOffset: 0.06
   useToggleCrouch: 1
@@ -3314,7 +3314,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 419916573}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 0.65739936, b: 0, a: 1}
@@ -4107,11 +4107,11 @@ Transform:
   m_GameObject: {fileID: 540036640}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.108, y: 0.254, z: -1.799}
+  m_LocalPosition: {x: -3.108, y: 0.254, z: -1.7990003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1626843875907379690}
+  m_Father: {fileID: 2155034462966447151}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &540036642
 MonoBehaviour:
@@ -4149,7 +4149,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 540036640}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 0.65739936, b: 0, a: 1}
@@ -7705,7 +7705,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1004827407}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 0.65739936, b: 0, a: 1}
@@ -8834,11 +8834,11 @@ Transform:
   m_GameObject: {fileID: 1172963740}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.108, y: 0.254, z: -1.137}
+  m_LocalPosition: {x: -3.108, y: 0.254, z: -1.1369996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2155034462966447151}
+  m_Father: {fileID: 1626843875907379690}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1172963742
 MonoBehaviour:
@@ -8876,7 +8876,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172963740}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 0.65739936, b: 0, a: 1}
@@ -9496,7 +9496,7 @@ MonoBehaviour:
   jumpForce: 3
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 4104
   groundDistanceCheck: 0.3
   rayStartOffset: 0.06
   useToggleCrouch: 1
@@ -15620,7 +15620,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143441710}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 0.65739936, b: 0, a: 1}
@@ -17987,7 +17987,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 540036641}
+  - {fileID: 1172963741}
   - {fileID: 914590575}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18371,7 +18371,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1172963741}
+  - {fileID: 540036641}
   - {fileID: 713168380}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23964,9 +23964,9 @@ MonoBehaviour:
   prompt: Press [E] to interact
   handBattery: {fileID: 1171514988}
   lampBattery: {fileID: 713168374}
-  lampLight: {fileID: 1172963743}
+  lampLight: {fileID: 540036643}
   lightRaycastController: {fileID: 5451326114872574117}
-  batteryLifetime: 10
+  batteryLifetime: 25
   placeBatteryPrompt: '[]'
   noBatteryPrompt: '[]'
   LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
@@ -23985,8 +23985,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f219b987f60ba4c4d907381f31a59a7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightRaycast
-  lightSource: {fileID: 1172963741}
-  lampLight: {fileID: 1172963743}
+  lightSource: {fileID: 540036641}
+  lampLight: {fileID: 540036643}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -24104,7 +24104,7 @@ MonoBehaviour:
   lampBattery: {fileID: 977771842}
   lampLight: {fileID: 2143441713}
   lightRaycastController: {fileID: 5520674336174390682}
-  batteryLifetime: 10
+  batteryLifetime: 25
   placeBatteryPrompt: '[]'
   noBatteryPrompt: '[]'
   LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
@@ -25691,7 +25691,7 @@ MonoBehaviour:
   lampBattery: {fileID: 1271203772}
   lampLight: {fileID: 1004827410}
   lightRaycastController: {fileID: 6777355440937954890}
-  batteryLifetime: 10
+  batteryLifetime: 25
   placeBatteryPrompt: '[]'
   noBatteryPrompt: '[]'
   LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
@@ -26336,9 +26336,9 @@ MonoBehaviour:
   prompt: Press [E] to interact
   handBattery: {fileID: 1171514988}
   lampBattery: {fileID: 914590569}
-  lampLight: {fileID: 540036643}
+  lampLight: {fileID: 1172963743}
   lightRaycastController: {fileID: 7100075340544214979}
-  batteryLifetime: 10
+  batteryLifetime: 25
   placeBatteryPrompt: '[]'
   noBatteryPrompt: '[]'
   LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
@@ -26357,8 +26357,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f219b987f60ba4c4d907381f31a59a7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightRaycast
-  lightSource: {fileID: 540036641}
-  lampLight: {fileID: 540036643}
+  lightSource: {fileID: 1172963741}
+  lampLight: {fileID: 1172963743}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -29078,7 +29078,7 @@ MonoBehaviour:
   lampBattery: {fileID: 1639384430}
   lampLight: {fileID: 419916576}
   lightRaycastController: {fileID: 8827797771834870131}
-  batteryLifetime: 10
+  batteryLifetime: 25
   placeBatteryPrompt: E
   noBatteryPrompt: E
   LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
