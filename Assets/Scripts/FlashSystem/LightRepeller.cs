@@ -57,16 +57,14 @@ public class LightRepeller : MonoBehaviour
     {
         if (!isLightActive) return;
 
-        // قمنا بإزالة enemyLayer مؤقتاً
         if (Physics.Raycast(lightSource.position, lightSource.forward, out RaycastHit hit, repelDistance))
         {
-            // اطبع اسم كل شيء يصطدم به الشعاع
             Debug.Log("Raycast hit: " + hit.collider.name + " on layer: " + LayerMask.LayerToName(hit.collider.gameObject.layer));
 
             TheEnemyAI enemy = hit.collider.GetComponent<TheEnemyAI>();
             if (enemy != null)
             {
-                enemy.TriggerBlindness();
+                enemy.OnLightExposed();
                 Debug.Log("Light repelled enemy: " + enemy.name);
             }
         }

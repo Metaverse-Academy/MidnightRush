@@ -10,20 +10,20 @@ public class LightRaycast : MonoBehaviour
     [Header("Barrier Settings")]
     [Tooltip("Layer that the enemy belongs to")]
     [SerializeField] private LayerMask enemyLayer;
-    
+
     [Tooltip("Distance the light barrier extends")]
     [SerializeField] private float barrierDistance = 20f;
-    
+
     [Tooltip("Width of the light barrier")]
     [SerializeField] private float barrierWidth = 2f;
-    
+
     [Tooltip("Height of the light barrier")]
     [SerializeField] private float barrierHeight = 3f;
 
     [Header("Force Field Settings")]
     [Tooltip("How strongly enemies are pushed away")]
     [SerializeField] private float repelForce = 10f;
-    
+
     [Tooltip("How close enemies can get before being repelled")]
     [SerializeField] private float minSafeDistance = 3f;
 
@@ -40,7 +40,7 @@ public class LightRaycast : MonoBehaviour
     private void Awake()
     {
         if (lightSource == null) lightSource = transform;
-        if (lampLight == null) 
+        if (lampLight == null)
         {
             lampLight = GetComponent<Light>();
             if (lampLight == null) lampLight = GetComponentInChildren<Light>();
@@ -79,7 +79,7 @@ public class LightRaycast : MonoBehaviour
             if (enemy != null)
             {
                 currentFrameEnemies.Add(enemy);
-                
+
                 // If enemy just entered the barrier, trigger immediate reaction
                 if (!enemiesInBarrier.Contains(enemy))
                 {
@@ -104,11 +104,13 @@ public class LightRaycast : MonoBehaviour
     private void OnEnemyEnterBarrier(TheEnemyAI enemy)
     {
         Debug.Log("Enemy entered light barrier: " + enemy.name);
-        
+
         // Immediate blindness effect
-        enemy.TriggerBlindness();
-        
+        // enemy.TriggerBlindness();
+
         // Add to repel cooldown
+        enemy.OnLightExposed();
+
         enemyRepelCooldown[enemy] = Time.time;
     }
 
@@ -147,13 +149,13 @@ public class LightRaycast : MonoBehaviour
         {
             // Calculate a safe position away from the light
             Vector3 safePosition = enemy.transform.position + direction * repelForce;
-            
+
             // Sample NavMesh to ensure the position is valid
             UnityEngine.AI.NavMeshHit hit;
             if (UnityEngine.AI.NavMesh.SamplePosition(safePosition, out hit, 5.0f, UnityEngine.AI.NavMesh.AllAreas))
             {
                 agent.SetDestination(hit.position);
-                
+
                 if (showDebug)
                 {
                     Debug.Log("Repelling enemy to safe position: " + hit.position);
@@ -181,12 +183,12 @@ public class LightRaycast : MonoBehaviour
                 {
                     Vector3 repelDirection = -toEnemy.normalized;
                     ApplyRepelForce(enemy, repelDirection);
-                    
+
                     // Also trigger blindness if they're very close
-                    if (distance < minSafeDistance * 0.5f)
-                    {
-                        enemy.TriggerBlindness();
-                    }
+                    // if (distance < minSafeDistance * 0.5f)
+                    // {
+                    //     enemy.OnTriggerEnter();
+                    // }
                 }
             }
         }
@@ -199,16 +201,16 @@ public class LightRaycast : MonoBehaviour
         Gizmos.color = isLightActive ? new Color(1, 1, 0, 0.3f) : new Color(0.5f, 0.5f, 0.5f, 0.1f);
 
         // Draw barrier volume
-        Vector3 barrierCenter = lightSource != null ? 
-            lightSource.position + lightSource.forward * (barrierDistance * 0.5f) : 
+        Vector3 barrierCenter = lightSource != null ?
+            lightSource.position + lightSource.forward * (barrierDistance * 0.5f) :
             transform.position + transform.forward * (barrierDistance * 0.5f);
-        
+
         Vector3 barrierSize = new Vector3(barrierWidth, barrierHeight, barrierDistance);
-        
-        Gizmos.matrix = lightSource != null ? 
+
+        Gizmos.matrix = lightSource != null ?
             Matrix4x4.TRS(barrierCenter, lightSource.rotation, Vector3.one) :
             Matrix4x4.TRS(barrierCenter, transform.rotation, Vector3.one);
-        
+
         Gizmos.DrawWireCube(Vector3.zero, barrierSize);
 
         // Draw force field radius
@@ -227,7 +229,7 @@ public class LightRaycast : MonoBehaviour
 
         // Transform position to barrier's local space
         Vector3 localPos = lightSource.InverseTransformPoint(position);
-        
+
         // Check if position is within barrier bounds
         return Mathf.Abs(localPos.x) < barrierWidth * 0.5f &&
                Mathf.Abs(localPos.y) < barrierHeight * 0.5f &&

@@ -1,348 +1,208 @@
 using UnityEngine;
-using UnityEngine.AI;
 using System.Collections;
 
 public class TheEnemyAI : MonoBehaviour
 {
-    // تعريف الحالات التي يمكن أن يكون فيها العدو
-    private enum State { Spawning, Chase, Attack, Panic, Escape }
-    [SerializeField] private State currentState = State.Spawning;
+    public enum State { Spawn, Chase, Panic, Escape }
+    public State currentState;
 
-    [Header("Spawning Settings")]
-    [Tooltip("نقاط الرسبنة التي يمكن أن يظهر فيها العدو")]
-    [SerializeField] private Transform[] spawnPoints;
-    [Tooltip("الوقت بالثواني قبل أن يعود العدو للظهور بعد أن يتلاشى")]
-    [SerializeField] private float respawnTime = 10f;
+    [Header("Target & Movement")]
+    public Transform[] players;
+    [Tooltip("the movement speed of the enemy")]
+    public float speed = 4f;
+    [Tooltip("the maximum distance the enemy can move away from its spawn point before returning")]
+    public float maxChaseDistance = 20f;
 
-    [Header("Detection Settings")]
-    [SerializeField] private float chaseDistance = 10f;
-    [SerializeField] private float attackDistance = 2f;
-    [SerializeField] private float escapeDistance = 15f;
+    [Header("Respawn Settings")]
+    [Tooltip("the spawn points where the enemy can appear")]
+    public Transform[] spawnPoints;
+    [Tooltip("the time the enemy hides when panicking (e.g., when exposed to light)")]
+    public float panicHideTime = 3f;
+    [Tooltip("the time the enemy hides when escaping (e.g., when trapped)")]
+    public float escapeRespawnTime = 10f;
 
-    [Header("Combat Settings")]
-    [SerializeField] private float attackRate = 1.5f;
-    private float nextAttackTime = 0f;
-
-    [Header("Panic & Escape Settings")]
-    [SerializeField] private float panicDuration = 2f;
-    [SerializeField] private GameObject blindParticlePrefab;
-    [Tooltip("سرعة تلاشي العدو عند الهروب (مثلاً 2 ثانية)")]
-    [SerializeField] private float fadeOutDuration = 2f;
-
-    private NavMeshAgent agent;
+    [Header("Visuals & Audio")]
+    [Tooltip("the GameObject representing the enemy's body to hide and show")]
+    public GameObject enemyBody;
+    [Tooltip("the AudioSource component to play sound effects")]
+    public AudioSource audioSource;
+    public AudioClip chaseSound;
+    public AudioClip panicSound;
+    public AudioClip escapeSound;
     private Transform targetPlayer;
-    private Renderer objectRenderer; // للتحكم في شفافية العدو
-    private Collider objectCollider; // لتعطيل الاصطدام عند التلاشي
-    
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip ChaseSound; // Sound to play when the enemy is chasing
-    [SerializeField] private AudioClip AttackSound; // Sound to play when the enemy is
-    [SerializeField] private AudioClip EscapeSound;
-    [SerializeField] private AudioClip DisapearSound; // AudioSource component to play the sound
-    void Awake()
+    private Vector3 homePosition;
+    private bool isRoutineActive = false;
+
+    void OnEnable()
     {
-        agent = GetComponent<NavMeshAgent>();
-        objectRenderer = GetComponentInChildren<Renderer>(); // يحصل على أول Renderer في العدو أو أبنائه
-        objectCollider = GetComponent<Collider>();
-
-        // ابدأ العدو في حالة "الظهور" لكي لا يفعل شيئاً حتى يرسبن
-        currentState = State.Spawning;
-        // اجعل العدو غير مرئي ومُعطل في البداية
-        SetEnemyActive(false);
+        currentState = State.Spawn;
+        Respawn();
     }
-
-    void Start()
-    {
-        // ابدأ أول عملية رسبنة
-        StartCoroutine(RespawnRoutine());
-    }
-
     void Update()
     {
-        // --- التعديل الرئيسي هنا ---
-        // إذا كان العدو في أي حالة لا تتطلب الحركة، اخرج من الدالة فوراً.
-        // هذا يمنع استدعاء Chase() أو Attack() عندما يكون الـ NavMeshAgent معطلاً.
-        if (currentState == State.Spawning || currentState == State.Panic || currentState == State.Escape)
-        {
-            return;
-        }
-        // ---------------------------
+        if (isRoutineActive) return;
 
-        FindNearestPlayer();
-        float distanceToPlayer = targetPlayer ? Vector3.Distance(transform.position, targetPlayer.position) : float.MaxValue;
-
-        // هذا الجزء الآن آمن لأننا تجاوزنا الحالات الخاصة في الأعلى
-        if (distanceToPlayer <= attackDistance)
-        {
-            currentState = State.Attack;
-        }
-        else if (distanceToPlayer <= chaseDistance)
-        {
-            currentState = State.Chase;
-        }
-        else
-        {
-            // إذا فقد اللاعب، يبدأ العدو في التلاشي
-            Debug.Log("Player lost, enemy will fade out and respawn.");
-            currentState = State.Escape; // نغير الحالة إلى Escape لبدء التلاشي
-            StartCoroutine(FadeOutAndRespawn());
-            return; // اخرج من الدالة بعد بدء التلاشي
-        }
-
-        // تنفيذ السلوك بناءً على الحالة
         switch (currentState)
         {
+            case State.Spawn:
+                PickClosestPlayer();
+                if (targetPlayer != null)
+                {
+                    currentState = State.Chase;
+                }
+                break;
+
             case State.Chase:
-                Chase();
+                ChasePlayer();
                 break;
-            case State.Attack:
-                Attack();
-                break;
+
         }
     }
-
-    // --- نظام الرسبنة الجديد ---
-    IEnumerator RespawnRoutine()
+    void PickClosestPlayer()
     {
-        Debug.Log("Waiting to respawn for " + respawnTime + " seconds...");
-        yield return new WaitForSeconds(respawnTime);
+        if (players == null || players.Length == 0) return;
 
-        if (spawnPoints.Length == 0)
+        float minDistance = float.MaxValue;
+        Transform closestPlayer = null;
+
+        foreach (Transform p in players)
         {
-            Debug.LogError("No spawn points assigned! Cannot respawn enemy.");
-            yield break; // اخرج من الكوروتين إذا لم تكن هناك نقاط رسبنة
-        }
-
-        // اختر نقطة رسبنة عشوائية
-        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-
-        // --- التعديل الرئيسي هنا ---
-        // 1. انقل المجسم (transform) أولاً إلى موقع نقطة الرسبنة.
-        //    هذا يضمن أن العدو في الموقع الصحيح قبل تفعيل الـ agent.
-        transform.position = spawnPoint.position;
-
-        // 2. الآن قم بتفعيل العدو (بما في ذلك الـ NavMeshAgent).
-        //    بما أن العدو الآن قريب من الـ NavMesh، يجب أن تتم عملية التفعيل بنجاح.
-        SetEnemyActive(true);
-
-        // 3. (خطوة أمان إضافية) استخدم Warp للتأكد من أن الـ agent "يستقر" تمامًا على الـ NavMesh.
-        //    هذا مفيد إذا كانت نقطة الرسبنة فوق السطح قليلاً.
-        agent.Warp(spawnPoint.position);
-        // ---------------------------
-
-        Debug.Log("Enemy has respawned at " + spawnPoint.name);
-
-        // ابدأ في البحث عن اللاعب
-        currentState = State.Chase;
-    }
-
-        private LightRaycast currentLightBarrier;
-    
-    // Add this method to check for light barriers before moving
-    private bool CanMoveToPosition(Vector3 targetPosition)
-    {
-        // Find all light barriers in the scene
-        LightRaycast[] lightBarriers = FindObjectsByType<LightRaycast>(FindObjectsSortMode.None);
-        
-        foreach (LightRaycast barrier in lightBarriers)
-        {
-            if (barrier != null && barrier.IsPositionInBarrier(targetPosition))
+            if (p == null) continue;
+            float distance = Vector3.Distance(transform.position, p.position);
+            if (distance < minDistance)
             {
-                Debug.Log("Cannot move to " + targetPosition + " - blocked by light barrier");
-                return false;
+                minDistance = distance;
+                closestPlayer = p;
             }
         }
-        return true;
+        targetPlayer = closestPlayer;
     }
 
-
-    // --- نظام المطاردة والهجوم (بدون تغيير) ---
-    void Chase()
+    void ChasePlayer()
     {
-        if (targetPlayer == null) return;
-        agent.isStopped = false;
-        agent.SetDestination(targetPlayer.position);
-        audioSource.PlayOneShot(ChaseSound);
-
-
-        if (targetPlayer == null || agent == null || !agent.isActiveAndEnabled || !agent.isOnNavMesh)
+        if (targetPlayer == null)
         {
+            PickClosestPlayer();
             return;
         }
 
-        // Check if player position is accessible (not in light barrier)
-        if (!CanMoveToPosition(targetPlayer.position))
+        if (maxChaseDistance > 0 && Vector3.Distance(homePosition, transform.position) > maxChaseDistance)
         {
-            // Player is in protected area, find an alternative position
-            Vector3 directionAwayFromLight = (transform.position - targetPlayer.position).normalized;
-            Vector3 alternativePosition = transform.position + directionAwayFromLight * 5f;
-            
-            // Try to find a safe position near the player but outside barriers
-            if (CanMoveToPosition(alternativePosition))
-            {
-                agent.SetDestination(alternativePosition);
-                Debug.Log("Moving to alternative position to avoid light barrier");
-            }
-            else
-            {
-                // If no safe position found, stop chasing
-                agent.isStopped = true;
-                Debug.Log("Cannot approach player - surrounded by light barriers");
-            }
+            Debug.Log("The enemy has moved too far away and will respawn.");
+            currentState = State.Spawn;
+            Respawn();
             return;
         }
 
-        // Original chase code
-        try
+        Vector3 direction = (targetPlayer.position - transform.position).normalized;
+        transform.position += direction * speed * Time.deltaTime;
+
+        if (audioSource != null && chaseSound != null && !audioSource.isPlaying)
         {
-            agent.isStopped = false;
-            agent.SetDestination(targetPlayer.position);
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogError("NavMeshAgent SetDestination failed: " + e.Message);
+            audioSource.clip = chaseSound;
+            audioSource.Play();
         }
     }
 
-    void Attack()
+    void Respawn()
     {
-        if (targetPlayer == null) return;
-        agent.isStopped = true;
-        transform.LookAt(targetPlayer);
-        audioSource.PlayOneShot(AttackSound);
-
-        if (Time.time >= nextAttackTime)
+        if (spawnPoints == null || spawnPoints.Length == 0)
         {
-            Debug.Log("Enemy Attacks " + targetPlayer.name);
-            nextAttackTime = Time.time + 1f / attackRate;
+            Debug.LogError("No spawn points defined for the enemy!");
+            return;
         }
-    }
 
-    // --- نظام الذعر والهروب المحدث ---
-    public void TriggerBlindness()
+        int randIndex = Random.Range(0, spawnPoints.Length);
+        transform.position = spawnPoints[randIndex].position;
+        homePosition = transform.position;
+
+        Debug.Log("The enemy spawned at: " + spawnPoints[randIndex].name);
+
+        if (enemyBody != null) enemyBody.SetActive(true);
+
+        PickClosestPlayer();
+    }
+    public void OnLightExposed()
     {
-        if (currentState == State.Panic || currentState == State.Escape) return;
-        StartCoroutine(PanicRoutine());
-        audioSource.PlayOneShot(EscapeSound);
+        Debug.Log("The enemy was exposed to light! Starting escape state.");
+        StartCoroutine(EscapeRoutine());
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Light"))
+        {
+            Debug.Log("The enemy was exposed to light! Starting panic state.");
+            StartCoroutine(PanicRoutine());
+        }
+        else if (other.CompareTag("Trap"))
+        {
+            Debug.Log("The enemy entered a trap! Starting escape state.");
+            StartCoroutine(EscapeRoutine());
+        }
     }
 
     IEnumerator PanicRoutine()
     {
+        if (isRoutineActive) yield break;
+        isRoutineActive = true;
         currentState = State.Panic;
-        agent.isStopped = true;
-        if (blindParticlePrefab != null)
-        {
-            Instantiate(blindParticlePrefab, transform.position, Quaternion.identity);
-        }
-        Debug.Log("The Enemy is Blinded and Panicking!");
-        yield return new WaitForSeconds(panicDuration);
 
-        // بعد الذعر، ابدأ في الهروب والتلاشي
+        if (audioSource != null && panicSound != null) audioSource.PlayOneShot(panicSound);
+        if (enemyBody != null) enemyBody.SetActive(false);
+
+        yield return new WaitForSeconds(panicHideTime);
+
+        Respawn();
+        currentState = State.Spawn;
+        isRoutineActive = false;
+    }
+
+    IEnumerator EscapeRoutine()
+    {
+        if (isRoutineActive) yield break;
+        isRoutineActive = true;
         currentState = State.Escape;
-        Debug.Log("The Enemy is Escaping and fading out!");
-        StartCoroutine(EscapeAndFadeOut());
+
+        if (audioSource != null && escapeSound != null) audioSource.PlayOneShot(escapeSound);
+
+        yield return StartCoroutine(FadeOut());
+
+        yield return new WaitForSeconds(escapeRespawnTime);
+
+        Respawn();
+        currentState = State.Spawn;
+        isRoutineActive = false;
     }
 
-    // --- دالة الهروب والتلاشي الجديدة ---
-    IEnumerator EscapeAndFadeOut()
+    IEnumerator FadeOut()
     {
-        // 1. حساب نقطة الهروب الصحيحة (مرة واحدة فقط)
-        Vector3 escapeDirection = (transform.position - targetPlayer.position).normalized;
-        // تأكد من أن النقطة على الـ NavMesh
-        NavMeshHit hit;
-        Vector3 escapePoint = transform.position + escapeDirection * escapeDistance;
-        if (NavMesh.SamplePosition(escapePoint, out hit, 5f, NavMesh.AllAreas))
+        Renderer bodyRenderer = enemyBody.GetComponent<Renderer>();
+        if (bodyRenderer == null)
         {
-            escapePoint = hit.position;
+            Debug.LogWarning("No Renderer component found on the enemy's body for fading.");
+            enemyBody.SetActive(false);
+            yield break;
         }
 
-        agent.isStopped = false;
-        agent.SetDestination(escapePoint);
-        audioSource.PlayOneShot(DisapearSound);
+        Material mat = bodyRenderer.material;
+        mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+        mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+        mat.EnableKeyword("_ALPHABLEND_ON");
+        mat.renderQueue = 3000;
 
-        // 2. ابدأ في التلاشي أثناء الحركة
-        StartCoroutine(FadeOutAndRespawn());
-
-        // انتظر حتى يصل العدو إلى وجهته أو يقترب منها
-        while (agent.enabled && agent.isOnNavMesh && agent.hasPath && agent.remainingDistance < 0.5f)
-        {
-            yield return null; // انتظر الإطار التالي
-        }
-    }
-
-    // --- دالة التلاشي وإعادة الرسبنة ---
-    IEnumerator FadeOutAndRespawn()
-    {
-        // إذا كان هناك Renderer، قم بتغيير المادة إلى شفافة
-        Material originalMaterial = objectRenderer.material;
-        Material tempMaterial = new Material(originalMaterial);
-        tempMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-        tempMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-        tempMaterial.SetInt("_ZWrite", 0);
-        tempMaterial.EnableKeyword("_ALPHABLEND_ON");
-        tempMaterial.renderQueue = 3000;
-        objectRenderer.material = tempMaterial;
-
+        float duration = 2f;
         float timer = 0;
-        Color startColor = tempMaterial.color;
+        Color startColor = mat.color;
 
-        // حلقة التلاشي
-        while (timer < fadeOutDuration)
+        while (timer < duration)
         {
             timer += Time.deltaTime;
-            float alpha = Mathf.Lerp(1f, 0f, timer / fadeOutDuration);
-            tempMaterial.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
+            float alpha = Mathf.Lerp(1f, 0f, timer / duration);
+            mat.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
             yield return null;
         }
 
-        // بعد التلاشي الكامل، قم بإلغاء تنشيط العدو
-        SetEnemyActive(false);
-        objectRenderer.material = originalMaterial; // أعد المادة الأصلية
-
-        // ابدأ روتين الرسبنة من جديد
-        StartCoroutine(RespawnRoutine());
-    }
-
-    // --- دوال مساعدة ---
-    void SetEnemyActive(bool isActive)
-    {
-        // تفعيل/إلغاء تفعيل المكونات الرئيسية للعدو
-        //if (objectRenderer) objectRenderer.enabled = isActive;
-        //if (objectCollider) objectCollider.enabled = isActive;
-        if (agent) agent.enabled = isActive;
-
-        // إعادة لون المادة إلى طبيعته عند التفعيل
-        if (isActive && objectRenderer != null)
-        {
-            Color c = objectRenderer.material.color;
-            objectRenderer.material.color = new Color(c.r, c.g, c.b, 1f);
-        }
-    }
-
-    void FindNearestPlayer()
-    {
-        // ... (هذه الدالة تعمل بشكل جيد، لا حاجة للتغيير)
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        float shortestDistance = Mathf.Infinity;
-        Transform nearestPlayer = null;
-        foreach (GameObject player in players)
-        {
-            float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-            if (distanceToPlayer < shortestDistance)
-            {
-                shortestDistance = distanceToPlayer;
-                nearestPlayer = player.transform;
-            }
-        }
-        targetPlayer = nearestPlayer;
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        // ... (لا حاجة للتغيير)
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, chaseDistance);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackDistance);
+        mat.color = new Color(startColor.r, startColor.g, startColor.b, 1f);
+        enemyBody.SetActive(false);
     }
 }
