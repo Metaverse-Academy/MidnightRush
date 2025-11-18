@@ -1528,6 +1528,8 @@ MonoBehaviour:
     m_Bits: 128
   repelDistance: 100
   repelRadius: 100
+  enableDebug: 1
+  showRayInGame: 1
 --- !u!114 &289050654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9224,6 +9226,7 @@ GameObject:
   - component: {fileID: 1256056097}
   - component: {fileID: 1256056098}
   - component: {fileID: 1256056099}
+  - component: {fileID: 1256056100}
   m_Layer: 9
   m_Name: Player2
   m_TagString: Player
@@ -9590,6 +9593,8 @@ MonoBehaviour:
     m_Bits: 128
   repelDistance: 100
   repelRadius: 100
+  enableDebug: 1
+  showRayInGame: 1
 --- !u!114 &1256056098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9625,6 +9630,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1256056100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1256056087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7e66ddc5d6cdd4f96c799915549d1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightRepellerDebug
+  enableDetailedDebug: 1
+  logEveryFrame: 0
+  debugKey: 9
 --- !u!1 &1271203772
 GameObject:
   m_ObjectHideFlags: 0
@@ -9789,7 +9809,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 841563835}
   winnerText: {fileID: 1904383363}
   mainMenuSceneName: MainMenu
-  jumpScareSequence: {fileID: 0}
+  jumpScareSequence: {fileID: 2039386176}
   enableJumpScare: 1
 --- !u!4 &1282360435
 Transform:
@@ -12568,7 +12588,7 @@ GameObject:
   - component: {fileID: 1770508258}
   - component: {fileID: 1770508257}
   - component: {fileID: 1770508256}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20744,6 +20764,8 @@ MonoBehaviour:
     m_Bits: 128
   repelDistance: 100
   repelRadius: 100
+  enableDebug: 1
+  showRayInGame: 1
 --- !u!114 &3999859733987371031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21576,6 +21598,8 @@ MonoBehaviour:
     m_Bits: 128
   repelDistance: 100
   repelRadius: 100
+  enableDebug: 1
+  showRayInGame: 1
 --- !u!114 &4381959486574337575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22051,9 +22075,9 @@ GameObject:
   - component: {fileID: 3955436612588152659}
   - component: {fileID: 4444868152552357355}
   - component: {fileID: 4444868152552357354}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ghost
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23915,7 +23939,7 @@ MonoBehaviour:
   noBatteryPrompt: '[]'
   LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
   LightOffSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 8827797771834870132}
   BattryPlaceSound: {fileID: 0}
 --- !u!114 &5451326114872574117
 MonoBehaviour:
@@ -24053,7 +24077,7 @@ MonoBehaviour:
   noBatteryPrompt: '[]'
   LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
   LightOffSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 8827797771834870132}
   BattryPlaceSound: {fileID: 0}
 --- !u!114 &5520674336174390682
 MonoBehaviour:
@@ -24637,6 +24661,8 @@ GameObject:
   - component: {fileID: 8827797771834870129}
   - component: {fileID: 8827797771834870130}
   - component: {fileID: 8827797771834870131}
+  - component: {fileID: 8827797771834870132}
+  - component: {fileID: 8827797771834870133}
   m_Layer: 6
   m_Name: Kids light
   m_TagString: Untagged
@@ -25640,7 +25666,7 @@ MonoBehaviour:
   noBatteryPrompt: '[]'
   LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
   LightOffSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 8827797771834870132}
   BattryPlaceSound: {fileID: 0}
 --- !u!114 &6777355440937954890
 MonoBehaviour:
@@ -26287,7 +26313,7 @@ MonoBehaviour:
   noBatteryPrompt: '[]'
   LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
   LightOffSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 8827797771834870132}
   BattryPlaceSound: {fileID: 0}
 --- !u!114 &7100075340544214979
 MonoBehaviour:
@@ -29029,7 +29055,7 @@ MonoBehaviour:
   noBatteryPrompt: E
   LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
   LightOffSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 8827797771834870132}
   BattryPlaceSound: {fileID: 0}
 --- !u!114 &8827797771834870131
 MonoBehaviour:
@@ -29055,6 +29081,117 @@ MonoBehaviour:
   minSafeDistance: 3
   showDebug: 1
   showForceField: 1
+--- !u!82 &8827797771834870132
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5922491519688351716}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &8827797771834870133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5922491519688351716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd2a84669b0a0e746b384e4757cd0bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightRaycastDebug
+  enableDebug: 1
+  debugKey: 32
 --- !u!33 &8831723167754145438
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -29755,7 +29892,7 @@ MonoBehaviour:
   closedState: Closed
   openState: Open
   audioSource: {fileID: 0}
-  dooropenClip: {fileID: 0}
+  dooropenClip: {fileID: 8300000, guid: e76d7541b159a0d4e921a2717c5cffdf, type: 3}
 --- !u!1 &9221799420310755723
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,24 +30,20 @@ public class CubePuzzle : MonoBehaviour
 
     private void OnPlaced0(PlacePoint p, GameObject go){ 
         placed0 = go; 
-        Debug.Log($"Slot 0 received: {go.name}");
         Check(); 
     }
     
     private void OnRemoved0(PlacePoint p, GameObject go){ 
         if (placed0 == go) placed0 = null; 
-        Debug.Log($"Slot 0 removed: {go.name}");
     }
     
     private void OnPlaced1(PlacePoint p, GameObject go){ 
         placed1 = go; 
-        Debug.Log($"Slot 1 received: {go.name}");
         Check(); 
     }
     
     private void OnRemoved1(PlacePoint p, GameObject go){ 
         if (placed1 == go) placed1 = null; 
-        Debug.Log($"Slot 1 removed: {go.name}");
     }
 
     private void Check()
@@ -55,7 +51,6 @@ public class CubePuzzle : MonoBehaviour
         if (solved) return;
         if (!placed0 || !placed1) return;
 
-        Debug.Log($"Checking puzzle: Slot0={placed0.name}, Slot1={placed1.name}");
 
         bool ok = (placed0 == correctA && placed1 == correctB) ||
                   (placed0 == correctB && placed1 == correctA);
@@ -63,7 +58,6 @@ public class CubePuzzle : MonoBehaviour
         if (ok)
         {
             solved = true;
-            Debug.Log("✅ Cube puzzle solved!");
             
             // Lock the cubes in place
             if (slot0) slot0.AllowTakeBack = false;
@@ -76,12 +70,10 @@ public class CubePuzzle : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("No DoorController assigned!");
             }
         }
         else
         {
-            Debug.Log("❌ Wrong cube combination!");
         }
     }
 

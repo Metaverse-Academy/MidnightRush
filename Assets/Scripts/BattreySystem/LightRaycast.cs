@@ -138,6 +138,7 @@ public class LightRaycast : MonoBehaviour
                 ApplyRepelForce(enemy, repelDirection);
                 enemyRepelCooldown[enemy] = Time.time;
             }
+            Debug.Log("Repelling enemy: " + enemy.name);
         }
     }
 

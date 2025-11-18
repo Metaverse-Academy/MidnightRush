@@ -220,4 +220,5 @@ public class TheEnemyAI : MonoBehaviour
         mat.color = new Color(startColor.r, startColor.g, startColor.b, 1f);
         enemyBody.SetActive(false);
     }
+
 }

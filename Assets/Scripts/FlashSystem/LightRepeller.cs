@@ -1,4 +1,3 @@
-using UnityEditor.EditorTools;
 using UnityEngine;
 
 public class LightRepeller : MonoBehaviour
@@ -18,6 +17,11 @@ public class LightRepeller : MonoBehaviour
 
     [Tooltip("Radius of the light ray")]
     [SerializeField] private float repelRadius = 0.5f;
+    
+    [Header("Debug Settings")]
+    [SerializeField] private bool enableDebug = true;
+    [SerializeField] private bool showRayInGame = true;
+    
     public bool isLightActive => flashlightController != null && flashlightController.IsOn;
 
     private void Awake()
@@ -27,54 +31,95 @@ public class LightRepeller : MonoBehaviour
             lightSource = transform;
         }
 
-        // --- الجزء المهم ---
+        // Find the flashlight controller
         if (flashlightController == null)
         {
             flashlightController = FindAnyObjectByType<FlashlightController>();
         }
-
-        // أضف هذا الشرط للتحقق
-        if (flashlightController == null)
-        {
-            Debug.LogError("theFlashlightController Does not exist in the scene! Please ensure there is a FlashlightController component present.");
-        }
-        else
-        {
-            Debug.Log("Success: Found and linked FlashlightController successfully!", flashlightController.gameObject);
-        }
-        // -----------------
     }
 
     private void Update()
     {
-        // Debug.Log("LightRepeller isLightActive: " + isLightActive);
+        
         if (isLightActive)
         {
             PerformRepelCast();
         }
     }
+    
     private void PerformRepelCast()
     {
-        if (!isLightActive) return;
-
-        if (Physics.Raycast(lightSource.position, lightSource.forward, out RaycastHit hit, repelDistance))
+        if (!isLightActive) 
         {
-            Debug.Log("Raycast hit: " + hit.collider.name + " on layer: " + LayerMask.LayerToName(hit.collider.gameObject.layer));
+            return;
+        }
+
+        Vector3 origin = lightSource.position;
+        Vector3 direction = lightSource.forward;
+
+        // Use SphereCast for better detection
+        bool hasHit = Physics.SphereCast(origin, repelRadius, direction, out RaycastHit hit, repelDistance);
+        
+        if (hasHit)
+        {
+
+            // Check if the hit object is on the enemy layer
+            bool isOnEnemyLayer = ((1 << hit.collider.gameObject.layer) & enemyLayer) != 0;
+            
+
 
             TheEnemyAI enemy = hit.collider.GetComponent<TheEnemyAI>();
             if (enemy != null)
             {
+                
                 enemy.OnLightExposed();
-                Debug.Log("Light repelled enemy: " + enemy.name);
             }
+            else
+            {
+                
+                // Check if it has the component but it's disabled or missing
+                enemy = hit.collider.GetComponentInParent<TheEnemyAI>();
+                if (enemy != null)
+                {
+                    enemy.OnLightExposed();
+                }
+            }
+        }
+        else
+        {
+            if (enableDebug) Debug.Log("No hits detected with SphereCast");
+        }
+
+        // Additional debug: Check what objects are in the path
+        if (enableDebug)
+        {
+            RaycastHit[] allHits = Physics.SphereCastAll(origin, repelRadius, direction, repelDistance);
+            
         }
     }
 
     void OnDrawGizmos()
     {
-        Gizmos.color = isLightActive ? Color.yellow : Color.white;
+        if (!showRayInGame) return;
+        
         Vector3 origin = lightSource != null ? lightSource.position : transform.position;
         Vector3 direction = lightSource != null ? lightSource.forward : transform.forward;
+        
+        Gizmos.color = isLightActive ? Color.yellow : Color.gray;
         Gizmos.DrawRay(origin, direction * repelDistance);
+        
+        // Draw the sphere cast volume
+        if (isLightActive)
+        {
+            Gizmos.color = new Color(1, 1, 0, 0.3f);
+            Gizmos.DrawWireSphere(origin, repelRadius);
+            Gizmos.DrawWireSphere(origin + direction * repelDistance, repelRadius);
+            
+            // Draw connecting lines
+            Gizmos.DrawLine(origin + Vector3.right * repelRadius, origin + direction * repelDistance + Vector3.right * repelRadius);
+            Gizmos.DrawLine(origin + Vector3.left * repelRadius, origin + direction * repelDistance + Vector3.left * repelRadius);
+            Gizmos.DrawLine(origin + Vector3.up * repelRadius, origin + direction * repelDistance + Vector3.up * repelRadius);
+            Gizmos.DrawLine(origin + Vector3.down * repelRadius, origin + direction * repelDistance + Vector3.down * repelRadius);
+        }
     }
 }

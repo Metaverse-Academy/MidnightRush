@@ -12,7 +12,6 @@ public class InteractableFrame : MonoBehaviour, IInteractable
     public void SetPuzzleController(FramePuzzle controller)
     {
         puzzleController = controller;
-        Debug.Log($"Frame {name} registered with puzzle controller");
     }
     
     public void SetSelected(bool selected, Color color)
@@ -46,11 +45,9 @@ public class InteractableFrame : MonoBehaviour, IInteractable
     {
         if (!isInteractable) 
         {
-            Debug.Log($"Frame {name} is not interactable");
             return;
         }
         
-        Debug.Log($"Interact called on frame: {name}");
         puzzleController?.OnFrameInteracted(this);
     }
     
@@ -60,7 +57,6 @@ public class InteractableFrame : MonoBehaviour, IInteractable
         if (GetComponent<Collider>() == null)
         {
             gameObject.AddComponent<BoxCollider>();
-            Debug.Log($"Added collider to frame: {name}");
         }
         
         if (frameRenderer != null)
@@ -71,6 +67,5 @@ public class InteractableFrame : MonoBehaviour, IInteractable
     
     private void Start()
     {
-        Debug.Log($"Frame {name} is ready for interaction");
     }
 }

@@ -9,7 +9,6 @@ public class PlayerCarry : MonoBehaviour
     private Rigidbody held;
     private Transform prevParent;
     private int prevLayer;
-    private Vector3 prevWorldScale;
 
     public bool IsHolding => held != null;
     public Rigidbody HeldBody => held;
@@ -44,7 +43,6 @@ public class PlayerCarry : MonoBehaviour
         held       = rb;
         prevParent = held.transform.parent;
         prevLayer  = held.gameObject.layer;
-        prevWorldScale = held.transform.lossyScale;  // remember world scale
 
         // WHY: Disable physics while holding to prevent collisions and gravity
         held.isKinematic      = true;
@@ -59,7 +57,6 @@ public class PlayerCarry : MonoBehaviour
         held.transform.localPosition = Vector3.zero;
         held.transform.localRotation = Quaternion.identity;
         
-        Debug.Log("Picked up " + rb.name);
         return true;
     }
 

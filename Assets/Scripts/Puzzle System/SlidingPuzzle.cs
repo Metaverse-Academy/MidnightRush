@@ -53,7 +53,6 @@ public class SlidingPuzzle : MonoBehaviour
             frames[i].position = positions[i];
         }
         
-        Debug.Log("Frames shuffled!");
     }
     
     public void OnFrameSelected(Transform frame)
@@ -65,14 +64,12 @@ public class SlidingPuzzle : MonoBehaviour
             // First selection
             selectedFrame = frame;
             SetFrameColor(frame, selectedColor);
-            Debug.Log($"Selected frame: {frame.name}");
         }
         else
         {
             // Second selection - swap them
             if (selectedFrame != frame)
             {
-                Debug.Log($"Swapping {selectedFrame.name} with {frame.name}");
                 SwapFrames(selectedFrame, frame);
                 SetFrameColor(selectedFrame, Color.white);
                 selectedFrame = null;
@@ -130,7 +127,6 @@ public class SlidingPuzzle : MonoBehaviour
         if (allCorrect)
         {
             solved = true;
-            Debug.Log("✅ Sliding puzzle solved!");
             
             // Visual feedback for all frames
             foreach (var frame in frames)

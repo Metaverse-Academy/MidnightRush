@@ -39,7 +39,6 @@ public class LampBattrey : Interactable
         }
         else if (player != null && !player.IsHoldingBattery && !hasBattery)
         {
-            Debug.Log(noBatteryPrompt);
         }
     }
 
@@ -77,7 +76,6 @@ public class LampBattrey : Interactable
         player.IsHoldingBattery = false;
         hasBattery = true;
 
-        Debug.Log("the battrey has been placed in the lamp.");
 
         batteryDestroyCoroutine = StartCoroutine(DestroyBatteryAfterDelay());
         audioSource.PlayOneShot(BattryPlaceSound);
@@ -90,7 +88,6 @@ public class LampBattrey : Interactable
     {
         yield return new WaitForSeconds(batteryLifetime);
 
-        Debug.Log("The battery has expired. You can now place a new battery.");
         if (lampLight != null)
         {
             lampLight.enabled = false;
