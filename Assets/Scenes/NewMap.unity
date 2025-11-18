@@ -8547,6 +8547,8 @@ GameObject:
   - component: {fileID: 1153996899}
   - component: {fileID: 1153996901}
   - component: {fileID: 1153996900}
+  - component: {fileID: 1153996903}
+  - component: {fileID: 1153996902}
   m_Layer: 0
   m_Name: Flash
   m_TagString: Untagged
@@ -8663,6 +8665,43 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!136 &1153996902
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153996898}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 86.95407
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 41.646194}
+--- !u!114 &1153996903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153996898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a5dc55e5c767b4c9cad3ce244437d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightZone
+  lightSource: {fileID: 1823591716}
+  enemyAI: {fileID: 4444868152552357355}
 --- !u!1 &1171514988
 GameObject:
   m_ObjectHideFlags: 0
@@ -12619,7 +12658,7 @@ Transform:
   m_GameObject: {fileID: 1770508254}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -12967,6 +13006,8 @@ GameObject:
   - component: {fileID: 1823591714}
   - component: {fileID: 1823591716}
   - component: {fileID: 1823591715}
+  - component: {fileID: 1823591718}
+  - component: {fileID: 1823591717}
   m_Layer: 0
   m_Name: Flash
   m_TagString: Untagged
@@ -13025,7 +13066,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1823591713}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 0.97793424, g: 1, b: 0.5518868, a: 1}
@@ -13083,6 +13124,43 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1823591717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823591713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a5dc55e5c767b4c9cad3ce244437d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightZone
+  lightSource: {fileID: 1823591716}
+  enemyAI: {fileID: 4444868152552357355}
+--- !u!136 &1823591718
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1823591713}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 86.95407
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 41.646194}
 --- !u!1 &1838488387
 GameObject:
   m_ObjectHideFlags: 0
@@ -20725,7 +20803,7 @@ Transform:
   m_GameObject: {fileID: 4444868152552357353}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.23, y: 0.057, z: -8.06}
+  m_LocalPosition: {x: 0.23, y: 0.06, z: -8.06}
   m_LocalScale: {x: 0.57, y: 0.57, z: 0.57}
   m_ConstrainProportionsScale: 1
   m_Children:
