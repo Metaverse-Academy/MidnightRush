@@ -143,16 +143,7 @@ public class PlayerMovement2 : MonoBehaviour
             rb.linearVelocity = cur;
 
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            IsJumping = true;
-            
-            // Reset jumping state after a short time
-            Invoke(nameof(ResetJump), 0.5f);
         }
-    }
-
-    private void ResetJump()
-    {
-        IsJumping = false;
     }
 
     public void OnSprint(InputAction.CallbackContext ctx)

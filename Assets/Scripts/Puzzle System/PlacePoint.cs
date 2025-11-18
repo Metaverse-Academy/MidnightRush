@@ -12,7 +12,6 @@ public class PlacePoint : Interactable
     [Tooltip("Allow taking back the placed object with Interact?")]
     [SerializeField] private bool allowTakeBack = true;
 
-    // PUBLIC PROPERTY FOR EXTERNAL ACCESS
     public bool AllowTakeBack 
     { 
         get => allowTakeBack; 
@@ -30,6 +29,11 @@ public class PlacePoint : Interactable
     private void Awake()
     {
         if (!snapPoint) snapPoint = transform;
+
+        if (snapPoint.lossyScale != Vector3.one)
+        {
+            Debug.LogWarning($"{name}: snapPoint or its parents have non-1 scale. This can cause size issues for placed objects.");
+        }
     }
 
     public override string GetPrompt()
@@ -45,22 +49,27 @@ public class PlacePoint : Interactable
 
         if (carry.IsHolding)
         {
-            // place
+            // PLACE
             if (IsOccupied) return;
             var rb = carry.HeldBody;
             var go = rb ? rb.gameObject : null;
             if (!go) return;
             if (!IsAllowed(go)) return;
 
-            // FIXED: Use custom placement that doesn't mess with parenting
             PlaceObject(go);
+
             current = go;
+
+            // Tell the carry system it no longer holds this object
+            carry.ForceReleaseWithoutDrop();
+
             OnPlaced?.Invoke(this, go);
         }
         else
         {
-            // take back
+            // TAKE BACK
             if (!allowTakeBack || !IsOccupied) return;
+
             var rb = current.GetComponent<Rigidbody>();
             if (rb && carry.TryPickup(rb))
             {
@@ -72,24 +81,44 @@ public class PlacePoint : Interactable
     }
 
     private void PlaceObject(GameObject go)
+{
+    var rb = go.GetComponent<Rigidbody>();
+
+    // 1) Save the current *world* scale (how big it actually looks)
+    Vector3 desiredWorldScale = go.transform.lossyScale;
+
+    // 2) Disable physics so it sits nicely in the slot
+    if (rb)
     {
-        var rb = go.GetComponent<Rigidbody>();
-        
-        // Disable physics but keep object visible
-        if (rb) 
-        { 
-            rb.isKinematic = true; 
-            rb.useGravity = false;
-            rb.detectCollisions = false;
-        }
-        
-        // FIXED: Set position/rotation directly without complex parenting
-        go.transform.position = snapPoint.position;
-        go.transform.rotation = snapPoint.rotation;
-        
-        // Optional: Parent to snap point but maintain scale
-        go.transform.SetParent(snapPoint, true);
+        rb.isKinematic      = true;
+        rb.useGravity       = false;
+        rb.detectCollisions = false;
     }
+
+    // 3) Parent to the snapPoint and move/rotate it there
+    go.transform.SetParent(snapPoint, worldPositionStays: false);
+    go.transform.position = snapPoint.position;
+    go.transform.rotation = snapPoint.rotation;
+
+    // 4) Fix the scale so its *world* size stays the same as before
+    Vector3 parentWorldScale = snapPoint.lossyScale;
+
+    // Avoid division by zero just in case
+    if (parentWorldScale.x == 0) parentWorldScale.x = 0.0001f;
+    if (parentWorldScale.y == 0) parentWorldScale.y = 0.0001f;
+    if (parentWorldScale.z == 0) parentWorldScale.z = 0.0001f;
+
+    go.transform.localScale = new Vector3(
+        desiredWorldScale.x / parentWorldScale.x,
+        desiredWorldScale.y / parentWorldScale.y,
+        desiredWorldScale.z / parentWorldScale.z
+    );
+
+    // Optional debug:
+    // Debug.Log($"Placed {go.name}. World scale before: {desiredWorldScale}, after: {go.transform.lossyScale}");
+}
+
+
 
     private bool IsAllowed(GameObject go)
     {
@@ -98,7 +127,6 @@ public class PlacePoint : Interactable
         return false;
     }
 
-    // Debug visualization
     private void OnDrawGizmos()
     {
         if (snapPoint)

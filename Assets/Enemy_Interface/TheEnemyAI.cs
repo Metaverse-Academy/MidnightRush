@@ -212,7 +212,7 @@ public class TheEnemyAI : MonoBehaviour
         mat.EnableKeyword("_ALPHABLEND_ON");
         mat.renderQueue = 3000;
 
-        float duration = 2f;
+        float duration = 0.5f;
         float timer = 0;
         Color startColor = mat.color;
 

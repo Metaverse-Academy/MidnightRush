@@ -15,7 +15,6 @@ public class PlayerCarry : MonoBehaviour
 
     void Awake()
     {
-        // WHY: Ensure we always have a holdPoint even if not assigned in inspector
         if (!holdPoint)
         {
             var cam = Camera.main ? Camera.main.transform : null;
@@ -25,38 +24,43 @@ public class PlayerCarry : MonoBehaviour
                 hp.SetParent(cam, false);
                 hp.localPosition = defaultLocalOffset;
                 hp.localRotation = Quaternion.identity;
-                // hp.localScale    = Vector3.one;           // IMPORTANT: Prevent scale inheritance issues
-                holdPoint = hp;
+                hp.localScale    = Vector3.one; // important: no weird scale
+                holdPoint        = hp;
             }
             else
             {
                 Debug.LogWarning("PlayerCarry: No holdPoint and no Camera.main. Assign a HoldPoint in the inspector!");
             }
         }
+
+        // Also make sure THIS object and the camera are scale (1,1,1)
+        if (transform.lossyScale != Vector3.one)
+        {
+            Debug.LogWarning("PlayerCarry object has non-1 scale. This can cause pickup size issues.");
+        }
     }
 
     public bool TryPickup(Rigidbody rb)
     {
-        // WHY: Check if we can pick up (not already holding, valid rigidbody, etc.)
         if (IsHolding || !rb || !holdPoint) return false;
 
         held       = rb;
         prevParent = held.transform.parent;
         prevLayer  = held.gameObject.layer;
 
-        // WHY: Disable physics while holding to prevent collisions and gravity
+        // Disable physics while held
         held.isKinematic      = true;
         held.useGravity       = false;
         held.detectCollisions = false;
 
-        // WHY: Prevent the interaction ray from hitting the held object
+        // Ignore raycast while held
         held.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
 
-        // WHY: Parent to hold point and reset local transform
-        held.transform.SetParent(holdPoint, false);
+        // Parent to hold point, but DO NOT touch scale
+        held.transform.SetParent(holdPoint, worldPositionStays: false);
         held.transform.localPosition = Vector3.zero;
         held.transform.localRotation = Quaternion.identity;
-        
+
         return true;
     }
 
@@ -64,24 +68,32 @@ public class PlayerCarry : MonoBehaviour
     {
         if (!held) return;
 
-        // WHY: Restore original parent while keeping world position
+        // Unparent back to its original parent while keeping world transform
         held.transform.SetParent(prevParent, worldPositionStays: true);
 
-        // WHY: Reset scale to avoid parent scale inheritance issues
-        held.transform.localScale = Vector3.one;
-
-        // WHY: Restore physics properties
+        // Restore physics and layer
         held.isKinematic      = false;
         held.useGravity       = true;
         held.detectCollisions = true;
         held.gameObject.layer = prevLayer;
 
-        // WHY: Apply a small forward force when dropping for more natural feel
-        held.linearVelocity = Vector3.zero;
-        held.angularVelocity = Vector3.zero;
+        held.linearVelocity   = Vector3.zero;
+        held.angularVelocity  = Vector3.zero;
         held.AddForce(transform.forward * 2f, ForceMode.Impulse);
 
-        held = null;
+        held      = null;
+        prevParent = null;
+    }
+
+    // Used by PlacePoint to say "you no longer hold this object"
+    public void ForceReleaseWithoutDrop()
+    {
+        if (!held) return;
+
+        // Just restore layer. PlacePoint already handled transform & physics
+        held.gameObject.layer = prevLayer;
+
+        held       = null;
         prevParent = null;
     }
 
@@ -103,17 +115,15 @@ public class PlayerCarry : MonoBehaviour
         return go;
     }
 
-    // NEW: Toggle method for single-button pickup/drop
+    // Toggle method for single-button pickup/drop
     public void TogglePickupDrop(Rigidbody targetRb = null)
     {
         if (IsHolding)
         {
-            // If holding something, drop it
             Drop();
         }
         else if (targetRb != null)
         {
-            // If not holding and target is provided, try to pick it up
             TryPickup(targetRb);
         }
     }

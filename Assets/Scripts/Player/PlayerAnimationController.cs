@@ -6,95 +6,79 @@ public class PlayerAnimationController : MonoBehaviour
     [SerializeField] private PlayerMovement2 playerMovement;
     [SerializeField] private Animator animator;
 
-    // Animation parameter IDs (for performance)
-    private int isWalkingHash;
-    private int isRunningHash;
-    private int isJumpingHash;
-    private int isCrouchingHash;
-    private int isCrouchWalkingHash;
+    // Animator parameter hashes
+    private int speedHash;
     private int isGroundedHash;
+    private int isCrouchingHash;
+    private int isJumpingHash;
+    private int isLookingHash;
 
-    // Cache previous states to avoid unnecessary Animator calls
+    // Cached previous state
     private bool wasGrounded;
-    private bool wasMoving;
-    private bool wasSprinting;
-    private bool wasCrouching;
 
     private void Awake()
     {
         // Get references if not assigned in inspector
         if (playerMovement == null)
             playerMovement = GetComponent<PlayerMovement2>();
-        
-        if (animator == null)
-            animator = GetComponent<Animator>();
 
-        // Initialize parameter hashes
-        isWalkingHash = Animator.StringToHash("isWalking");
-        isRunningHash = Animator.StringToHash("isRunning");
-        isJumpingHash = Animator.StringToHash("isJumping");
-        isCrouchingHash = Animator.StringToHash("isCrouching");
-        isCrouchWalkingHash = Animator.StringToHash("isCrouchWalking");
-        isGroundedHash = Animator.StringToHash("isGrounded");
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+            if (!animator)
+                animator = GetComponentInChildren<Animator>();
+        }
+
+        // Initialize parameter hashes (MUST match Animator parameter names)
+        speedHash       = Animator.StringToHash("Speed");
+        isGroundedHash  = Animator.StringToHash("IsGrounded");
+        isCrouchingHash = Animator.StringToHash("IsCrouching");
+        isJumpingHash   = Animator.StringToHash("IsJumping");
+        isLookingHash   = Animator.StringToHash("IsLooking");
     }
 
     private void Update()
     {
-        UpdateAnimations();
-    }
-
-    private void UpdateAnimations()
-    {
         if (playerMovement == null || animator == null) return;
 
-        // Get current state from player movement
-        bool isMoving = playerMovement.IsMoving;
+        UpdateLocomotion();
+        UpdateGroundedAndJump();
+        UpdateCrouch();
+    }
+
+    private void UpdateLocomotion()
+    {
+        // Use horizontal velocity magnitude as Speed
+        Vector3 v = playerMovement.Velocity;
+        float horizontalSpeed = new Vector3(v.x, 0f, v.z).magnitude;
+
+        animator.SetFloat(speedHash, horizontalSpeed);
+    }
+
+    private void UpdateGroundedAndJump()
+    {
         bool isGrounded = playerMovement.IsGrounded;
-        bool isSprinting = playerMovement.IsSprinting;
+        animator.SetBool(isGroundedHash, isGrounded);
+
+        // Detect jump: was grounded, now not grounded, and moving upward
+        if (wasGrounded && !isGrounded && playerMovement.Velocity.y > 0.1f)
+        {
+            animator.SetTrigger(isJumpingHash);
+        }
+
+        wasGrounded = isGrounded;
+    }
+
+    private void UpdateCrouch()
+    {
         bool isCrouching = playerMovement.IsCrouching;
-        bool isJumping = playerMovement.IsJumping;
-
-        // Update animations only when state changes (optimization)
-        if (isGrounded != wasGrounded)
-        {
-            animator.SetBool(isGroundedHash, isGrounded);
-            wasGrounded = isGrounded;
-        }
-
-        if (isMoving != wasMoving || isSprinting != wasSprinting || isCrouching != wasCrouching)
-        {
-            // Walking & Running
-            animator.SetBool(isWalkingHash, isMoving && !isSprinting && !isCrouching);
-            animator.SetBool(isRunningHash, isMoving && isSprinting && !isCrouching);
-            
-            // Crouching
-            animator.SetBool(isCrouchingHash, isCrouching);
-            animator.SetBool(isCrouchWalkingHash, isMoving && isCrouching);
-
-            wasMoving = isMoving;
-            wasSprinting = isSprinting;
-            wasCrouching = isCrouching;
-        }
-
-        // Jumping (usually triggered by events, but can be state-based)
-        if (isJumping)
-        {
-            animator.SetBool(isJumpingHash, true);
-        }
-        else if (isGrounded && animator.GetBool(isJumpingHash))
-        {
-            animator.SetBool(isJumpingHash, false);
-        }
+        animator.SetBool(isCrouchingHash, isCrouching);
     }
 
-    // Animation event methods (called from animation clips)
-    public void OnJumpAnimationEnd()
+    // Call this from an input action or other script to play look-around animation
+    public void TriggerLookAround()
     {
-        animator.SetBool(isJumpingHash, false);
-    }
-
-    public void OnLandAnimationComplete()
-    {
-        // Reset any landing states if needed
+        if (!animator) return;
+        animator.SetTrigger(isLookingHash);
     }
 }
