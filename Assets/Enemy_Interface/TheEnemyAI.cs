@@ -66,6 +66,10 @@ public class TheEnemyAI : MonoBehaviour
                 ChasePlayer();
                 break;
 
+            case State.Escape:
+                OnLightExposed();
+                break;
+
         }
     }
     void PickClosestPlayer()
@@ -134,26 +138,29 @@ public class TheEnemyAI : MonoBehaviour
     }
     public void OnLightExposed()
     {
-        Debug.Log("The enemy was exposed to light! Starting escape state.");
+        // Debug.Log("The enemy was exposed to light! Starting escape state.");
+        Debug.Log($"The Current State is: {currentState}");
+        currentState = State.Escape;
         StartCoroutine(EscapeRoutine());
     }
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Light"))
         {
+            currentState = State.Escape;
             Debug.Log("The enemy was exposed to light! Starting panic state.");
-            StartCoroutine(PanicRoutine());
-        }
-        else if (other.CompareTag("Trap"))
-        {
-            Debug.Log("The enemy entered a trap! Starting escape state.");
             StartCoroutine(EscapeRoutine());
         }
+        // else if (other.CompareTag("Trap"))
+        // {
+        //     Debug.Log("The enemy entered a trap! Starting escape state.");
+        //     StartCoroutine(EscapeRoutine());
+        // }
     }
 
     IEnumerator PanicRoutine()
     {
-        if (isRoutineActive) yield break;
+        //if (isRoutineActive) yield break;
         isRoutineActive = true;
         currentState = State.Panic;
 
@@ -174,19 +181,19 @@ public class TheEnemyAI : MonoBehaviour
 
     IEnumerator EscapeRoutine()
     {
-        if (isRoutineActive) yield break;
+        //if (isRoutineActive) yield break;
         isRoutineActive = true;
         currentState = State.Escape;
 
         if (audioSource != null && escapeSound != null) audioSource.PlayOneShot(escapeSound);
 
-        yield return StartCoroutine(FadeOut());
+        StartCoroutine(FadeOut());
 
         yield return new WaitForSeconds(escapeRespawnTime);
 
+        isRoutineActive = false;
         Respawn();
         currentState = State.Spawn;
-        isRoutineActive = false;
     }
 
     IEnumerator FadeOut()

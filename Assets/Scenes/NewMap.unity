@@ -3165,9 +3165,10 @@ GameObject:
   - component: {fileID: 419916576}
   - component: {fileID: 419916575}
   - component: {fileID: 419916577}
+  - component: {fileID: 419916578}
   m_Layer: 0
   m_Name: Point Light
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3298,10 +3299,24 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.7
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &419916578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419916573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a5dc55e5c767b4c9cad3ce244437d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightZone
+  lightSource: {fileID: 419916576}
+  enemyAI: {fileID: 4444868152552357355}
 --- !u!1 &426421305
 GameObject:
   m_ObjectHideFlags: 0
@@ -12588,9 +12603,9 @@ GameObject:
   - component: {fileID: 1770508258}
   - component: {fileID: 1770508257}
   - component: {fileID: 1770508256}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12627,7 +12642,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.35135534
   m_Height: 1.8472655
@@ -22075,7 +22090,9 @@ GameObject:
   - component: {fileID: 3955436612588152659}
   - component: {fileID: 4444868152552357355}
   - component: {fileID: 4444868152552357354}
-  m_Layer: 7
+  - component: {fileID: 4444868152552357356}
+  - component: {fileID: 4444868152552357357}
+  m_Layer: 0
   m_Name: Ghost
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -22130,6 +22147,56 @@ MonoBehaviour:
   AttackSound: {fileID: 0}
   EscapeSound: {fileID: 0}
   DisapearSound: {fileID: 0}
+--- !u!136 &4444868152552357356
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4444868152552357353}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.35135534
+  m_Height: 1.8472655
+  m_Direction: 1
+  m_Center: {x: 0.0015813112, y: 0.92363274, z: 0.0002644062}
+--- !u!54 &4444868152552357357
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4444868152552357353}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &4454529824653560988
 Transform:
   m_ObjectHideFlags: 0
