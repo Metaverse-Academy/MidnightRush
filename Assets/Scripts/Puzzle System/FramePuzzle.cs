@@ -27,7 +27,6 @@ public class FramePuzzle : MonoBehaviour
     {
         if (framePositions.Length != frames.Length)
         {
-            Debug.LogError($"FramePuzzle: Need exactly {frames.Length} positions for {frames.Length} frames!");
             return;
         }
 
@@ -82,28 +81,24 @@ public class FramePuzzle : MonoBehaviour
             frameToPositionMap[frames[i]] = framePositions[indices[i]];
         }
 
-        Debug.Log("Frames shuffled to set positions!");
     }
 
     public void OnFrameInteracted(InteractableFrame frame)
     {
         if (solved) return;
 
-        Debug.Log($"Frame interacted: {frame.name}");
 
         if (selectedFrame == null)
         {
             // First selection
             selectedFrame = frame;
             frame.SetSelected(true, selectedColor);
-            Debug.Log($"Selected frame: {frame.name}");
         }
         else
         {
             // Second selection - swap them
             if (selectedFrame != frame)
             {
-                Debug.Log($"Swapping {selectedFrame.name} with {frame.name}");
                 SwapFrames(selectedFrame, frame);
                 selectedFrame.SetSelected(false, Color.white);
                 selectedFrame = null;
@@ -115,7 +110,6 @@ public class FramePuzzle : MonoBehaviour
                 // Deselect if same frame interacted again
                 selectedFrame.SetSelected(false, Color.white);
                 selectedFrame = null;
-                Debug.Log("Deselected frame");
             }
         }
     }
@@ -175,7 +169,6 @@ public class FramePuzzle : MonoBehaviour
         if (allCorrect)
         {
             solved = true;
-            Debug.Log("✅ Frame puzzle solved!");
 
             // Visual feedback for all frames
             foreach (var frame in frames)
@@ -191,7 +184,6 @@ public class FramePuzzle : MonoBehaviour
         }
         else
         {
-            Debug.Log("Puzzle not solved yet");
         }
     }
 

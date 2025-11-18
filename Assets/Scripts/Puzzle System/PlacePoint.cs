@@ -88,7 +88,7 @@ public class PlacePoint : Interactable
         go.transform.rotation = snapPoint.rotation;
         
         // Optional: Parent to snap point but maintain scale
-        // go.transform.SetParent(snapPoint, true);
+        go.transform.SetParent(snapPoint, true);
     }
 
     private bool IsAllowed(GameObject go)

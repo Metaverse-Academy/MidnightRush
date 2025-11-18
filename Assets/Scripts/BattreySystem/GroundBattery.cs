@@ -21,8 +21,6 @@ public class GroundBattery : Interactable
             }
 
             player.IsHoldingBattery = true;
-
-            Debug.Log("Battery picked up!");
         }
     }
 }

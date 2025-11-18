@@ -6,10 +6,10 @@ public class PuzzleDebug : MonoBehaviour
     
     void Start()
     {
-        puzzle = FindObjectOfType<FramePuzzle>();
+        puzzle = FindFirstObjectByType<FramePuzzle>();
         if (puzzle != null)
         {
-            Debug.Log("FramePuzzle found - checking positions...");
+            // Debug.Log("FramePuzzle found - checking positions...");
             
             // Log all frame positions
             // Note: Replace 'Frames' with the actual property name from FramePuzzle class
@@ -27,7 +27,7 @@ public class PuzzleDebug : MonoBehaviour
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player != null)
             {
-                Debug.Log($"Player position: {player.transform.position}");
+                // Debug.Log($"Player position: {player.transform.position}");
             }
         }
     }
