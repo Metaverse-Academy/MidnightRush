@@ -5070,7 +5070,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1282360434}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: RestartGame
         m_Mode: 1
@@ -7440,7 +7440,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1282360434}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: GoToMainMenu
         m_Mode: 1
@@ -24918,7 +24918,7 @@ MonoBehaviour:
   LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
   LightOffSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
   audioSource: {fileID: 8827797771834870132}
-  BattryPlaceSound: {fileID: 0}
+  BattryPlaceSound: {fileID: 8300000, guid: 909a8ab6777c8344e8543586ba48d705, type: 3}
 --- !u!114 &5451326114872574117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25073,7 +25073,7 @@ MonoBehaviour:
   LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
   LightOffSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
   audioSource: {fileID: 8827797771834870132}
-  BattryPlaceSound: {fileID: 0}
+  BattryPlaceSound: {fileID: 8300000, guid: 909a8ab6777c8344e8543586ba48d705, type: 3}
 --- !u!114 &5520674336174390682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28378,7 +28378,7 @@ MonoBehaviour:
   LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
   LightOffSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
   audioSource: {fileID: 8827797771834870132}
-  BattryPlaceSound: {fileID: 0}
+  BattryPlaceSound: {fileID: 8300000, guid: 909a8ab6777c8344e8543586ba48d705, type: 3}
 --- !u!114 &7100075340544214979
 MonoBehaviour:
   m_ObjectHideFlags: 0
