@@ -16,8 +16,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Scene Management")]
     [Tooltip("Name of the main menu scene to load")]
-    [SerializeField] private string mainMenuSceneName = "MainMenu";
-    [Tooltip("Name of the next level scene")]
+    // [Tooltip("Name of the next level scene")]
     // [SerializeField] private string nextLevelSceneName = "Level2";
 
     [Header("Jump Scare")]
@@ -190,7 +189,9 @@ public class GameManager : MonoBehaviour
     public void GoToMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(mainMenuSceneName);
+        SceneManager.LoadSceneAsync(0);
+
+        Debug.Log("Main menu loaded."); // Assuming main menu is at index 0
     }
 
     // دالة للحصول على عدد الأهداف المتبقية
