@@ -9289,7 +9289,7 @@ MonoBehaviour:
   gameWonUI: {fileID: 1087989367}
   gameStatusText: {fileID: 0}
   jumpScareSequence: {fileID: 2039386176}
-  enableJumpScare: 0
+  enableJumpScare: 1
   totalObjectives: 3
 --- !u!4 &1282360435
 Transform:
