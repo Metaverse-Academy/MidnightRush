@@ -11,6 +11,8 @@ public class FramePuzzle : MonoBehaviour
 
     [Header("Door to Open")]
     [SerializeField] private DoorController doorToOpen;
+    [SerializeField] private DoorController doorToOpen2;
+
 
     [Header("Visual Settings")]
     [SerializeField] private float swapSpeed = 2f;
@@ -181,10 +183,16 @@ public class FramePuzzle : MonoBehaviour
             {
                 doorToOpen.OpenDoor();
             }
-        }
+
+             if (doorToOpen2 != null)
+            {
+                doorToOpen2.OpenDoor();
+            }
+
         else
         {
         }
+    }
     }
 
     // Visualize positions in editor

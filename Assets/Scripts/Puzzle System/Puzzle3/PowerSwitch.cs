@@ -7,16 +7,6 @@ public class PowerSwitch : MonoBehaviour , IInteractable
     public PowerPuzzleManager puzzleManager;   // assign in inspector
 
     // Implement IInteractable.Interact
-    public void Interact(GameObject interactor)
-    {
-        Toggle();
-    }
-
-    // Implement IInteractable.GetPrompt
-    public string GetPrompt()
-    {
-        return isOn ? "Turn Off" : "Turn On";
-    }
 
     [Header("Visuals")]
     public GameObject indicatorLight;          // small light / emissive mesh
@@ -31,6 +21,18 @@ public class PowerSwitch : MonoBehaviour , IInteractable
     {
         lightComponent = indicatorLight.GetComponent<Light>();
     }
+
+     public void Interact(GameObject interactor)
+    {
+        Toggle();
+    }
+
+    // Implement IInteractable.GetPrompt
+    public string GetPrompt()
+    {
+        return isOn ? "Turn Off" : "Turn On";
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -73,18 +75,6 @@ public class PowerSwitch : MonoBehaviour , IInteractable
     private void Toggle()
     {
 
-        // Visuals
-        // if (isOn)
-        // {
-        //     indicatorLight.SetActive(false);
-        //     isOn = false;
-        // }
-        // else
-        // {
-        //     indicatorLight.SetActive(true);
-        //     isOn = true;
-        // }
-        // Debug.Log("PowerSwitch toggled");
         isOn = !isOn;
         if (lightComponent)
             lightComponent.enabled = isOn;
@@ -96,8 +86,8 @@ public class PowerSwitch : MonoBehaviour , IInteractable
         if (animator)
         {
             // Either use a bool parameter or just play an animation
-            // animator.SetBool("On", isOn);
-            //animator.Play("Switch"); // change to your state name
+            animator.SetBool("On", isOn);
+            animator.Play("Switch"); // change to your state name
         }
 
         // Tell the puzzle manager something changed
