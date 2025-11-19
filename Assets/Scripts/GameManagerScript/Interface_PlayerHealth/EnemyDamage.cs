@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyDamage : MonoBehaviour
 {
     public int damageAmount = 25;
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         IDamageable damageable = collision.gameObject.GetComponent<IDamageable>();
         if (damageable != null)
