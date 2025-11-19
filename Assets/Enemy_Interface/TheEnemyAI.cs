@@ -42,6 +42,8 @@ public class TheEnemyAI : MonoBehaviour
     [SerializeField] private AudioClip EscapeSound;
     [SerializeField] private AudioClip DisapearSound; // AudioSource component to play the sound
 
+    private Animator anim;      
+
 
     void OnEnable()
     {
@@ -116,6 +118,10 @@ public class TheEnemyAI : MonoBehaviour
             audioSource.clip = chaseSound;
             audioSource.Play();
         }
+
+          anim.SetBool("IsRunning", true);
+       
+
     }
 
     void Respawn()
@@ -135,6 +141,9 @@ public class TheEnemyAI : MonoBehaviour
         if (enemyBody != null) enemyBody.SetActive(true);
 
         PickClosestPlayer();
+
+        anim.SetBool("IsScreaming", true);
+
     }
     public void OnLightExposed()
     {
@@ -156,6 +165,8 @@ public class TheEnemyAI : MonoBehaviour
         //     Debug.Log("The enemy entered a trap! Starting escape state.");
         //     StartCoroutine(EscapeRoutine());
         // }
+        anim.SetBool("IsScreaming", true);
+
     }
 
     IEnumerator PanicRoutine()
@@ -194,6 +205,7 @@ public class TheEnemyAI : MonoBehaviour
         isRoutineActive = false;
         Respawn();
         currentState = State.Spawn;
+        anim.SetBool("IsScreaming", true);
     }
 
     IEnumerator FadeOut()
@@ -226,6 +238,9 @@ public class TheEnemyAI : MonoBehaviour
 
         mat.color = new Color(startColor.r, startColor.g, startColor.b, 1f);
         enemyBody.SetActive(false);
+
+        anim.SetBool("IsScreaming", true);
+
     }
 
 }

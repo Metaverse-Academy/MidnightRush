@@ -19366,12 +19366,12 @@ Transform:
   m_GameObject: {fileID: 5482989086330916615}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7079283, y: 0.017672338, z: 0.017620288, w: 0.70584327}
-  m_LocalPosition: {x: 0.246, y: 0.062, z: -7.757}
-  m_LocalScale: {x: 64.56, y: 64.56, z: 64.56}
+  m_LocalPosition: {x: 0.02807018, y: -0.54438597, z: 0.53157973}
+  m_LocalScale: {x: 113.26314, y: 113.26315, z: 113.26317}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1228415718760438517}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 3955436612588152659}
   m_LocalEulerAnglesHint: {x: -89.831, y: 180, z: -177.14}
 --- !u!23 &2198111168784372100
 MeshRenderer:
@@ -22500,6 +22500,7 @@ Transform:
   m_LocalScale: {x: 0.57, y: 0.57, z: 0.57}
   m_ConstrainProportionsScale: 1
   m_Children:
+  - {fileID: 2196408148067288438}
   - {fileID: 1770508255}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -23283,7 +23284,7 @@ MonoBehaviour:
     m_Bits: 128
   repelDistance: 100
   repelRadius: 100
-  enableDebug: 1
+  enableDebug: 0
   showRayInGame: 1
 --- !u!114 &4317827918284904211
 MonoBehaviour:
@@ -23796,15 +23797,15 @@ MonoBehaviour:
   panicHideTime: 3
   escapeRespawnTime: 10
   enemyBody: {fileID: 1770508254}
-  chaseSound: {fileID: 0}
-  panicSound: {fileID: 0}
+  chaseSound: {fileID: 8300000, guid: ec477b261147ff14489902e495acd05d, type: 3}
+  panicSound: {fileID: 8300000, guid: bfced87cd18b4724b9f1c059ed2b22ec, type: 3}
   escapeSound: {fileID: 0}
   blindParticlePrefab: {fileID: 2787556212050310887, guid: 57970c6bb711ec24b8d98424b1806f3b, type: 3}
   audioSource: {fileID: 0}
   ChaseSound: {fileID: 0}
   AttackSound: {fileID: 0}
-  EscapeSound: {fileID: 0}
-  DisapearSound: {fileID: 0}
+  EscapeSound: {fileID: 8300000, guid: bfced87cd18b4724b9f1c059ed2b22ec, type: 3}
+  DisapearSound: {fileID: 8300000, guid: d4bb65c207175064ebc90a5fef674732, type: 3}
 --- !u!136 &4444868152552357356
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -26204,8 +26205,8 @@ MonoBehaviour:
   batteryLifetime: 25
   placeBatteryPrompt: '[]'
   noBatteryPrompt: '[]'
-  LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
-  LightOffSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
+  LightOnSound: {fileID: 8300000, guid: 00a022513043315409eb683bca585438, type: 3}
+  LightOffSound: {fileID: 8300000, guid: 00a022513043315409eb683bca585438, type: 3}
   audioSource: {fileID: 8827797771834870132}
   BattryPlaceSound: {fileID: 0}
 --- !u!114 &5451326114872574117
@@ -26230,7 +26231,7 @@ MonoBehaviour:
   barrierHeight: 3
   repelForce: 10
   minSafeDistance: 3
-  showDebug: 1
+  showDebug: 0
   showForceField: 1
 --- !u!1 &5482989086330916615
 GameObject:
@@ -26243,10 +26244,7 @@ GameObject:
   - component: {fileID: 2196408148067288438}
   - component: {fileID: 6770347533817872530}
   - component: {fileID: 6770347533817872535}
-  - component: {fileID: 6770347533817872531}
   - component: {fileID: 6770347533817872534}
-  - component: {fileID: 6770347533817872533}
-  - component: {fileID: 6770347533817872532}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -26366,8 +26364,8 @@ MonoBehaviour:
   batteryLifetime: 25
   placeBatteryPrompt: '[]'
   noBatteryPrompt: '[]'
-  LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
-  LightOffSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
+  LightOnSound: {fileID: 8300000, guid: 00a022513043315409eb683bca585438, type: 3}
+  LightOffSound: {fileID: 8300000, guid: 00a022513043315409eb683bca585438, type: 3}
   audioSource: {fileID: 8827797771834870132}
   BattryPlaceSound: {fileID: 0}
 --- !u!114 &5520674336174390682
@@ -26392,7 +26390,7 @@ MonoBehaviour:
   barrierHeight: 3
   repelForce: 10
   minSafeDistance: 3
-  showDebug: 1
+  showDebug: 0
   showForceField: 1
 --- !u!1 &5544427619375380148
 GameObject:
@@ -28830,77 +28828,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0002449751, y: -0.036231726, z: -0.031731077}
     m_Extent: {x: 0.64590037, y: 0.928404, z: 0.2157062}
   m_DirtyAABB: 0
---- !u!136 &6770347533817872531
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5482989086330916615}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.00482042
-  m_Height: 0.01822541
-  m_Direction: 2
-  m_Center: {x: -0.00005646641, y: 0.00051358965, z: 0.009354903}
---- !u!114 &6770347533817872532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5482989086330916615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ba85f4f94295004bb6b829d9b183d24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyDamage
-  damageAmount: 100
---- !u!114 &6770347533817872533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5482989086330916615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7353f9828921d474587bb0a4399ae1bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TheEnemyAI
-  currentState: 0
-  players:
-  - {fileID: 1256056095}
-  - {fileID: 289050651}
-  speed: 0.1
-  maxChaseDistance: 20
-  spawnPoints:
-  - {fileID: 743644590}
-  - {fileID: 731429147}
-  - {fileID: 1962702101}
-  - {fileID: 499854849}
-  panicHideTime: 3
-  escapeRespawnTime: 10
-  enemyBody: {fileID: 1770508254}
-  chaseSound: {fileID: 0}
-  panicSound: {fileID: 0}
-  escapeSound: {fileID: 0}
-  blindParticlePrefab: {fileID: 2787556212050310887, guid: 57970c6bb711ec24b8d98424b1806f3b, type: 3}
-  audioSource: {fileID: 0}
-  ChaseSound: {fileID: 0}
-  AttackSound: {fileID: 0}
-  EscapeSound: {fileID: 0}
-  DisapearSound: {fileID: 0}
 --- !u!54 &6770347533817872534
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -29009,8 +28936,8 @@ MonoBehaviour:
   batteryLifetime: 25
   placeBatteryPrompt: '[]'
   noBatteryPrompt: '[]'
-  LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
-  LightOffSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
+  LightOnSound: {fileID: 8300000, guid: 00a022513043315409eb683bca585438, type: 3}
+  LightOffSound: {fileID: 8300000, guid: 00a022513043315409eb683bca585438, type: 3}
   audioSource: {fileID: 8827797771834870132}
   BattryPlaceSound: {fileID: 0}
 --- !u!114 &6777355440937954890
@@ -29035,7 +28962,7 @@ MonoBehaviour:
   barrierHeight: 3
   repelForce: 10
   minSafeDistance: 3
-  showDebug: 1
+  showDebug: 0
   showForceField: 1
 --- !u!1 &6797005522719731687
 GameObject:
@@ -29795,8 +29722,8 @@ MonoBehaviour:
   batteryLifetime: 25
   placeBatteryPrompt: '[]'
   noBatteryPrompt: '[]'
-  LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
-  LightOffSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
+  LightOnSound: {fileID: 8300000, guid: 00a022513043315409eb683bca585438, type: 3}
+  LightOffSound: {fileID: 8300000, guid: 00a022513043315409eb683bca585438, type: 3}
   audioSource: {fileID: 8827797771834870132}
   BattryPlaceSound: {fileID: 0}
 --- !u!114 &7100075340544214979
@@ -29821,7 +29748,7 @@ MonoBehaviour:
   barrierHeight: 3
   repelForce: 10
   minSafeDistance: 3
-  showDebug: 1
+  showDebug: 0
   showForceField: 1
 --- !u!1 &7111451224506234770
 GameObject:
@@ -34162,7 +34089,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8763670897915535563}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea990f1414fe94044a9607f3c0957180, type: 3}
   m_Name: 
@@ -34186,7 +34113,7 @@ MonoBehaviour:
     m_Bits: 128
   repelDistance: 100
   repelRadius: 100
-  enableDebug: 1
+  enableDebug: 0
   showRayInGame: 1
 --- !u!114 &8763670897915535569
 MonoBehaviour:
@@ -34512,6 +34439,8 @@ MonoBehaviour:
   - {fileID: 540036640}
   - {fileID: 1172963740}
   solvedSound: {fileID: 0}
+  gameManager: {fileID: 1282360434}
+  puzzleName: Power Puzzle
 --- !u!4 &8772388679088051018
 Transform:
   m_ObjectHideFlags: 0
@@ -34857,8 +34786,8 @@ MonoBehaviour:
   batteryLifetime: 25
   placeBatteryPrompt: E
   noBatteryPrompt: E
-  LightOnSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
-  LightOffSound: {fileID: 8300000, guid: c0b4b138cff8a494ca13f70c0790ad53, type: 3}
+  LightOnSound: {fileID: 8300000, guid: 00a022513043315409eb683bca585438, type: 3}
+  LightOffSound: {fileID: 8300000, guid: 00a022513043315409eb683bca585438, type: 3}
   audioSource: {fileID: 8827797771834870132}
   BattryPlaceSound: {fileID: 0}
 --- !u!114 &8827797771834870131
@@ -34883,7 +34812,7 @@ MonoBehaviour:
   barrierHeight: 3
   repelForce: 10
   minSafeDistance: 3
-  showDebug: 1
+  showDebug: 0
   showForceField: 1
 --- !u!82 &8827797771834870132
 AudioSource:
@@ -36010,7 +35939,6 @@ SceneRoots:
   - {fileID: 2155034462966447151}
   - {fileID: 1626843875907379690}
   - {fileID: 1122483204}
-  - {fileID: 2196408148067288438}
   - {fileID: 3955436612588152659}
   - {fileID: 5916145765228625454}
   - {fileID: 711304490}

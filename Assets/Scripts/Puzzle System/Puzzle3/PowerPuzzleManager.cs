@@ -14,6 +14,10 @@ public class PowerPuzzleManager : MonoBehaviour
     [Header("Optional feedback")]
     public AudioSource solvedSound;
 
+    [Header("Game / Objectives")]
+    [SerializeField] private GameManager gameManager;   // drag your GameManager here
+    [SerializeField] private string puzzleName = "Power Puzzle"; 
+
     private bool solved;
 
     private void Awake()
@@ -72,6 +76,15 @@ public class PowerPuzzleManager : MonoBehaviour
         if (solvedSound)
         {
             solvedSound.Play();
+        }
+
+        if (gameManager != null)
+        {
+            gameManager.OnPuzzleSolved(puzzleName);
+        }
+        else
+        {
+            Debug.LogWarning("PowerPuzzleManager: No GameManager found to notify about puzzle completion.");
         }
 
         // Optional: disable switches after solving

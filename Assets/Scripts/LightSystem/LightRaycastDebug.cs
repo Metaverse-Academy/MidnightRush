@@ -14,12 +14,8 @@ public class LightRaycastDebug : MonoBehaviour
     {
         lightRaycast = GetComponent<LightRaycast>();
         
-        Debug.Log("=== LIGHT RAYCAST DEBUG STARTED ===");
-        Debug.Log($"LightRaycast component: {lightRaycast != null}");
-        
         if (lightRaycast == null)
         {
-            Debug.LogError("No LightRaycast component found on this GameObject!");
             return;
         }
 
@@ -30,10 +26,8 @@ public class LightRaycastDebug : MonoBehaviour
         if (enemyLayerField != null)
         {
             LayerMask enemyLayer = (LayerMask)enemyLayerField.GetValue(lightRaycast);
-            Debug.Log($"Enemy Layer: {GetLayerNamesFromMask(enemyLayer.value)}");
         }
 
-        Debug.Log($"LightRaycast isLightActive: {lightRaycast.isLightActive}");
     }
 
     void Update()
@@ -52,11 +46,9 @@ public class LightRaycastDebug : MonoBehaviour
 
     private void RunLightRaycastDebug()
     {
-        Debug.Log("=== LIGHT RAYCAST COMPREHENSIVE DEBUG ===");
         
         if (lightRaycast == null)
         {
-            Debug.LogError("LightRaycast is null!");
             return;
         }
 
@@ -70,7 +62,6 @@ public class LightRaycastDebug : MonoBehaviour
 
         if (enemiesInBarrierField == null || enemyLayerField == null || barrierDistanceField == null)
         {
-            Debug.LogError("Could not access LightRaycast private fields!");
             return;
         }
 
@@ -78,10 +69,7 @@ public class LightRaycastDebug : MonoBehaviour
         LayerMask enemyLayer = (LayerMask)enemyLayerField.GetValue(lightRaycast);
         float barrierDistance = (float)barrierDistanceField.GetValue(lightRaycast);
 
-        Debug.Log($"Light Active: {lightRaycast.isLightActive}");
-        Debug.Log($"Enemies in barrier: {enemiesInBarrier.Count}");
-        Debug.Log($"Barrier distance: {barrierDistance}");
-        Debug.Log($"Enemy Layer: {GetLayerNamesFromMask(enemyLayer.value)}");
+      
 
         // Log each enemy in barrier
         foreach (TheEnemyAI enemy in enemiesInBarrier)
@@ -89,14 +77,12 @@ public class LightRaycastDebug : MonoBehaviour
             if (enemy != null)
             {
                 float distance = Vector3.Distance(transform.position, enemy.transform.position);
-                Debug.Log($"  - {enemy.name} (Distance: {distance:F2}, State: {enemy.currentState})");
             }
         }
 
         // Test barrier volume manually
         TestBarrierVolume();
         
-        Debug.Log("=== END LIGHT RAYCAST DEBUG ===");
     }
 
     private void MonitorEnemyTracking()
@@ -113,7 +99,6 @@ public class LightRaycastDebug : MonoBehaviour
         {
             if (enemy != null && !lastFrameEnemies.Contains(enemy))
             {
-                Debug.Log($"NEW ENTER: {enemy.name} entered light barrier!");
             }
         }
 
@@ -122,7 +107,6 @@ public class LightRaycastDebug : MonoBehaviour
         {
             if (enemy != null && !currentEnemies.Contains(enemy))
             {
-                Debug.Log($"EXIT: {enemy.name} left light barrier!");
             }
         }
 
@@ -156,16 +140,10 @@ public class LightRaycastDebug : MonoBehaviour
 
         Collider[] enemiesInVolume = Physics.OverlapBox(barrierCenter, barrierSize * 0.5f, lightSource.rotation, enemyLayer);
 
-        Debug.Log($"Barrier Volume Test:");
-        Debug.Log($"- Center: {barrierCenter}");
-        Debug.Log($"- Size: {barrierSize}");
-        Debug.Log($"- Rotation: {lightSource.rotation.eulerAngles}");
-        Debug.Log($"- Enemies in volume: {enemiesInVolume.Length}");
-
+   
         foreach (Collider collider in enemiesInVolume)
         {
             TheEnemyAI enemy = collider.GetComponent<TheEnemyAI>();
-            Debug.Log($"  - {collider.name} (Has TheEnemyAI: {enemy != null})");
         }
     }
 
