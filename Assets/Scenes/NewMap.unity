@@ -7714,7 +7714,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1122483204
 Transform:
   m_ObjectHideFlags: 0
@@ -9286,10 +9286,11 @@ MonoBehaviour:
   player1Health: {fileID: 289050654}
   player2Health: {fileID: 1256056098}
   gameOverUI: {fileID: 841563835}
-  winnerText: {fileID: 1904383363}
-  mainMenuSceneName: MainMenu
+  gameWonUI: {fileID: 1087989367}
+  gameStatusText: {fileID: 0}
   jumpScareSequence: {fileID: 2039386176}
-  enableJumpScare: 1
+  enableJumpScare: 0
+  totalObjectives: 3
 --- !u!4 &1282360435
 Transform:
   m_ObjectHideFlags: 0
@@ -17481,8 +17482,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 506666660692591121}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000017414575, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 1.123, y: 0.292, z: -6.499}
+  m_LocalRotation: {x: 0.10130128, y: -0.67186546, z: 0.09352074, w: 0.7277285}
+  m_LocalPosition: {x: 0.28198397, y: -0.7173971, z: -10.32532}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -23291,7 +23292,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 506666660692591121}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea990f1414fe94044a9607f3c0957180, type: 3}
   m_Name: 
@@ -24566,7 +24567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LightOnOff
   puzzleManager: {fileID: 8771163582109492100}
   indicatorLight: {fileID: 143457871}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 8827797771834870132}
   animator: {fileID: 4748167396284267408}
   isOn: 0
 --- !u!54 &4748167396284267410
@@ -27802,7 +27803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LightOnOff
   puzzleManager: {fileID: 8771163582109492100}
   indicatorLight: {fileID: 819906937}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 8827797771834870132}
   animator: {fileID: 6236478051239699928}
   isOn: 0
 --- !u!54 &6236478051239699930
@@ -29921,7 +29922,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LightOnOff
   puzzleManager: {fileID: 8771163582109492100}
   indicatorLight: {fileID: 2041766878}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 8827797771834870132}
   animator: {fileID: 7133289800413944001}
   isOn: 0
 --- !u!54 &7133289800413944003
@@ -30769,7 +30770,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LightOnOff
   puzzleManager: {fileID: 8771163582109492100}
   indicatorLight: {fileID: 204701202}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 8827797771834870132}
   animator: {fileID: 7468636474848029730}
   isOn: 0
 --- !u!54 &7468636474848029732
@@ -31958,8 +31959,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightOnOff
   puzzleManager: {fileID: 8771163582109492100}
-  indicatorLight: {fileID: 1228112062}
-  audioSource: {fileID: 0}
+  indicatorLight: {fileID: 0}
+  audioSource: {fileID: 8827797771834870132}
   animator: {fileID: 8013936010738257260}
   isOn: 0
 --- !u!54 &8013936010738257262
@@ -32280,7 +32281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LightOnOff
   puzzleManager: {fileID: 8771163582109492100}
   indicatorLight: {fileID: 1706354056}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 8827797771834870132}
   animator: {fileID: 8110499948647705825}
   isOn: 0
 --- !u!54 &8110499948647705827
@@ -32715,8 +32716,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightOnOff
   puzzleManager: {fileID: 8771163582109492100}
-  indicatorLight: {fileID: 1690568916}
-  audioSource: {fileID: 0}
+  indicatorLight: {fileID: 0}
+  audioSource: {fileID: 8827797771834870132}
   animator: {fileID: 8276653251360915539}
   isOn: 0
 --- !u!54 &8276653251360915541
@@ -33146,8 +33147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightOnOff
   puzzleManager: {fileID: 8771163582109492100}
-  indicatorLight: {fileID: 1498429786}
-  audioSource: {fileID: 0}
+  indicatorLight: {fileID: 0}
+  audioSource: {fileID: 8827797771834870132}
   animator: {fileID: 8462269326096207112}
   isOn: 0
 --- !u!54 &8462269326096207114
@@ -34161,7 +34162,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8763670897915535563}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea990f1414fe94044a9607f3c0957180, type: 3}
   m_Name: 
@@ -34511,7 +34512,6 @@ MonoBehaviour:
   - {fileID: 540036640}
   - {fileID: 1172963740}
   solvedSound: {fileID: 0}
-  doorAnimator: {fileID: 0}
 --- !u!4 &8772388679088051018
 Transform:
   m_ObjectHideFlags: 0
@@ -35779,8 +35779,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightOnOff
   puzzleManager: {fileID: 8771163582109492100}
-  indicatorLight: {fileID: 1724800347}
-  audioSource: {fileID: 0}
+  indicatorLight: {fileID: 0}
+  audioSource: {fileID: 8827797771834870132}
   animator: {fileID: 9170208708051762760}
   isOn: 0
 --- !u!54 &9170208708051762762

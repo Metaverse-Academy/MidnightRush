@@ -13,7 +13,6 @@ public class PowerPuzzleManager : MonoBehaviour
 
     [Header("Optional feedback")]
     public AudioSource solvedSound;
-    public Animator doorAnimator;
 
     private bool solved;
 
@@ -67,12 +66,6 @@ public class PowerPuzzleManager : MonoBehaviour
         {
             if (lightObj)
                 lightObj.SetActive(true);
-        }
-
-        // Optional: open door
-        if (doorAnimator)
-        {
-            doorAnimator.SetTrigger("Open");
         }
 
         // Optional: sound
