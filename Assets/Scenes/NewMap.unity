@@ -22121,15 +22121,15 @@ MonoBehaviour:
   panicHideTime: 3
   escapeRespawnTime: 10
   enemyBody: {fileID: 1770508254}
-  chaseSound: {fileID: 0}
-  panicSound: {fileID: 0}
+  chaseSound: {fileID: 8300000, guid: ec477b261147ff14489902e495acd05d, type: 3}
+  panicSound: {fileID: 8300000, guid: 2fe4f8dab87e03e4c9f905b3df70e0b8, type: 3}
   escapeSound: {fileID: 0}
   blindParticlePrefab: {fileID: 2787556212050310887, guid: 57970c6bb711ec24b8d98424b1806f3b, type: 3}
   audioSource: {fileID: 0}
   ChaseSound: {fileID: 0}
-  AttackSound: {fileID: 0}
-  EscapeSound: {fileID: 0}
-  DisapearSound: {fileID: 0}
+  AttackSound: {fileID: 8300000, guid: b814f63cea8144d43bb31a2a5465b1cc, type: 3}
+  EscapeSound: {fileID: 8300000, guid: d4bb65c207175064ebc90a5fef674732, type: 3}
+  DisapearSound: {fileID: 8300000, guid: d4bb65c207175064ebc90a5fef674732, type: 3}
 --- !u!4 &4454529824653560988
 Transform:
   m_ObjectHideFlags: 0
