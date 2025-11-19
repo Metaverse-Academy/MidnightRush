@@ -39,7 +39,7 @@ public class PlayerMovement2 : MonoBehaviour
     private Vector2 moveInput;
     private Vector2 lookInput;
     
-    // Public properties for animation controller to access
+    private Animator anim;      
     public bool IsGrounded { get; private set; }
     public bool IsMoving => moveInput.magnitude > 0.1f;
     public bool IsSprinting { get; private set; }
@@ -55,6 +55,7 @@ public class PlayerMovement2 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         capsule = GetComponent<CapsuleCollider>();
+        anim = GetComponent<Animator>();
 
         rb.interpolation = RigidbodyInterpolation.Interpolate;
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
@@ -72,6 +73,20 @@ public class PlayerMovement2 : MonoBehaviour
     {
         CheckGrounded();
         HandleLook();
+
+        anim.SetBool("IsCrouching", IsCrouching);
+        anim.SetBool("IsJumping", !IsGrounded);
+        anim.SetBool("IsRunning", IsSprinting);
+
+        if (moveInput.magnitude > 0.1f)
+        {
+            anim.SetBool("IsLooking", false);
+        }
+        else
+        {
+            anim.SetBool("IsLooking", true);
+        }
+
     }
 
     private void FixedUpdate()
@@ -95,6 +110,7 @@ public class PlayerMovement2 : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0f, yaw, 0f);
         cameraTransform.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+
     }
 
     private void HandleMovement()
@@ -111,6 +127,15 @@ public class PlayerMovement2 : MonoBehaviour
         Vector3 v = rb.linearVelocity;
         Vector3 vH = Vector3.Lerp(new Vector3(v.x, 0f, v.z), targetVelH, acceleration * Time.fixedDeltaTime);
         rb.linearVelocity = new Vector3(vH.x, v.y, vH.z);
+
+        if (moveInput.magnitude > 0.1f)
+        {
+            anim.SetBool("IsWalking", true);
+        }
+        else
+        {
+            anim.SetBool("IsWalking", false);
+        }
 
     }
 
@@ -143,6 +168,8 @@ public class PlayerMovement2 : MonoBehaviour
             rb.linearVelocity = cur;
 
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+
+            // anim.SetBool("isJumping", IsGrounded);
         }
     }
 
@@ -150,6 +177,7 @@ public class PlayerMovement2 : MonoBehaviour
     {
         if (ctx.performed) IsSprinting = true;
         else if (ctx.canceled) IsSprinting = false;
+        // anim.SetBool("IsRunning", IsSprinting);
     }
 
     public void OnCrouch(InputAction.CallbackContext ctx)
@@ -168,12 +196,21 @@ public class PlayerMovement2 : MonoBehaviour
             {
                 IsCrouching = true;
                 ApplyCrouchState();
+
             }
             else if (ctx.canceled)
             {
                 IsCrouching = false;
                 ApplyCrouchState();
+
+                
             }
         }
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Vector3 rayOrigin = transform.position + Vector3.up * rayStartOffset;
+        Gizmos.DrawLine(rayOrigin, rayOrigin + Vector3.down * groundDistanceCheck);
     }
 }
