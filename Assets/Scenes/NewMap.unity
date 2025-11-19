@@ -1448,15 +1448,15 @@ RectTransform:
   m_GameObject: {fileID: 294916033}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8892, y: 0.8892, z: 0.8892}
+  m_LocalScale: {x: 2.4032433, y: 2.4032433, z: 2.4032433}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1643654644}
-  m_Father: {fileID: 364227331}
+  m_Father: {fileID: 1087989368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -111.8}
+  m_AnchoredPosition: {x: 0, y: -302.16214}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &294916035
@@ -1503,7 +1503,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1282360434}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: RestartGame
         m_Mode: 1
@@ -2035,7 +2035,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &364227328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2113,8 +2113,6 @@ RectTransform:
   m_Children:
   - {fileID: 841563836}
   - {fileID: 1087989368}
-  - {fileID: 1362472418}
-  - {fileID: 294916034}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2693,6 +2691,7 @@ GameObject:
   - component: {fileID: 419694341}
   - component: {fileID: 419694340}
   - component: {fileID: 419694339}
+  - component: {fileID: 419694342}
   m_Layer: 9
   m_Name: 1
   m_TagString: MainCamera
@@ -2844,6 +2843,14 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!81 &419694342
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419694337}
+  m_Enabled: 0
 --- !u!1 &419916573
 GameObject:
   m_ObjectHideFlags: 0
@@ -5647,7 +5654,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &841563836
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6982,7 +6989,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1087989368
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6996,6 +7003,8 @@ RectTransform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1904383362}
+  - {fileID: 1362472418}
+  - {fileID: 294916034}
   m_Father: {fileID: 364227331}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -8737,13 +8746,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6544622d53e73a4a8cf853ac674480c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  player1Health: {fileID: 289050654}
-  player2Health: {fileID: 1256056098}
+  player1Health: {fileID: 8763670897915535567}
+  player2Health: {fileID: 4317827918284904211}
   gameOverUI: {fileID: 841563835}
-  winnerText: {fileID: 1904383363}
-  mainMenuSceneName: MainMenu
+  gameWonUI: {fileID: 1087989367}
+  gameStatusText: {fileID: 0}
+  mainMenuSceneName: Main Menu
   jumpScareSequence: {fileID: 2039386176}
   enableJumpScare: 1
+  totalObjectives: 3
 --- !u!4 &1282360435
 Transform:
   m_ObjectHideFlags: 0
@@ -8997,15 +9008,15 @@ RectTransform:
   m_GameObject: {fileID: 1362472417}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8892, y: 0.8892, z: 0.8892}
+  m_LocalScale: {x: 2.4032433, y: 2.4032433, z: 2.4032433}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1777270898}
-  m_Father: {fileID: 364227331}
+  m_Father: {fileID: 1087989368}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -6.8}
+  m_AnchoredPosition: {x: 0, y: -18.378368}
   m_SizeDelta: {x: 300, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1362472419
@@ -9052,7 +9063,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1282360434}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: GoToMainMenu
         m_Mode: 1

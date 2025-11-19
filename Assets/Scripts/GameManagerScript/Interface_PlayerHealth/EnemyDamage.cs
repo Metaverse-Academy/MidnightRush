@@ -9,7 +9,7 @@ public class EnemyDamage : MonoBehaviour
         if (damageable != null)
         {
             damageable.TakeDamage(damageAmount);
-            Debug.Log("Player dealt " + damageAmount + " damage to " + collision.gameObject.name);
+            // Debug.Log("Player dealt " + damageAmount + " damage to " + collision.gameObject.name);
         }
     }
 }
