@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,117 +11,174 @@ public class GameManager : MonoBehaviour
 
     [Header("UI Elements")]
     [SerializeField] private GameObject gameOverUI;
-    [SerializeField] private TMP_Text winnerText;
+    [SerializeField] private GameObject gameWonUI;
+    [SerializeField] private TMP_Text gameStatusText;
 
     [Header("Scene Management")]
     [Tooltip("Name of the main menu scene to load")]
-    [SerializeField] private string mainMenuSceneName = "MainMenu";
+    // [Tooltip("Name of the next level scene")]
+    // [SerializeField] private string nextLevelSceneName = "Level2";
 
     [Header("Jump Scare")]
     [SerializeField] private JumpScareSequence jumpScareSequence;
     [SerializeField] private bool enableJumpScare = true;
 
+    [Header("Objectives")]
+    [SerializeField] private int totalObjectives = 3;
+    private int completedObjectives = 0;
+
     private bool isGameEnded = false;
-    private bool jumpScareCompleted = false;
+    private bool hasGameWon = false;
 
     void Start()
     {
         if (gameOverUI != null)
-        {
             gameOverUI.SetActive(false);
-        }
+
+        if (gameWonUI != null)
+            gameWonUI.SetActive(false);
+
         Time.timeScale = 1f;
 
-        // Find jump scare if not assigned
         if (jumpScareSequence == null)
-        {
             jumpScareSequence = FindFirstObjectByType<JumpScareSequence>();
-        }
+
+        Debug.Log("Co-op Game Started! Objectives: " + totalObjectives);
     }
 
-    public void CheckForWinner()
+    void Update()
     {
-        if (isGameEnded)
+        // تحقق من صحة اللاعبين باستمرار
+        if (!isGameEnded)
         {
-            return;
-        }
-
-        if (player1Health.IsDead())
-        {
-            StartGameEndSequence("Player 2");
-        }
-        else if (player2Health.IsDead())
-        {
-            StartGameEndSequence("Player 1");
+            CheckGameStatus();
         }
     }
 
-    private void StartGameEndSequence(string winnerName)
+    public void CheckGameStatus()
+    {
+        if ((player1Health != null && player1Health.IsDead()) ||
+            (player2Health != null && player2Health.IsDead()))
+        {
+            string deadPlayer = (player1Health != null && player1Health.IsDead()) ? "Player 1" : "Player 2";
+            StartGameOverSequence(deadPlayer);
+        }
+
+        // إذا انجزا جميع الأهداف → Game Won
+        if (completedObjectives >= totalObjectives && !hasGameWon)
+        {
+            StartGameWonSequence();
+        }
+    }
+    public void CompleteObjective()
+    {
+        completedObjectives++;
+        Debug.Log("Objective completed! " + completedObjectives + " / " + totalObjectives);
+
+        if (gameStatusText != null)
+        {
+            gameStatusText.text = "Objectives: " + completedObjectives + " / " + totalObjectives;
+        }
+
+        // تأثير بصري/صوتي عند إكمال هدف
+        if (completedObjectives >= totalObjectives)
+        {
+            Debug.Log("🎉 جميع الأهداف انجزت!");
+        }
+    }
+
+    // عند وفاة أحد اللاعبين
+    private void StartGameOverSequence(string deadPlayerName)
     {
         isGameEnded = true;
-        Debug.Log(winnerName + " Wins!");
+        Debug.Log("❌ " + deadPlayerName + " The player died. Game Over.");
 
-        // Play jump scare before showing game over UI
         if (enableJumpScare && jumpScareSequence != null)
         {
             jumpScareSequence.Play();
-            
-            // Wait for jump scare to complete before showing game over UI
-            // You can use a coroutine or callback method
-            StartCoroutine(ShowGameOverAfterJumpScare(winnerName));
+            StartCoroutine(ShowGameOverAfterJumpScare(deadPlayerName));
         }
         else
         {
-            // If no jump scare, show game over immediately
-            ShowGameOverUI(winnerName);
+            ShowGameOverUI(deadPlayerName);
         }
     }
 
-    private System.Collections.IEnumerator ShowGameOverAfterJumpScare(string winnerName)
+    // عند انجاز جميع الأهداف
+    private void StartGameWonSequence()
     {
-        // Wait a moment for jump scare to start
-        yield return new WaitForSeconds(0.5f);
-        
-        // Wait until jump scare is complete (you might need to adjust this timing)
-        // If your jump scare has a known duration, wait that long
-        float jumpScareDuration = 3f; // Adjust based on your jump scare length
-        yield return new WaitForSeconds(jumpScareDuration);
-        
-        ShowGameOverUI(winnerName);
+        hasGameWon = true;
+        isGameEnded = true;
+        Debug.Log("✅ You won! All objectives completed!");
+
+        if (enableJumpScare && jumpScareSequence != null)
+        {
+            jumpScareSequence.Play();
+            StartCoroutine(ShowGameWonAfterJumpScare());
+        }
+        else
+        {
+            ShowGameWonUI();
+        }
     }
 
-    private void ShowGameOverUI(string winnerName)
+    private IEnumerator ShowGameOverAfterJumpScare(string deadPlayerName)
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        float jumpScareDuration = 3f;
+        yield return new WaitForSeconds(jumpScareDuration);
+
+        ShowGameOverUI(deadPlayerName);
+    }
+
+    private IEnumerator ShowGameWonAfterJumpScare()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        float jumpScareDuration = 3f;
+        yield return new WaitForSeconds(jumpScareDuration);
+
+        ShowGameWonUI();
+    }
+
+    private void ShowGameOverUI(string deadPlayerName)
     {
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(true);
         }
 
-        if (winnerText != null)
+        if (gameStatusText != null)
         {
-            winnerText.text = winnerName + " Wins!";
+            gameStatusText.text = deadPlayerName + " Died!\nGame Over";
         }
-
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         Time.timeScale = 0f;
-        jumpScareCompleted = true;
     }
 
-    // Alternative method using callback from JumpScareSequence
-    public void OnJumpScareCompleted()
+    private void ShowGameWonUI()
     {
-        if (isGameEnded && !jumpScareCompleted)
+        if (gameWonUI != null)
         {
-            // This would be called from the JumpScareSequence when it finishes
-            // You'll need to modify JumpScareSequence to call this method
-            ShowGameOverUI(GetWinnerName());
+            gameWonUI.SetActive(true);
         }
+
+        if (gameStatusText != null)
+        {
+            gameStatusText.text = "You Won!\nAll Objectives Completed";
+        }
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Time.timeScale = 0f;
     }
 
-    private string GetWinnerName()
+    // استدعاء هذه الدالة عند إكمال لغز أو هدف
+    public void OnPuzzleSolved(string puzzleName)
     {
-        if (player1Health.IsDead()) return "Player 2";
-        if (player2Health.IsDead()) return "Player 1";
-        return "Unknown";
+        Debug.Log("✅ لغز انحل: " + puzzleName);
+        CompleteObjective();
     }
 
     public void RestartGame()
@@ -128,21 +186,28 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
     public void GoToMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(mainMenuSceneName);
+        SceneManager.LoadSceneAsync(0);
+
+        Debug.Log("Main menu loaded."); // Assuming main menu is at index 0
     }
 
-    // Optional: If you want different jump scares for each player's death
-    public void PlayPlayerDeathJumpScare(int playerNumber)
+    // دالة للحصول على عدد الأهداف المتبقية
+    public int GetRemainingObjectives()
     {
-        if (enableJumpScare && jumpScareSequence != null)
-        {
-            // You could modify JumpScareSequence to have different scare types
-            jumpScareSequence.Play();
-            Debug.Log("Playing jump scare for Player " + playerNumber + " death");
-        }
+        return totalObjectives - completedObjectives;
+    }
+
+    // دالة للتحقق من حالة اللعبة
+    public bool IsGameEnded()
+    {
+        return isGameEnded;
+    }
+
+    public bool HasGameWon()
+    {
+        return hasGameWon;
     }
 }

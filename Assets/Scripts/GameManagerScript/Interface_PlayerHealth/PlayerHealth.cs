@@ -34,7 +34,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         if (gameManager != null)
         {
-            gameManager.CheckForWinner();
+            gameManager.CheckGameStatus();
         }
 
         gameObject.SetActive(false);
