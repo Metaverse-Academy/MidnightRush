@@ -248,7 +248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &71860963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,6 +352,7 @@ GameObject:
   - component: {fileID: 147757245}
   - component: {fileID: 147757253}
   - component: {fileID: 147757254}
+  - component: {fileID: 147757255}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -388,6 +389,7 @@ MonoBehaviour:
   promptCanvas: {fileID: 1205262937}
   promptText: {fileID: 1571481769}
   interactDistance: 3
+  interactDebounce: 0.12
   interactableLayer:
     serializedVersion: 2
     m_Bits: 320
@@ -652,10 +654,28 @@ MonoBehaviour:
   workingDuration: 10
   rechargeDuration: 20
   flashlightLight: {fileID: 385333469}
-  flashlightModel: {fileID: 385333466}
+  flashlightModel: {fileID: 194030306}
   batterySlider: {fileID: 0}
   flashlightOnClip: {fileID: 8300000, guid: eba64f80ce478a24794ed34b2b35cf52, type: 3}
   flashlightOffClip: {fileID: 8300000, guid: eba64f80ce478a24794ed34b2b35cf52, type: 3}
+--- !u!114 &147757255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147757244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b32d43251633824aa1cfa4f6871e90a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightRepeller
+  lightSource: {fileID: 772274099}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  repelDistance: 100
+  repelRadius: 100
 --- !u!1 &183725995
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,8 +778,6 @@ GameObject:
   - component: {fileID: 194030312}
   - component: {fileID: 194030311}
   - component: {fileID: 194030310}
-  - component: {fileID: 194030309}
-  - component: {fileID: 194030308}
   m_Layer: 9
   m_Name: FlashLight
   m_TagString: Untagged
@@ -784,43 +802,6 @@ Transform:
   - {fileID: 772274099}
   m_Father: {fileID: 2003290197}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &194030308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 194030306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b32d43251633824aa1cfa4f6871e90a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LightRepeller
-  lightSource: {fileID: 772274099}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  repelDistance: 5
-  repelRadius: 5
---- !u!114 &194030309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 194030306}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 617e76080b780a448bbd1474f9215040, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FlashlightController
-  workingDuration: 10
-  rechargeDuration: 20
-  flashlightLight: {fileID: 385333469}
-  flashlightModel: {fileID: 385333466}
-  batterySlider: {fileID: 0}
-  flashlightOnClip: {fileID: 0}
-  flashlightOffClip: {fileID: 0}
 --- !u!65 &194030310
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2009,13 +1990,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 772274098}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 194030307}
-  m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -2589,7 +2570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!225 &1205262937
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -8714,6 +8695,130 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!1 &1856180156
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1856180161}
+  - component: {fileID: 1856180160}
+  - component: {fileID: 1856180159}
+  - component: {fileID: 1856180158}
+  - component: {fileID: 1856180157}
+  m_Layer: 0
+  m_Name: Sphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1856180157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856180156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce580703679f8d747be4c9c7f17a642a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColoChanger
+--- !u!135 &1856180158
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856180156}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1856180159
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856180156}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1856180160
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856180156}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1856180161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856180156}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.40352, y: 0.789, z: -2.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1881458109
 GameObject:
   m_ObjectHideFlags: 0
@@ -9621,7 +9726,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.016666668
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: e66a9d593ec630541ba47204755f62df, type: 2}
   m_BuildHeightMesh: 0
@@ -9878,16 +9983,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7353f9828921d474587bb0a4399ae1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TheEnemyAI
-  patrolPoints:
+  currentState: 0
+  spawnPoints:
   - {fileID: 7752229003829414468}
   - {fileID: 3364046185668458985}
   - {fileID: 1040395972776448693}
   - {fileID: 4536350035181348159}
-  chaseDistance: 5
-  attackDistance: 2
-  escapeSpeed: 6
+  respawnTime: 10
+  chaseDistance: 10
+  attackDistance: 0.1
+  escapeDistance: 15
+  attackRate: 1.5
   panicDuration: 2
   blindParticlePrefab: {fileID: 1322101437}
+  fadeOutDuration: 2
 --- !u!114 &8226295070657975693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9997,3 +10106,4 @@ SceneRoots:
   - {fileID: 7738503118453389558}
   - {fileID: 368802725}
   - {fileID: 1322101440}
+  - {fileID: 1856180161}

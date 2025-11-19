@@ -1,52 +1,93 @@
 using UnityEngine;
 
-public class CubePuzzle : PuzzleBase
+public class CubePuzzle : MonoBehaviour
 {
-    [Header("Correct Cubes")]
-    [SerializeField] private GameObject correctCube1;
-    [SerializeField] private GameObject correctCube2;
+    [Header("Correct cubes (exact scene instances)")]
+    [SerializeField] private GameObject correctA;
+    [SerializeField] private GameObject correctB;
 
-    [Header("Socket Slots")]
-    [SerializeField] private Transform slot1;
-    [SerializeField] private Transform slot2;
+    [Header("Slots")]
+    [SerializeField] private PlacePoint slot0;
+    [SerializeField] private PlacePoint slot1;
 
-    private GameObject placedCube1;
-    private GameObject placedCube2;
+    [Header("Optional feedback")]
+    [SerializeField] private DoorController doorToOpen; // CHANGED TO DoorController
 
-    public void PlaceCube(int slotIndex, GameObject cube)
+    private GameObject placed0, placed1;
+    private bool solved;
+
+    private void OnEnable()
     {
-        if (isSolved) return;
-
-        if (slotIndex == 0)
-            placedCube1 = cube;
-        else if (slotIndex == 1)
-            placedCube2 = cube;
-
-        CheckPuzzleSolved();
+        if (slot0){ slot0.OnPlaced += OnPlaced0; slot0.OnRemoved += OnRemoved0; }
+        if (slot1){ slot1.OnPlaced += OnPlaced1; slot1.OnRemoved += OnRemoved1; }
     }
 
-    private void CheckPuzzleSolved()
+    private void OnDisable()
     {
-        if (placedCube1 == null || placedCube2 == null) return;
+        if (slot0){ slot0.OnPlaced -= OnPlaced0; slot0.OnRemoved -= OnRemoved0; }
+        if (slot1){ slot1.OnPlaced -= OnPlaced1; slot1.OnRemoved -= OnRemoved1; }
+    }
 
-        bool correct =
-            (placedCube1 == correctCube1 && placedCube2 == correctCube2) ||
-            (placedCube1 == correctCube2 && placedCube2 == correctCube1);
+    private void OnPlaced0(PlacePoint p, GameObject go){ 
+        placed0 = go; 
+        Check(); 
+    }
+    
+    private void OnRemoved0(PlacePoint p, GameObject go){ 
+        if (placed0 == go) placed0 = null; 
+    }
+    
+    private void OnPlaced1(PlacePoint p, GameObject go){ 
+        placed1 = go; 
+        Check(); 
+    }
+    
+    private void OnRemoved1(PlacePoint p, GameObject go){ 
+        if (placed1 == go) placed1 = null; 
+    }
 
-        if (correct)
+    private void Check()
+    {
+        if (solved) return;
+        if (!placed0 || !placed1) return;
+
+
+        bool ok = (placed0 == correctA && placed1 == correctB) ||
+                  (placed0 == correctB && placed1 == correctA);
+
+        if (ok)
         {
-            Debug.Log("✅ Cube puzzle solved!");
-            Solve(); // From PuzzleBase
+            solved = true;
+            
+            // Lock the cubes in place
+            if (slot0) slot0.AllowTakeBack = false;
+            if (slot1) slot1.AllowTakeBack = false;
+            
+            // Open the door using DoorController
+            if (doorToOpen != null)
+            {
+                doorToOpen.OpenDoor();
+            }
+            else
+            {
+            }
         }
         else
         {
-            Debug.Log("❌ Wrong cubes, try again.");
         }
     }
 
-    public void RemoveCube(GameObject cube)
+    private void OnDrawGizmosSelected()
     {
-        if (cube == placedCube1) placedCube1 = null;
-        else if (cube == placedCube2) placedCube2 = null;
+        if (slot0) 
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(slot0.transform.position, Vector3.one * 0.15f);
+        }
+        if (slot1) 
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireCube(slot1.transform.position, Vector3.one * 0.15f);
+        }
     }
 }

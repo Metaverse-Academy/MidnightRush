@@ -21,6 +21,12 @@ public class LampBattrey : Interactable
     private bool hasBattery = false;
     private Coroutine batteryDestroyCoroutine;
     public bool IsOn => lampLight != null && lampLight.enabled;   // <— ADD
+     [SerializeField] private AudioClip LightOnSound; // Sound to play when the light is turned on
+    [SerializeField] private AudioClip LightOffSound; // Sound to play when the light    [SerializeField] private AudioClip dooropenClip;
+    [SerializeField] private AudioSource audioSource; 
+    [SerializeField] private AudioClip BattryPlaceSound;
+// AudioSource component to play the sound
+
 
 
     public override void Interact(GameObject interactor)
@@ -33,7 +39,6 @@ public class LampBattrey : Interactable
         }
         else if (player != null && !player.IsHoldingBattery && !hasBattery)
         {
-            Debug.Log(noBatteryPrompt);
         }
     }
 
@@ -71,16 +76,18 @@ public class LampBattrey : Interactable
         player.IsHoldingBattery = false;
         hasBattery = true;
 
-        Debug.Log("the battrey has been placed in the lamp.");
 
         batteryDestroyCoroutine = StartCoroutine(DestroyBatteryAfterDelay());
+        audioSource.PlayOneShot(BattryPlaceSound);
+        audioSource.PlayOneShot(LightOnSound);
+
+
     }
 
     private IEnumerator DestroyBatteryAfterDelay()
     {
         yield return new WaitForSeconds(batteryLifetime);
 
-        Debug.Log("The battery has expired. You can now place a new battery.");
         if (lampLight != null)
         {
             lampLight.enabled = false;
@@ -115,5 +122,7 @@ public class LampBattrey : Interactable
         {
             StopCoroutine(batteryDestroyCoroutine);
         }
+        audioSource.PlayOneShot(LightOffSound);
+
     }
 }

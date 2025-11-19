@@ -5,7 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
-  - LightZone
+  - LightArea
   layers:
   - Default
   - TransparentFX
@@ -18,8 +18,8 @@ TagManager:
   - Battrey
   - Player
   - map
-  - 
-  - 
+  - Puzzle
+  - b
   - 
   - 
   - 

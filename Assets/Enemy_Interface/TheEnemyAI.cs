@@ -1,231 +1,224 @@
 using UnityEngine;
-using UnityEngine.AI;
-using System.Collections; // **هذا هو التصحيح الرئيسي**
-using System.Linq; 
+using System.Collections;
 
 public class TheEnemyAI : MonoBehaviour
 {
-    private enum State { Patrol, Chase, Attack, Panic, Escape }
-    private State currentState = State.Patrol;
-    
-    [Header("Patrol Settings")]
-    [SerializeField] Transform[] patrolPoints;
-    
-    [Header("Detection Settings")]
-    [SerializeField] float chaseDistance = 5f;
-    [SerializeField] float attackDistance = 2f;
-    [SerializeField] float escapeSpeed = 6f; 
-    
-    [Header("Panic Settings")]
-    [SerializeField] float panicDuration = 2f; 
-    [SerializeField] GameObject blindParticlePrefab; 
-    
-    // متغيرات داخلية
-    private NavMeshAgent agent;
-    private int currentIndex = 0;
-    private Transform targetPlayer; 
-    private Collider[] allPlayers; 
+    public enum State { Spawn, Chase, Panic, Escape }
+    public State currentState;
 
-    void Awake()
+    [Header("Target & Movement")]
+    public Transform[] players;
+    [Tooltip("the movement speed of the enemy")]
+    public float speed = 4f;
+    [Tooltip("the maximum distance the enemy can move away from its spawn point before returning")]
+    public float maxChaseDistance = 20f;
+
+    [Header("Respawn Settings")]
+    [Tooltip("the spawn points where the enemy can appear")]
+    public Transform[] spawnPoints;
+    [Tooltip("the time the enemy hides when panicking (e.g., when exposed to light)")]
+    public float panicHideTime = 3f;
+    [Tooltip("the time the enemy hides when escaping (e.g., when trapped)")]
+    public float escapeRespawnTime = 10f;
+
+    [Header("Visuals & Audio")]
+    [Tooltip("the GameObject representing the enemy's body to hide and show")]
+    public GameObject enemyBody;
+    [Tooltip("the AudioSource component to play sound effects")]
+    public AudioClip chaseSound;
+    public AudioClip panicSound;
+    public AudioClip escapeSound;
+    private Transform targetPlayer;
+    private Vector3 homePosition;
+    private bool isRoutineActive = false;
+
+    [Header("Effects")]
+    public GameObject blindParticlePrefab;
+
+    [Header("Audio Clips")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip ChaseSound; // Sound to play when the enemy is chasing
+    [SerializeField] private AudioClip AttackSound; // Sound to play when the enemy is
+    [SerializeField] private AudioClip EscapeSound;
+    [SerializeField] private AudioClip DisapearSound; // AudioSource component to play the sound
+
+
+    void OnEnable()
     {
-        agent = GetComponent<NavMeshAgent>();
-        // البحث عن جميع اللاعبين في المشهد (يفترض أن لديهم Tag "Player")
-        allPlayers = GameObject.FindGameObjectsWithTag("Player").Select(g => g.GetComponent<Collider>()).ToArray();
+        currentState = State.Spawn;
+        Respawn();
     }
-
     void Update()
     {
-        // 1. تحديد أقرب لاعب (فقط إذا لم يكن في حالة Panic أو Escape)
-        if (currentState != State.Panic && currentState != State.Escape)
-        {
-            FindNearestPlayer();
-        }
-
-        // 2. إذا لم يكن هناك لاعب، لا تفعل شيئًا
-        if (targetPlayer == null)
-        {
-            currentState = State.Patrol;
-            Patrol();
-            return;
-        }
-
-        float distanceToPlayer = Vector3.Distance(transform.position, targetPlayer.position);
+        if (isRoutineActive) return;
 
         switch (currentState)
         {
-            case State.Patrol:
-                Patrol();
-                agent.speed = 2f;
-                if (distanceToPlayer <= chaseDistance)
+            case State.Spawn:
+                PickClosestPlayer();
+                if (targetPlayer != null)
+                {
                     currentState = State.Chase;
+                }
                 break;
 
             case State.Chase:
-                Chase();
-                agent.speed = 4f;
-                if (distanceToPlayer <= attackDistance)
-                    currentState = State.Attack;
-                else if (distanceToPlayer > chaseDistance)
-                    currentState = State.Patrol;
+                ChasePlayer();
                 break;
 
-            case State.Attack:
-                Attack();
-                if (distanceToPlayer > attackDistance)
-                    currentState = State.Chase;
-                break;
-
-            case State.Panic:
-                // لا شيء يحدث في Update، المنطق يتم في Coroutine
-                break;
-
-            case State.Escape:
-                Escape();
-                agent.speed = escapeSpeed;
-                // شرط العودة إلى Patrol بعد الهروب لمسافة كافية
-                if (agent.remainingDistance < 1f && !agent.pathPending)
-                {
-                    currentState = State.Patrol;
-                }
-                break;
         }
     }
-
-    // =================================================================
-    // دوال الحالات (States)
-    // =================================================================
-
-    void Patrol()
+    void PickClosestPlayer()
     {
-        agent.isStopped = false;
-        if (patrolPoints.Length == 0) return;
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+        if (players == null || players.Length == 0) return;
+
+        float minDistance = float.MaxValue;
+        Transform closestPlayer = null;
+
+        foreach (Transform p in players)
         {
-            agent.SetDestination(patrolPoints[currentIndex].position);
-            currentIndex = (currentIndex + 1) % patrolPoints.Length;
+            if (p == null) continue;
+            float distance = Vector3.Distance(transform.position, p.position);
+            if (distance < minDistance)
+            {
+                minDistance = distance;
+                closestPlayer = p;
+            }
+        }
+        targetPlayer = closestPlayer;
+    }
+
+    void ChasePlayer()
+    {
+        if (targetPlayer == null)
+        {
+            PickClosestPlayer();
+            return;
+        }
+
+        if (maxChaseDistance > 0 && Vector3.Distance(homePosition, transform.position) > maxChaseDistance)
+        {
+            Debug.Log("The enemy has moved too far away and will respawn.");
+            currentState = State.Spawn;
+            Respawn();
+            return;
+        }
+
+        Vector3 direction = (targetPlayer.position - transform.position).normalized;
+        transform.position += new Vector3(direction.x, direction.y, direction.z) * speed * Time.deltaTime;
+
+        if (audioSource != null && chaseSound != null && !audioSource.isPlaying)
+        {
+            audioSource.clip = chaseSound;
+            audioSource.Play();
         }
     }
 
-    void Chase()
+    void Respawn()
     {
-        agent.isStopped = false;
-        agent.SetDestination(targetPlayer.position);
+        if (spawnPoints == null || spawnPoints.Length == 0)
+        {
+            Debug.LogError("No spawn points defined for the enemy!");
+            return;
+        }
+
+        int randIndex = Random.Range(0, spawnPoints.Length);
+        transform.position = spawnPoints[randIndex].position;
+        homePosition = transform.position;
+
+        Debug.Log("The enemy spawned at: " + spawnPoints[randIndex].name);
+
+        if (enemyBody != null) enemyBody.SetActive(true);
+
+        PickClosestPlayer();
     }
-
-    void Attack()
+    public void OnLightExposed()
     {
-        agent.isStopped = true;
-        transform.LookAt(targetPlayer.position);
-        // أضف منطق الهجوم هنا
+        Debug.Log("The enemy was exposed to light! Starting escape state.");
+        StartCoroutine(EscapeRoutine());
     }
-
-    // =================================================================
-    // منطق الهروب والعمى
-    // =================================================================
-
-    // الدالة العامة التي يستدعيها الـ Raycast
-    public void TriggerBlindness()
+    public void OnTriggerEnter(Collider other)
     {
-        // نتأكد أن العدو ليس بالفعل في حالة Panic أو Escape
-        if (currentState == State.Panic || currentState == State.Escape) return;
-
-        // إيقاف أي Coroutine سابقة وبدء Coroutine جديدة
-        StopAllCoroutines();
-        StartCoroutine(PanicRoutine());
+        if (other.CompareTag("Light"))
+        {
+            Debug.Log("The enemy was exposed to light! Starting panic state.");
+            StartCoroutine(PanicRoutine());
+        }
+        else if (other.CompareTag("Trap"))
+        {
+            Debug.Log("The enemy entered a trap! Starting escape state.");
+            StartCoroutine(EscapeRoutine());
+        }
     }
 
     IEnumerator PanicRoutine()
     {
+        if (isRoutineActive) yield break;
+        isRoutineActive = true;
         currentState = State.Panic;
-        agent.isStopped = true;
-        
-        // 1. تفعيل تأثير الانفجار/العمى
+
+        if (audioSource != null && panicSound != null) audioSource.PlayOneShot(panicSound);
         if (blindParticlePrefab != null)
         {
-            // ننشئ التأثير في موقع العدو
-            Instantiate(blindParticlePrefab, transform.position, Quaternion.identity);
+            GameObject blindEffect = Instantiate(blindParticlePrefab, transform.position, Quaternion.identity);
+            blindEffect.transform.SetParent(transform);
         }
-        
-        // 2. انتظار مدة العمى
-        yield return new WaitForSeconds(panicDuration);
-        
-        // 3. الانتقال إلى حالة الهروب
+        if (enemyBody != null) enemyBody.SetActive(false);
+
+        yield return new WaitForSeconds(panicHideTime);
+
+        Respawn();
+        currentState = State.Spawn;
+        isRoutineActive = false;
+    }
+
+    IEnumerator EscapeRoutine()
+    {
+        if (isRoutineActive) yield break;
+        isRoutineActive = true;
         currentState = State.Escape;
-        agent.isStopped = false;
+
+        if (audioSource != null && escapeSound != null) audioSource.PlayOneShot(escapeSound);
+
+        yield return StartCoroutine(FadeOut());
+
+        yield return new WaitForSeconds(escapeRespawnTime);
+
+        Respawn();
+        currentState = State.Spawn;
+        isRoutineActive = false;
     }
 
-    void Escape()
+    IEnumerator FadeOut()
     {
-        // 1. إيجاد أقرب نقطة Patrol للهروب إليها
-        Transform nearestPatrolPoint = GetNearestPatrolPoint();
-        
-        if (nearestPatrolPoint != null)
+        Renderer bodyRenderer = enemyBody.GetComponent<Renderer>();
+        if (bodyRenderer == null)
         {
-            // 2. تعيين الوجهة إلى نقطة الهروب
-            agent.SetDestination(nearestPatrolPoint.position);
-        }
-        else
-        {
-            // إذا لم تكن هناك نقاط Patrol، يهرب بعيدًا عن اللاعب
-            Vector3 runDirection = transform.position - targetPlayer.position;
-            Vector3 safePosition = transform.position + runDirection.normalized * 10f;
-            agent.SetDestination(safePosition);
-        }
-    }
-
-    // =================================================================
-    // دوال المساعدة (Helper Functions)
-    // =================================================================
-
-    void FindNearestPlayer()
-    {
-        // ... (منطق البحث عن أقرب لاعب) ...
-        Transform bestTarget = null;
-        float closestDistanceSqr = chaseDistance * chaseDistance;
-        Vector3 currentPosition = transform.position;
-
-        // يجب أن يكون اللاعبون لديهم Tag "Player"
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
-        
-        foreach (GameObject playerObject in players)
-        {
-            Vector3 directionToTarget = playerObject.transform.position - currentPosition;
-            float dSqrToTarget = directionToTarget.sqrMagnitude;
-
-            if (dSqrToTarget < closestDistanceSqr)
-            {
-                closestDistanceSqr = dSqrToTarget;
-                bestTarget = playerObject.transform;
-            }
+            Debug.LogWarning("No Renderer component found on the enemy's body for fading.");
+            enemyBody.SetActive(false);
+            yield break;
         }
 
-        targetPlayer = bestTarget;
-    }
+        Material mat = bodyRenderer.material;
+        mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+        mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+        mat.EnableKeyword("_ALPHABLEND_ON");
+        mat.renderQueue = 3000;
 
-    Transform GetNearestPatrolPoint()
-    {
-        Transform nearestPoint = null;
-        float minDistance = float.MaxValue;
+        float duration = 2f;
+        float timer = 0;
+        Color startColor = mat.color;
 
-        foreach (Transform point in patrolPoints)
+        while (timer < duration)
         {
-            float distance = Vector3.Distance(transform.position, point.position);
-            if (distance < minDistance)
-            {
-                minDistance = distance;
-                nearestPoint = point;
-            }
+            timer += Time.deltaTime;
+            float alpha = Mathf.Lerp(1f, 0f, timer / duration);
+            mat.color = new Color(startColor.r, startColor.g, startColor.b, alpha);
+            yield return null;
         }
-        return nearestPoint;
+
+        mat.color = new Color(startColor.r, startColor.g, startColor.b, 1f);
+        enemyBody.SetActive(false);
     }
 
-    // =================================================================
-    // Gizmos
-    // =================================================================
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, chaseDistance);
-    }
 }
