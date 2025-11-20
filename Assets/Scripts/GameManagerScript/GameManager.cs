@@ -138,7 +138,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-        float jumpScareDuration = 1f;
+        float jumpScareDuration = 2.3f;
         yield return new WaitForSeconds(jumpScareDuration);
 
         ShowGameOverUI(deadPlayerName);
@@ -148,7 +148,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-        float jumpScareDuration = 3f;
+        float jumpScareDuration = 2.3f;
         yield return new WaitForSeconds(jumpScareDuration);
 
         ShowGameWonUI();
