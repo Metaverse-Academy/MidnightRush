@@ -117,7 +117,7 @@ public class PlacePoint : Interactable
         desiredWorldScale.y / parentWorldScale.y,
         desiredWorldScale.z / parentWorldScale.z
     );
-        audioSource.PlayOneShot(placecubeSound);
+        // audioSource.PlayOneShot(placecubeSound);
 
     
     // Optional debug:

@@ -4315,6 +4315,8 @@ GameObject:
   - component: {fileID: 540036641}
   - component: {fileID: 540036643}
   - component: {fileID: 540036642}
+  - component: {fileID: 540036645}
+  - component: {fileID: 540036644}
   m_Layer: 0
   m_Name: Point Light (4)
   m_TagString: Untagged
@@ -4431,6 +4433,41 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &540036644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540036640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a5dc55e5c767b4c9cad3ce244437d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightZone
+  lightSource: {fileID: 540036643}
+  enemyAI: {fileID: 4444868152552357355}
+--- !u!135 &540036645
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540036640}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &552797963
 GameObject:
   m_ObjectHideFlags: 0
@@ -7584,6 +7621,8 @@ GameObject:
   - component: {fileID: 1004827408}
   - component: {fileID: 1004827410}
   - component: {fileID: 1004827409}
+  - component: {fileID: 1004827412}
+  - component: {fileID: 1004827411}
   m_Layer: 0
   m_Name: Point Light (1)
   m_TagString: Untagged
@@ -7700,6 +7739,41 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1004827411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004827407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a5dc55e5c767b4c9cad3ce244437d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightZone
+  lightSource: {fileID: 1004827410}
+  enemyAI: {fileID: 4444868152552357355}
+--- !u!135 &1004827412
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004827407}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1006278791
 GameObject:
   m_ObjectHideFlags: 0
@@ -8528,7 +8602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   BackgroundMusicClip: {fileID: 8300000, guid: 909a8ab6777c8344e8543586ba48d705, type: 3}
-  loopBackgroundMusic: 1
+  loopBackgroundMusic: 0
   musicVolume: 0.2
 --- !u!1 &1153996898
 GameObject:
@@ -8796,6 +8870,8 @@ GameObject:
   - component: {fileID: 1172963741}
   - component: {fileID: 1172963743}
   - component: {fileID: 1172963742}
+  - component: {fileID: 1172963745}
+  - component: {fileID: 1172963744}
   m_Layer: 0
   m_Name: Point Light (3)
   m_TagString: Untagged
@@ -8912,6 +8988,41 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &1172963744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172963740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a5dc55e5c767b4c9cad3ce244437d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightZone
+  lightSource: {fileID: 1172963743}
+  enemyAI: {fileID: 4444868152552357355}
+--- !u!135 &1172963745
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172963740}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1212762441
 GameObject:
   m_ObjectHideFlags: 0
@@ -17009,6 +17120,8 @@ GameObject:
   - component: {fileID: 2143441711}
   - component: {fileID: 2143441713}
   - component: {fileID: 2143441712}
+  - component: {fileID: 2143441715}
+  - component: {fileID: 2143441714}
   m_Layer: 0
   m_Name: Point Light (2)
   m_TagString: Untagged
@@ -17125,6 +17238,41 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &2143441714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143441710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85a5dc55e5c767b4c9cad3ce244437d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LightZone
+  lightSource: {fileID: 2143441713}
+  enemyAI: {fileID: 4444868152552357355}
+--- !u!135 &2143441715
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2143441710}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &19868733572740357
 Transform:
   m_ObjectHideFlags: 0
@@ -24762,8 +24910,8 @@ MonoBehaviour:
   crouchSpeed: 2.5
   standingHeight: 2
   crouchHeight: 1
-  mouseSensitivityX: 0.012
-  mouseSensitivityY: 0.012
+  mouseSensitivityX: 0.015
+  mouseSensitivityY: 0.015
   minPitch: -85
   maxPitch: 85
 --- !u!54 &4317827918284904215
@@ -25198,7 +25346,7 @@ MonoBehaviour:
   - {fileID: 1232280444}
   - {fileID: 1644104123}
   panicHideTime: 3
-  escapeRespawnTime: 10
+  escapeRespawnTime: 13
   enemyBody: {fileID: 1770508254}
   chaseSound: {fileID: 8300000, guid: ec477b261147ff14489902e495acd05d, type: 3}
   panicSound: {fileID: 8300000, guid: bfced87cd18b4724b9f1c059ed2b22ec, type: 3}
@@ -35687,8 +35835,8 @@ MonoBehaviour:
   crouchSpeed: 2.5
   standingHeight: 2
   crouchHeight: 1
-  mouseSensitivityX: 0.012
-  mouseSensitivityY: 0.012
+  mouseSensitivityX: 0.015
+  mouseSensitivityY: 0.015
   minPitch: -85
   maxPitch: 85
 --- !u!114 &8763670897915535572
