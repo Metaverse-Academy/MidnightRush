@@ -13,11 +13,18 @@ public class FramePuzzle : MonoBehaviour
     [SerializeField] private DoorController doorToOpen;
     [SerializeField] private DoorController doorToOpen2;
 
-
     [Header("Visual Settings")]
     [SerializeField] private float swapSpeed = 2f;
     [SerializeField] private Color selectedColor = Color.yellow;
     [SerializeField] private Color solvedColor = Color.green;
+
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip frameSelectSound;
+    [SerializeField] private AudioClip frameDeselectSound;
+    [SerializeField] private AudioClip frameSwapSound;
+    [SerializeField] private AudioClip shuffleSound;
+    [SerializeField] private AudioClip puzzleSolvedSound;
 
     private bool solved = false;
     private InteractableFrame selectedFrame = null;
@@ -34,7 +41,6 @@ public class FramePuzzle : MonoBehaviour
 
         InitializeFrames();
         ShuffleFrames();
-
     }
 
     private void InitializeFrames()
@@ -44,7 +50,6 @@ public class FramePuzzle : MonoBehaviour
         {
             frame.SetPuzzleController(this);
         }
-
 
         // Initially assign each frame to a position
         for (int i = 0; i < frames.Length; i++)
@@ -58,6 +63,9 @@ public class FramePuzzle : MonoBehaviour
 
     private void ShuffleFrames()
     {
+        // Play shuffle sound
+        PlaySound(shuffleSound);
+
         // Create a list of frame indices to shuffle
         List<int> indices = new List<int>();
         for (int i = 0; i < frames.Length; i++)
@@ -82,25 +90,25 @@ public class FramePuzzle : MonoBehaviour
             frames[i].transform.rotation = framePositions[indices[i]].rotation;
             frameToPositionMap[frames[i]] = framePositions[indices[i]];
         }
-
     }
 
     public void OnFrameInteracted(InteractableFrame frame)
     {
         if (solved) return;
 
-
         if (selectedFrame == null)
         {
             // First selection
             selectedFrame = frame;
             frame.SetSelected(true, selectedColor);
+            PlaySound(frameSelectSound); // Play selection sound
         }
         else
         {
             // Second selection - swap them
             if (selectedFrame != frame)
             {
+                PlaySound(frameSwapSound); // Play swap sound
                 SwapFrames(selectedFrame, frame);
                 selectedFrame.SetSelected(false, Color.white);
                 selectedFrame = null;
@@ -110,6 +118,7 @@ public class FramePuzzle : MonoBehaviour
             else
             {
                 // Deselect if same frame interacted again
+                PlaySound(frameDeselectSound); // Play deselect sound
                 selectedFrame.SetSelected(false, Color.white);
                 selectedFrame = null;
             }
@@ -171,6 +180,7 @@ public class FramePuzzle : MonoBehaviour
         if (allCorrect)
         {
             solved = true;
+            PlaySound(puzzleSolvedSound); // Play solved sound
 
             // Visual feedback for all frames
             foreach (var frame in frames)
@@ -184,15 +194,19 @@ public class FramePuzzle : MonoBehaviour
                 doorToOpen.OpenDoor();
             }
 
-             if (doorToOpen2 != null)
+            if (doorToOpen2 != null)
             {
                 doorToOpen2.OpenDoor();
             }
-
-        else
-        {
         }
     }
+
+    private void PlaySound(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
     }
 
     // Visualize positions in editor

@@ -12,6 +12,8 @@ public class PlacePoint : Interactable
     [Tooltip("Allow taking back the placed object with Interact?")]
     [SerializeField] private bool allowTakeBack = true;
 
+    public AudioClip placecubeSound;
+    [SerializeField] private AudioSource audioSource;
     public bool AllowTakeBack 
     { 
         get => allowTakeBack; 
@@ -84,6 +86,7 @@ public class PlacePoint : Interactable
 {
     var rb = go.GetComponent<Rigidbody>();
 
+
     // 1) Save the current *world* scale (how big it actually looks)
     Vector3 desiredWorldScale = go.transform.lossyScale;
 
@@ -103,6 +106,7 @@ public class PlacePoint : Interactable
     // 4) Fix the scale so its *world* size stays the same as before
     Vector3 parentWorldScale = snapPoint.lossyScale;
 
+
     // Avoid division by zero just in case
     if (parentWorldScale.x == 0) parentWorldScale.x = 0.0001f;
     if (parentWorldScale.y == 0) parentWorldScale.y = 0.0001f;
@@ -113,7 +117,9 @@ public class PlacePoint : Interactable
         desiredWorldScale.y / parentWorldScale.y,
         desiredWorldScale.z / parentWorldScale.z
     );
+        audioSource.PlayOneShot(placecubeSound);
 
+    
     // Optional debug:
     // Debug.Log($"Placed {go.name}. World scale before: {desiredWorldScale}, after: {go.transform.lossyScale}");
 }

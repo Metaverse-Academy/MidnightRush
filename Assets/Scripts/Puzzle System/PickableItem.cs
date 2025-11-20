@@ -3,6 +3,8 @@ using UnityEngine;
 public class PickableItem : Interactable
 {
     private Rigidbody rb;
+    [SerializeField] private AudioSource audioSource;
+    public AudioClip pickUpSound;
 
     void Awake() 
     { 
@@ -23,6 +25,7 @@ public class PickableItem : Interactable
     {
         var carry = interactor.GetComponent<PlayerCarry>();
         if (!carry) return;
+        audioSource.PlayOneShot(pickUpSound);   
 
         // WHY: Use the toggle method - picks up if empty hands, drops if holding
         carry.TogglePickupDrop(rb);

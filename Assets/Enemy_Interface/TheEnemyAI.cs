@@ -42,8 +42,7 @@ public class TheEnemyAI : MonoBehaviour
     [SerializeField] private AudioClip EscapeSound;
     [SerializeField] private AudioClip DisapearSound; // AudioSource component to play the sound
 
-    private Animator anim;      
-
+    private Animator anim;    
 
     void OnEnable()
     {
@@ -71,8 +70,11 @@ public class TheEnemyAI : MonoBehaviour
             case State.Escape:
                 OnLightExposed();
                 break;
-
         }
+
+        // anim.SetBool("IsRunning", currentState == State.Chase);
+        // anim.SetBool("IsScreaming", currentState == State.Escape);
+        // anim.SetBool("IsCrawling", currentState == State.Spawn);
     }
     void PickClosestPlayer()
     {
