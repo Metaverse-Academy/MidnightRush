@@ -119,7 +119,9 @@ public class GameManager : MonoBehaviour
     // عند انجاز جميع الأهداف
     private void StartGameWonSequence()
     {
-        if (isGameEnded) return; // <--- أضف هذا السطر
+        // if (isGameEnded) return; // <--- أضف هذا السطر
+
+        
         hasGameWon = true;
         isGameEnded = true;
         Debug.Log("✅ You won! All objectives completed!");
@@ -172,7 +174,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    private void ShowGameWonUI()
+    public void ShowGameWonUI()
     {
 
         if (gameWonUI != null)

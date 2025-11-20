@@ -72,6 +72,8 @@ public class PowerPuzzleManager : MonoBehaviour
                 lightObj.SetActive(true);
         }
 
+        gameManager.ShowGameWonUI();
+
         // Optional: sound
         if (solvedSound)
         {
