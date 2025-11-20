@@ -122,7 +122,6 @@ public class LampBattrey : Interactable
         {
             StopCoroutine(batteryDestroyCoroutine);
         }
-        audioSource.PlayOneShot(LightOffSound);
 
     }
 }
