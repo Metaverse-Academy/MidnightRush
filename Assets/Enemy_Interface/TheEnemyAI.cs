@@ -119,7 +119,7 @@ public class TheEnemyAI : MonoBehaviour
             audioSource.Play();
         }
 
-          anim.SetBool("IsRunning", true);
+        //   anim.SetBool("IsRunning", true);
        
 
     }
@@ -142,7 +142,7 @@ public class TheEnemyAI : MonoBehaviour
 
         PickClosestPlayer();
 
-        anim.SetBool("IsScreaming", true);
+        // anim.SetBool("IsScreaming", true);
 
     }
     public void OnLightExposed()
@@ -165,7 +165,7 @@ public class TheEnemyAI : MonoBehaviour
         //     Debug.Log("The enemy entered a trap! Starting escape state.");
         //     StartCoroutine(EscapeRoutine());
         // }
-        anim.SetBool("IsScreaming", true);
+        // anim.SetBool("IsScreaming", true);
 
     }
 
@@ -205,7 +205,7 @@ public class TheEnemyAI : MonoBehaviour
         isRoutineActive = false;
         Respawn();
         currentState = State.Spawn;
-        anim.SetBool("IsScreaming", true);
+        // anim.SetBool("IsScreaming", true);
     }
 
     IEnumerator FadeOut()
@@ -239,7 +239,7 @@ public class TheEnemyAI : MonoBehaviour
         mat.color = new Color(startColor.r, startColor.g, startColor.b, 1f);
         enemyBody.SetActive(false);
 
-        anim.SetBool("IsScreaming", true);
+        // anim.SetBool("IsScreaming", true);
 
     }
 

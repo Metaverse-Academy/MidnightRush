@@ -14153,7 +14153,7 @@ Transform:
   m_GameObject: {fileID: 1962702100}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.237, y: 0.094, z: -6.27}
+  m_LocalPosition: {x: -0.237, y: 0.094, z: -7.913}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15430,7 +15430,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.059218705, y: 0.059218593, z: 0.059218645}
+  m_Size: {x: 0.07, y: 0.07, z: 0.07}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2072036005
 MonoBehaviour:
@@ -17483,7 +17483,7 @@ Transform:
   m_GameObject: {fileID: 506666660692591121}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000007450581, y: 1, z: -0.000000014901161, w: -0.000000029802322}
-  m_LocalPosition: {x: 1.1688082, y: 0.27609426, z: -6.344411}
+  m_LocalPosition: {x: 1.1688082, y: 0.288, z: -6.418}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -18245,6 +18245,7 @@ GameObject:
   - component: {fileID: 8468466484114547033}
   - component: {fileID: 8468466484114547034}
   - component: {fileID: 8468466484114547035}
+  - component: {fileID: 8468466484114547036}
   m_Layer: 0
   m_Name: kids door
   m_TagString: Untagged
@@ -23757,7 +23758,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &4444868152552357354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24784,7 +24785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DoorController
   closedState: Closed
   openState: Open
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 8468466484114547036}
   dooropenClip: {fileID: 8300000, guid: e76d7541b159a0d4e921a2717c5cffdf, type: 3}
 --- !u!1 &4832222857194938341
 GameObject:
@@ -32592,7 +32593,7 @@ Transform:
   m_GameObject: {fileID: 8763670897915535563}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.22841188, y: 0.558, z: -6.495}
+  m_LocalPosition: {x: 0.22841188, y: 0.323, z: -6.495}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -33199,8 +33200,105 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DoorController
   closedState: Closed
   openState: Open
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 8468466484114547036}
   dooropenClip: {fileID: 8300000, guid: e76d7541b159a0d4e921a2717c5cffdf, type: 3}
+--- !u!82 &8468466484114547036
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435912194005013786}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: e76d7541b159a0d4e921a2717c5cffdf, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &8484100802479582576
 Transform:
   m_ObjectHideFlags: 0
@@ -35890,7 +35988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DoorController
   closedState: Closed
   openState: Open
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 8468466484114547036}
   dooropenClip: {fileID: 8300000, guid: e76d7541b159a0d4e921a2717c5cffdf, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
