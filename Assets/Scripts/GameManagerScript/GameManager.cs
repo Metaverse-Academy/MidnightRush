@@ -2,9 +2,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
+using NUnit.Framework;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
     [Header("Player Health")]
     [SerializeField] private PlayerHealth player1Health;
     [SerializeField] private PlayerHealth player2Health;
@@ -26,10 +28,20 @@ public class GameManager : MonoBehaviour
     [Header("Objectives")]
     [SerializeField] private int totalObjectives = 3;
     private int completedObjectives = 0;
-
-    private bool isGameEnded = false;
+    protected bool isGameEnded = false;
     private bool hasGameWon = false;
 
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
         if (gameOverUI != null)
@@ -180,18 +192,22 @@ public class GameManager : MonoBehaviour
         Debug.Log("✅ لغز انحل: " + puzzleName);
         CompleteObjective();
     }
-
+    public void PlayGame()
+    {
+        Time.timeScale = 1f;
+        IsGameEnded();
+        SceneManager.LoadScene("NewMap");
+    }
     public void RestartGame()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
     public void GoToMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadSceneAsync(0);
-
-        Debug.Log("Main menu loaded."); // Assuming main menu is at index 0
+        SceneManager.LoadScene("MainMenu");
     }
 
     // دالة للحصول على عدد الأهداف المتبقية
