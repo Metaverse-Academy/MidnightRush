@@ -136,9 +136,9 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator ShowGameOverAfterJumpScare(string deadPlayerName)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
 
-        float jumpScareDuration = 3f;
+        float jumpScareDuration = 1f;
         yield return new WaitForSeconds(jumpScareDuration);
 
         ShowGameOverUI(deadPlayerName);
@@ -146,7 +146,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator ShowGameWonAfterJumpScare()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(2f);
 
         float jumpScareDuration = 3f;
         yield return new WaitForSeconds(jumpScareDuration);
@@ -156,6 +156,7 @@ public class GameManager : MonoBehaviour
 
     private void ShowGameOverUI(string deadPlayerName)
     {
+        Debug.Log("Showing Game Over UI for " + deadPlayerName);
         if (gameOverUI != null)
         {
             gameOverUI.SetActive(true);
@@ -167,11 +168,12 @@ public class GameManager : MonoBehaviour
         }
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        Time.timeScale = 0f;
+        Time.timeScale = 1f;
     }
 
     private void ShowGameWonUI()
     {
+    
         if (gameWonUI != null)
         {
             gameWonUI.SetActive(true);

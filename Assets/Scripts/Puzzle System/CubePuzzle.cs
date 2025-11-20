@@ -15,6 +15,7 @@ public class CubePuzzle : MonoBehaviour
 
     private GameObject placed0, placed1;
     private bool solved;
+    
 
     private void OnEnable()
     {
