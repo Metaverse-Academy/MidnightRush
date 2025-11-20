@@ -101,6 +101,7 @@ public class GameManager : MonoBehaviour
     // عند وفاة أحد اللاعبين
     private void StartGameOverSequence(string deadPlayerName)
     {
+        if (isGameEnded) return;
         isGameEnded = true;
         Debug.Log("❌ " + deadPlayerName + " The player died. Game Over.");
 
@@ -118,6 +119,7 @@ public class GameManager : MonoBehaviour
     // عند انجاز جميع الأهداف
     private void StartGameWonSequence()
     {
+        if (isGameEnded) return; // <--- أضف هذا السطر
         hasGameWon = true;
         isGameEnded = true;
         Debug.Log("✅ You won! All objectives completed!");
@@ -167,7 +169,7 @@ public class GameManager : MonoBehaviour
         }
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        Time.timeScale = 1f;
+        Time.timeScale = 0f;
     }
 
     private void ShowGameWonUI()
