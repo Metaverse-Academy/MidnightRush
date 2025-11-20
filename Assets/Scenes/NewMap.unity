@@ -494,7 +494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &143457872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,7 +531,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143457871}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 0.8530495, b: 0.5613208, a: 1}
@@ -757,7 +757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &204701203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -794,7 +794,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204701202}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 0.65739936, b: 0, a: 1}
@@ -5513,7 +5513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &819906938
 Transform:
   m_ObjectHideFlags: 0
@@ -5565,7 +5565,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 819906937}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 0.8530495, b: 0.5613208, a: 1}
@@ -8463,7 +8463,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1228112063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8535,7 +8535,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1228112062}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 0.65739936, b: 0, a: 1}
@@ -10596,7 +10596,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1498429787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10633,7 +10633,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1498429786}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 0.65739936, b: 0, a: 1}
@@ -12018,7 +12018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1690568917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12055,7 +12055,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1690568916}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 0.65739936, b: 0, a: 1}
@@ -12255,7 +12255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1706354057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12292,7 +12292,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706354056}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 0.65739936, b: 0, a: 1}
@@ -12418,7 +12418,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1724800348
 Transform:
   m_ObjectHideFlags: 0
@@ -12470,7 +12470,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724800347}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 0.8530495, b: 0.5613208, a: 1}
@@ -15115,7 +15115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2041766879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15152,7 +15152,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2041766878}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 0.8530495, b: 0.5613208, a: 1}
@@ -17482,8 +17482,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 506666660692591121}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10130128, y: -0.67186546, z: 0.09352074, w: 0.7277285}
-  m_LocalPosition: {x: 0.28198397, y: -0.7173971, z: -10.32532}
+  m_LocalRotation: {x: 0.000000007450581, y: 1, z: -0.000000014901161, w: -0.000000029802322}
+  m_LocalPosition: {x: 1.1688082, y: 0.27609426, z: -6.344411}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -24567,7 +24567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightOnOff
   puzzleManager: {fileID: 8771163582109492100}
-  indicatorLight: {fileID: 143457871}
+  indicatorLight: {fileID: 1498429786}
   audioSource: {fileID: 8827797771834870132}
   animator: {fileID: 4748167396284267408}
   isOn: 0
@@ -30696,7 +30696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightOnOff
   puzzleManager: {fileID: 8771163582109492100}
-  indicatorLight: {fileID: 204701202}
+  indicatorLight: {fileID: 1706354056}
   audioSource: {fileID: 8827797771834870132}
   animator: {fileID: 7468636474848029730}
   isOn: 0
@@ -31886,7 +31886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightOnOff
   puzzleManager: {fileID: 8771163582109492100}
-  indicatorLight: {fileID: 0}
+  indicatorLight: {fileID: 1228112062}
   audioSource: {fileID: 8827797771834870132}
   animator: {fileID: 8013936010738257260}
   isOn: 0
@@ -32207,7 +32207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightOnOff
   puzzleManager: {fileID: 8771163582109492100}
-  indicatorLight: {fileID: 1706354056}
+  indicatorLight: {fileID: 1690568916}
   audioSource: {fileID: 8827797771834870132}
   animator: {fileID: 8110499948647705825}
   isOn: 0
@@ -32643,7 +32643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightOnOff
   puzzleManager: {fileID: 8771163582109492100}
-  indicatorLight: {fileID: 0}
+  indicatorLight: {fileID: 1228112062}
   audioSource: {fileID: 8827797771834870132}
   animator: {fileID: 8276653251360915539}
   isOn: 0
@@ -33074,7 +33074,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightOnOff
   puzzleManager: {fileID: 8771163582109492100}
-  indicatorLight: {fileID: 0}
+  indicatorLight: {fileID: 204701202}
   audioSource: {fileID: 8827797771834870132}
   animator: {fileID: 8462269326096207112}
   isOn: 0
@@ -35708,7 +35708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LightOnOff
   puzzleManager: {fileID: 8771163582109492100}
-  indicatorLight: {fileID: 0}
+  indicatorLight: {fileID: 143457871}
   audioSource: {fileID: 8827797771834870132}
   animator: {fileID: 9170208708051762760}
   isOn: 0
