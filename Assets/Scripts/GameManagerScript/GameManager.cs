@@ -82,8 +82,11 @@ public class GameManager : MonoBehaviour
             StartGameWonSequence();
         }
     }
+    // في GameManager.cs
     public void CompleteObjective()
     {
+        if (isGameEnded) return; // لا تكمل الأهداف إذا انتهت اللعبة بالفعل
+
         completedObjectives++;
         Debug.Log("Objective completed! " + completedObjectives + " / " + totalObjectives);
 
@@ -91,13 +94,9 @@ public class GameManager : MonoBehaviour
         {
             gameStatusText.text = "Objectives: " + completedObjectives + " / " + totalObjectives;
         }
-
-        // تأثير بصري/صوتي عند إكمال هدف
-        if (completedObjectives >= totalObjectives)
-        {
-            Debug.Log("🎉 جميع الأهداف انجزت!");
-        }
+        CheckGameStatus();
     }
+
 
     // عند وفاة أحد اللاعبين
     private void StartGameOverSequence(string deadPlayerName)
@@ -173,7 +172,7 @@ public class GameManager : MonoBehaviour
 
     private void ShowGameWonUI()
     {
-    
+
         if (gameWonUI != null)
         {
             gameWonUI.SetActive(true);
