@@ -9283,8 +9283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6544622d53e73a4a8cf853ac674480c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  player1Health: {fileID: 289050654}
-  player2Health: {fileID: 1256056098}
+  player1Health: {fileID: 8763670897915535567}
+  player2Health: {fileID: 4317827918284904211}
   gameOverUI: {fileID: 841563835}
   gameWonUI: {fileID: 1087989367}
   gameStatusText: {fileID: 0}
@@ -23293,7 +23293,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 506666660692591121}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea990f1414fe94044a9607f3c0957180, type: 3}
   m_Name: 
@@ -23757,7 +23757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &4444868152552357354
 MonoBehaviour:
   m_ObjectHideFlags: 0
