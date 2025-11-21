@@ -25,10 +25,6 @@ public class LampBattrey : Interactable
     [SerializeField] private AudioClip LightOffSound; // Sound to play when the light    [SerializeField] private AudioClip dooropenClip;
     [SerializeField] private AudioSource audioSource; 
     [SerializeField] private AudioClip BattryPlaceSound;
-// AudioSource component to play the sound
-
-
-
     public override void Interact(GameObject interactor)
     {
         PlayerInteraction player = interactor.GetComponent<PlayerInteraction>();

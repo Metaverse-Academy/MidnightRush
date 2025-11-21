@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class SolvingPazzle : MonoBehaviour
+public class SolvingPazzle : Interactable
 {
     [Header("Lamp Settings")]
     [SerializeField] private GameObject handPazzle;
