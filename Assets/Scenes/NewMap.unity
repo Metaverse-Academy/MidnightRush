@@ -28462,8 +28462,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement2
   cameraTransform: {fileID: 419694338}
   walkSpeed: 1
-  sprintSpeed: 9
-  acceleration: 12
+  sprintSpeed: 2
+  acceleration: 5
   jumpForce: 3
   groundLayer:
     serializedVersion: 2
@@ -28471,7 +28471,7 @@ MonoBehaviour:
   groundDistanceCheck: 0.1
   rayStartOffset: 0
   useToggleCrouch: 1
-  crouchSpeed: 2.5
+  crouchSpeed: 0.5
   standingHeight: 2
   crouchHeight: 1
   mouseSensitivityX: 0.015
@@ -39397,8 +39397,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement2
   cameraTransform: {fileID: 1840710950}
   walkSpeed: 1
-  sprintSpeed: 9
-  acceleration: 12
+  sprintSpeed: 2
+  acceleration: 5
   jumpForce: 3
   groundLayer:
     serializedVersion: 2
@@ -39406,7 +39406,7 @@ MonoBehaviour:
   groundDistanceCheck: 0.1
   rayStartOffset: 0
   useToggleCrouch: 1
-  crouchSpeed: 2.5
+  crouchSpeed: 0.5
   standingHeight: 2
   crouchHeight: 1
   mouseSensitivityX: 0.015
