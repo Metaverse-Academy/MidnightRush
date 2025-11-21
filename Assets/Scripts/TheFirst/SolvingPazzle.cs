@@ -1,51 +1,30 @@
+using System.Collections;
 using UnityEngine;
 
 public class SolvingPazzle : MonoBehaviour
 {
     [Header("Lamp Settings")]
-    [SerializeField] private GameObject handBattery;
-    [SerializeField] private GameObject lampBattery;
-    [SerializeField] private Light lampLight;
-    [Header("Dependencies")]
-    [SerializeField] private LightRaycast lightRaycastController;
-
-    [Header("Battery Lifetime")]
-    [Tooltip("Lifetime of the battery in seconds")]
-    [SerializeField] private float batteryLifetime = 10f;
+    [SerializeField] private GameObject handPazzle;
+    [SerializeField] private GameObject placePazzle;
 
     [Header("UI Feedback")]
-    [SerializeField] private string placeBatteryPrompt = "To place the battery, press 'E'";
-    [SerializeField] private string noBatteryPrompt = "You need a battery to power the lamp.";
-
-    private bool hasBattery = false;
-    private Coroutine batteryDestroyCoroutine;
-    public bool IsOn => lampLight != null && lampLight.enabled;   // <— ADD
-    [SerializeField] private AudioClip LightOnSound; // Sound to play when the light is turned on
-    [SerializeField] private AudioClip LightOffSound; // Sound to play when the light    [SerializeField] private AudioClip dooropenClip;
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip BattryPlaceSound;
-    // AudioSource component to play the sound
-
-
-
-    public override void Interact(GameObject interactor)
+    [SerializeField] private string placePazzlePrompt = "To place the Pazzle, press ☐ ";
+    [SerializeField] private string noPazzlePrompt = "You need a letter Cube to Solve the Pazzle.";
+    private bool hasPazzle = false;
+    public void Interact(GameObject interactor)
     {
         PlayerInteraction player = interactor.GetComponent<PlayerInteraction>();
 
-        if (player != null && player.IsHoldingBattery && !hasBattery)
+        if (player != null && player.IsHoldingPazzle && !hasPazzle)
         {
-            PlaceBattery(player);
-        }
-        else if (player != null && !player.IsHoldingBattery && !hasBattery)
-        {
+            PlacePazzle(player);
         }
     }
-
     public new string GetPrompt()
     {
-        if (hasBattery)
+        if (hasPazzle)
         {
-            return "The lamp has a battery installed.";
+            return "The Pazzle has a battery installed.";
         }
         else
         {
@@ -53,74 +32,25 @@ public class SolvingPazzle : MonoBehaviour
             if (player != null)
             {
                 PlayerInteraction playerInteraction = player.GetComponent<PlayerInteraction>();
-                if (playerInteraction != null && playerInteraction.IsHoldingBattery)
+                if (playerInteraction != null && playerInteraction.IsHoldingPazzle)
                 {
-                    return placeBatteryPrompt;
+                    return placePazzlePrompt;
                 }
             }
-            return noBatteryPrompt;
+            return noPazzlePrompt;
         }
     }
-    private void PlaceBattery(PlayerInteraction player)
+    private void PlacePazzle(PlayerInteraction player)
     {
-        if (handBattery != null) handBattery.SetActive(false);
+        if (handPazzle != null) handPazzle.SetActive(false);
 
-        if (lampBattery != null) lampBattery.SetActive(true);
+        if (placePazzle != null) placePazzle.SetActive(true);
 
-        if (lampLight != null) lampLight.enabled = true;
-
-        if (lightRaycastController != null)
-            lightRaycastController.enabled = true;
-
-        player.IsHoldingBattery = false;
-        hasBattery = true;
-
-
-        batteryDestroyCoroutine = StartCoroutine(DestroyBatteryAfterDelay());
-        audioSource.PlayOneShot(BattryPlaceSound);
-        audioSource.PlayOneShot(LightOnSound);
-
-
+        player.IsHoldingPazzle = false;
+        hasPazzle = true;
     }
-
-    private IEnumerator DestroyBatteryAfterDelay()
+    public bool HasPazzle()
     {
-        yield return new WaitForSeconds(batteryLifetime);
-
-        if (lampLight != null)
-        {
-            lampLight.enabled = false;
-        }
-
-        if (lampBattery != null)
-        {
-            lampBattery.SetActive(false);
-        }
-
-        if (lightRaycastController != null)
-            lightRaycastController.enabled = false;
-
-        hasBattery = false;
-        batteryDestroyCoroutine = null;
-    }
-    public bool HasBattery()
-    {
-        return hasBattery;
-    }
-
-    public float GetRemainingBatteryTime()
-    {
-        if (!hasBattery || batteryDestroyCoroutine == null)
-            return 0f;
-
-        return batteryLifetime;
-    }
-    private void OnDestroy()
-    {
-        if (batteryDestroyCoroutine != null)
-        {
-            StopCoroutine(batteryDestroyCoroutine);
-        }
-
+        return hasPazzle;
     }
 }

@@ -20,6 +20,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float fadeDuration = 0.2f;
     [SerializeField] private float scalePop = 1.1f;
     public bool IsHoldingBattery { get; set; } = false;
+    public bool IsHoldingPazzle { get; set; } = false;
     private IInteractable currentTarget;
     private bool promptVisible;
     private float cooldownUntil;
