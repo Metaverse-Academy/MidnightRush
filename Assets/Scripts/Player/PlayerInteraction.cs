@@ -20,6 +20,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float fadeDuration = 0.2f;
     [SerializeField] private float scalePop = 1.1f;
     public bool IsHoldingBattery { get; set; } = false;
+    public bool IsHoldingPazzle { get; set; } = false;
     private IInteractable currentTarget;
     private bool promptVisible;
     private float cooldownUntil;
@@ -49,7 +50,7 @@ public class PlayerInteraction : MonoBehaviour
     private void Start()
     {
         // Show startup prompts after a delay
-    StartCoroutine(ShowStartupPrompts());
+        StartCoroutine(ShowStartupPrompts());
     }
 
     private IEnumerator ShowStartupPrompts()
@@ -99,9 +100,9 @@ public class PlayerInteraction : MonoBehaviour
         }
         startupPromptText.alpha = 0f;
     }
- 
 
-    
+
+
     private void Awake()
     {
         if (promptCanvas)
@@ -174,14 +175,14 @@ public class PlayerInteraction : MonoBehaviour
         {
             currentTarget.Interact(gameObject);
             cooldownUntil = Time.time + interactDebounce;
-            
+
             ShowInteractionFeedback(currentTarget);
 
         }
-    
+
     }
-    
-     private void ShowPrompt(string text)
+
+    private void ShowPrompt(string text)
     {
         if (!promptCanvas) return;
 
@@ -209,15 +210,15 @@ public class PlayerInteraction : MonoBehaviour
         LeanTween.alphaCanvas(promptCanvas, 0f, fadeDuration);
     }
 
-   
-private void ShowInteractionFeedback(IInteractable interactedObject)
-{
-    string feedbackText = GetInteractionFeedback(interactedObject);
-    if (!string.IsNullOrEmpty(feedbackText) && startupPromptText != null)
+
+    private void ShowInteractionFeedback(IInteractable interactedObject)
     {
-        StartCoroutine(ShowQuickFeedbackCoroutine(feedbackText));
+        string feedbackText = GetInteractionFeedback(interactedObject);
+        if (!string.IsNullOrEmpty(feedbackText) && startupPromptText != null)
+        {
+            StartCoroutine(ShowQuickFeedbackCoroutine(feedbackText));
+        }
     }
-}
 
     private IEnumerator ShowQuickFeedbackCoroutine(string text)
     {
@@ -257,5 +258,5 @@ private void ShowInteractionFeedback(IInteractable interactedObject)
     }
 
 
-    
+
 }
