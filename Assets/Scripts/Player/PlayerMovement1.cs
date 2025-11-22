@@ -31,6 +31,20 @@ public class PlayerMovement2 : MonoBehaviour
     [SerializeField] private float minPitch = -85f;
     [SerializeField] private float maxPitch = 85f;
 
+        [Header("Audio")]
+        [SerializeField] private AudioSource footstepsSource;
+        [SerializeField] private AudioSource breathingSource;
+        [SerializeField] private AudioSource sfxSource;
+
+        [SerializeField] private AudioClip[] footstepClips; // random footsteps
+        [SerializeField] private float footstepIntervalWalk = 0.5f;
+        [SerializeField] private float footstepIntervalSprint = 0.35f;
+
+        [SerializeField] private AudioClip jumpClip;
+
+    private float footstepTimer;
+
+
     // Components
     private Rigidbody rb;
     private CapsuleCollider capsule;
@@ -86,6 +100,9 @@ public class PlayerMovement2 : MonoBehaviour
         {
             anim.SetBool("IsLooking", true);
         }
+
+          HandleBreathing();
+            HandleFootsteps(); 
 
     }
 
@@ -171,6 +188,11 @@ public class PlayerMovement2 : MonoBehaviour
 
             // anim.SetBool("isJumping", IsGrounded);
         }
+
+        if (sfxSource != null && jumpClip != null)
+            {
+                sfxSource.PlayOneShot(jumpClip);
+            }
     }
 
     public void OnSprint(InputAction.CallbackContext ctx)
@@ -207,6 +229,56 @@ public class PlayerMovement2 : MonoBehaviour
             }
         }
     }
+
+        private void HandleBreathing()
+    {
+        if (breathingSource == null) return;
+
+        // Make sure breathing plays all the time
+        if (!breathingSource.isPlaying)
+        {
+            breathingSource.loop = true;
+            breathingSource.Play();
+        }
+    }
+
+    private void HandleFootsteps()
+    {
+        if (footstepsSource == null || footstepClips == null || footstepClips.Length == 0)
+            return;
+
+        // Only play footsteps when grounded and actually moving
+        if (IsGrounded && IsMoving && !IsCrouching)
+        {
+            footstepTimer -= Time.deltaTime;
+
+            if (footstepTimer <= 0f)
+            {
+                PlayRandomFootstep();
+
+                float interval = IsSprinting ? footstepIntervalSprint : footstepIntervalWalk;
+                footstepTimer = interval;
+            }
+        }
+        else
+        {
+            // Reset so step happens quickly when you start moving again
+            footstepTimer = 0f;
+        }
+        }
+
+        private void PlayRandomFootstep()
+        {
+            if (footstepClips.Length == 0) return;
+
+            int index = Random.Range(0, footstepClips.Length);
+            AudioClip clip = footstepClips[index];
+
+            // Slight pitch variation so it doesn’t sound like a looped robot
+            footstepsSource.pitch = Random.Range(0.95f, 1.05f);
+            footstepsSource.PlayOneShot(clip);
+        }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;

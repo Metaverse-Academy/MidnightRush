@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class TriggerHandler : MonoBehaviour
 {
-    public GameObject objectToAppear;     // Assign in Inspector
+    public GameObject objectToAppear;     // Optional now
     public AudioClip[] audioClip;         // Assign multiple audio clips in Inspector
 
-    private AudioSource audioSource;      // Will store the AudioSource component
+    public AudioSource audioSource;
 
     void Awake()
     {
@@ -13,12 +13,15 @@ public class TriggerHandler : MonoBehaviour
 
         if (audioSource == null)
         {
-            // If the GameObject has no AudioSource, add one automatically
             audioSource = gameObject.AddComponent<AudioSource>();
         }
 
-        objectToAppear.SetActive(false);
-        Debug.Log("Ghost is Invisible");
+        // Only disable if assigned
+        if (objectToAppear != null)
+        {
+            objectToAppear.SetActive(false);
+            Debug.Log("Ghost is Invisible");
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -27,13 +30,14 @@ public class TriggerHandler : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
+            // Only show if the object exists
             if (objectToAppear != null)
             {
                 objectToAppear.SetActive(true);
                 Debug.Log("Ghost Appeared");
             }
 
-            PlayRandomAudio();   // 🔥 Play a random sound
+            PlayRandomAudio();
         }
     }
 
@@ -51,10 +55,9 @@ public class TriggerHandler : MonoBehaviour
         }
     }
 
-    // 🔥 NEW FUNCTION — Plays a random audio clip
     void PlayRandomAudio()
     {
-        if (audioClip.Length == 0)
+        if (audioClip == null || audioClip.Length == 0)
         {
             Debug.LogWarning("No audio clips assigned!");
             return;
