@@ -21,14 +21,6 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float scalePop = 1.1f;
     public bool IsHoldingBattery { get; set; } = false;
 
-    //=============================================
-    //Third Week Addition
-
-    [Header("Pazzle Holding")]
-    public bool IsHoldingPazzle { get; set; } = false;
-    private PickupableCube _heldCubeReference = null;
-    //=============================================
-
     [Header("Player State")]
     [SerializeField] private GameObject handCubeObject;
     private bool _isHoldingCube = false;
@@ -267,29 +259,5 @@ public class PlayerInteraction : MonoBehaviour
         // Add more types as needed
 
         return "Interacted";
-    }
-    public bool IsHoldingCube()
-    {
-        return _isHoldingCube;
-    }
-
-    public int GetHeldCubeID()
-    {
-        return _heldCubeID;
-    }
-    public void SetHeldCube(bool isHolding, int cubeID, PickupableCube cubeRef)
-    {
-        _isHoldingCube = isHolding;
-        _heldCubeID = cubeID;
-        _heldCubeReference = cubeRef;
-
-        if (handCubeObject != null)
-        {
-            handCubeObject.SetActive(isHolding);
-        }
-    }
-    public PickupableCube GetHeldCubeReference()
-    {
-        return _heldCubeReference;
     }
 }
