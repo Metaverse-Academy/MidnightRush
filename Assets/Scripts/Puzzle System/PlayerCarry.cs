@@ -49,9 +49,9 @@ public class PlayerCarry : MonoBehaviour
         prevLayer  = held.gameObject.layer;
 
         // Disable physics while held
-        held.isKinematic      = false;
+        held.isKinematic      = true;
         held.useGravity       = false;
-        held.detectCollisions = true;
+        held.detectCollisions = false;
 
         // Ignore raycast while held
         held.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
@@ -79,7 +79,7 @@ public class PlayerCarry : MonoBehaviour
 
         held.linearVelocity   = Vector3.zero;
         held.angularVelocity  = Vector3.zero;
-        held.AddForce(transform.forward * 2f, ForceMode.Impulse);
+        //held.AddForce(transform.forward * 2f, ForceMode.Impulse);
 
         held      = null;
         prevParent = null;
