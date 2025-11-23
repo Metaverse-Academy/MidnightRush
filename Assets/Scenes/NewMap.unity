@@ -3271,6 +3271,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 198248689203289269, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
+      propertyPath: outlineMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1231503799265676754, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
       propertyPath: handBattery
       value: 
@@ -3375,6 +3379,7 @@ MonoBehaviour:
   showDebugRay: 0
   fadeDuration: 0.2
   scalePop: 1.1
+  handCubeObject: {fileID: 0}
   startupPromptText: {fileID: 426421307}
   startupPrompts:
   - Search for Battaries and light the room
@@ -5351,6 +5356,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 198248689203289269, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
+      propertyPath: outlineMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1231503799265676754, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
       propertyPath: handBattery
       value: 
@@ -6624,6 +6633,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 198248689203289269, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
+      propertyPath: outlineMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1231503799265676754, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
       propertyPath: handBattery
       value: 
@@ -9110,6 +9123,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 198248689203289269, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
+      propertyPath: outlineMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1231503799265676754, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
       propertyPath: handBattery
       value: 
@@ -9636,6 +9653,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 198248689203289269, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
+      propertyPath: outlineMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1231503799265676754, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
       propertyPath: handBattery
       value: 
@@ -12791,6 +12812,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 198248689203289269, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
+      propertyPath: outlineMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1231503799265676754, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
       propertyPath: handBattery
       value: 
@@ -14182,6 +14207,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 198248689203289269, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
+      propertyPath: outlineMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1231503799265676754, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
       propertyPath: handBattery
       value: 
@@ -14634,6 +14663,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 198248689203289269, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
+      propertyPath: outlineMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1231503799265676754, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
       propertyPath: handBattery
       value: 
@@ -16238,6 +16271,7 @@ MonoBehaviour:
   showDebugRay: 0
   fadeDuration: 0.2
   scalePop: 1.1
+  handCubeObject: {fileID: 0}
   startupPromptText: {fileID: 1571182622}
   startupPrompts:
   - Protect yourself and your brother by using the flash light
@@ -18687,6 +18721,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 198248689203289269, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
+      propertyPath: outlineMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1231503799265676754, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
       propertyPath: handBattery
       value: 
@@ -18916,6 +18954,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 198248689203289269, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
+      propertyPath: outlineMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1231503799265676754, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
       propertyPath: handBattery
       value: 
@@ -22326,6 +22368,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 198248689203289269, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
+      propertyPath: outlineMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1231503799265676754, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
       propertyPath: handBattery
       value: 
@@ -24505,6 +24551,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 198248689203289269, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
+      propertyPath: outlineMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1231503799265676754, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
       propertyPath: handBattery
       value: 
@@ -37301,6 +37351,7 @@ MonoBehaviour:
   showDebugRay: 0
   fadeDuration: 0.2
   scalePop: 1.1
+  handCubeObject: {fileID: 0}
   startupPromptText: {fileID: 426421307}
   startupPrompts:
   - Protect yourself and your brother by using the flash light
@@ -39423,6 +39474,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 198248689203289269, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
+      propertyPath: outlineMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1231503799265676754, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
       propertyPath: handBattery
       value: 
@@ -49049,6 +49104,7 @@ MonoBehaviour:
   showDebugRay: 0
   fadeDuration: 0.2
   scalePop: 1.1
+  handCubeObject: {fileID: 0}
   startupPromptText: {fileID: 1571182622}
   startupPrompts:
   - Protect yourself and your brother by using the flash light

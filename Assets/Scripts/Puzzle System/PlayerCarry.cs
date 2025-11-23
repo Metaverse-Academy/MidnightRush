@@ -49,9 +49,9 @@ public class PlayerCarry : MonoBehaviour
         prevLayer  = held.gameObject.layer;
 
         // Disable physics while held
-        held.isKinematic      = true;
+        held.isKinematic      = false;
         held.useGravity       = false;
-        held.detectCollisions = false;
+        held.detectCollisions = true;
 
         // Ignore raycast while held
         held.gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");

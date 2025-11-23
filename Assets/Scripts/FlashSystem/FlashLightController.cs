@@ -66,25 +66,25 @@ public class FlashlightController : MonoBehaviour, IFlashable
 
     private void Update()
     {
-        HandleInput();
+        // HandleInput();
         HandleBattery();
         UpdateUI();
     }
 
-    private void HandleInput()
-    {
-        if (Mouse.current.rightButton.wasPressedThisFrame)
-        {
-            if (!isFlashlightActive)
-            {
-                TurnOn();
-            }
-            else
-            {
-                TurnOff();
-            }
-        }
-    }
+    // private void HandleInput()
+    // {
+    //     if (Mouse.current.rightButton.wasPressedThisFrame)
+    //     {
+    //         if (!isFlashlightActive)
+    //         {
+    //             TurnOn();
+    //         }
+    //         else
+    //         {
+    //             TurnOff();
+    //         }
+    //     }
+    // }
 
     public void OnFlash(InputAction.CallbackContext ctx)
     {
