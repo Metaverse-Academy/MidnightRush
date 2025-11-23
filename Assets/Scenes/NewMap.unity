@@ -6040,7 +6040,7 @@ GameObject:
   - component: {fileID: 419694339}
   m_Layer: 9
   m_Name: 1
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6054,7 +6054,7 @@ Transform:
   m_GameObject: {fileID: 419694337}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.00000004371139, z: -0, w: 1}
-  m_LocalPosition: {x: 0.104006924, y: 1.256393, z: 0.278}
+  m_LocalPosition: {x: 0, y: 1.256393, z: 0.278}
   m_LocalScale: {x: 0.7333333, y: 0.7333333, z: 0.7333333}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6169,7 +6169,7 @@ Camera:
     y: 0
     width: 0.5
     height: 1
-  near clip plane: 0.01
+  near clip plane: 0.17
   far clip plane: 1000
   field of view: 60.000004
   orthographic: 0
@@ -15255,8 +15255,6 @@ GameObject:
   - component: {fileID: 1153996899}
   - component: {fileID: 1153996901}
   - component: {fileID: 1153996900}
-  - component: {fileID: 1153996903}
-  - component: {fileID: 1153996902}
   m_Layer: 9
   m_Name: Flash
   m_TagString: Untagged
@@ -15274,7 +15272,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -1, w: 0}
   m_LocalPosition: {x: 0.0000930117, y: -0.0013, z: 0.0373}
-  m_LocalScale: {x: 0.023023427, y: 0.023023432, z: 0.02302343}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 653434144}
@@ -15315,7 +15313,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153996898}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 0.97793424, g: 1, b: 0.5518868, a: 1}
@@ -15361,7 +15359,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 100
+  m_BounceIntensity: 0
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -15373,43 +15371,6 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
---- !u!136 &1153996902
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1153996898}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 86.95407
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 41.646194}
---- !u!114 &1153996903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1153996898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85a5dc55e5c767b4c9cad3ce244437d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LightZone
-  lightSource: {fileID: 1823591716}
-  enemyAI: {fileID: 4444868152552357355}
 --- !u!1 &1171514988
 GameObject:
   m_ObjectHideFlags: 0
@@ -23900,8 +23861,6 @@ GameObject:
   - component: {fileID: 1823591714}
   - component: {fileID: 1823591716}
   - component: {fileID: 1823591715}
-  - component: {fileID: 1823591718}
-  - component: {fileID: 1823591717}
   m_Layer: 9
   m_Name: Flash
   m_TagString: Untagged
@@ -23919,8 +23878,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -1, w: 0}
   m_LocalPosition: {x: 0.0000930117, y: -0.0013, z: 0.0373}
-  m_LocalScale: {x: 0.023023427, y: 0.023023432, z: 0.02302343}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 308833078}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
@@ -24018,43 +23977,6 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
---- !u!114 &1823591717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1823591713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85a5dc55e5c767b4c9cad3ce244437d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LightZone
-  lightSource: {fileID: 1823591716}
-  enemyAI: {fileID: 4444868152552357355}
---- !u!136 &1823591718
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1823591713}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 86.95407
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 41.646194}
 --- !u!1 &1840710949
 GameObject:
   m_ObjectHideFlags: 0
@@ -24070,7 +23992,7 @@ GameObject:
   - component: {fileID: 1840710951}
   m_Layer: 9
   m_Name: 2
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24208,7 +24130,7 @@ Camera:
     width: 0.5
     height: 1
   near clip plane: 0.16
-  far clip plane: 1000
+  far clip plane: 10
   field of view: 60.000004
   orthographic: 0
   orthographic size: 5
@@ -41605,7 +41527,6 @@ GameObject:
   - component: {fileID: 8827797771834870130}
   - component: {fileID: 8827797771834870131}
   - component: {fileID: 8827797771834870132}
-  - component: {fileID: 8827797771834870133}
   m_Layer: 6
   m_Name: Kids light
   m_TagString: Untagged
@@ -49906,18 +49827,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8827797771834870133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5922491519688351716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd2a84669b0a0e746b384e4757cd0bd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LightRaycastDebug
 --- !u!4 &8829351548099189957
 Transform:
   m_ObjectHideFlags: 0

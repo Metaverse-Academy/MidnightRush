@@ -40,9 +40,9 @@ public class FlashlightController : MonoBehaviour, IFlashable
     {
         currentBattery = workingDuration;
         InitializeUI();
-        
+
         if (flashlightLight != null)
-            flashlightLight.enabled = false;
+            flashlightLight.enabled = true;
     }
 
     private void InitializeUI()
@@ -121,7 +121,6 @@ public class FlashlightController : MonoBehaviour, IFlashable
             {
                 isRecharging = false;
                 currentBattery = workingDuration;
-                UpdateUI(); // Force UI update
             }
         }
     }
@@ -133,7 +132,7 @@ public class FlashlightController : MonoBehaviour, IFlashable
             isFlashlightActive = true;
             if (flashlightLight != null)
                 flashlightLight.enabled = true;
-            
+
             if (AudioManager.Instance != null && flashlightOnClip != null)
             {
                 AudioManager.Instance.PlaySound(flashlightOnClip);
@@ -146,7 +145,7 @@ public class FlashlightController : MonoBehaviour, IFlashable
         isFlashlightActive = false;
         if (flashlightLight != null)
             flashlightLight.enabled = false;
-        
+
         if (AudioManager.Instance != null && flashlightOffClip != null)
         {
             AudioManager.Instance.PlaySound(flashlightOffClip);
@@ -207,7 +206,7 @@ public class FlashlightController : MonoBehaviour, IFlashable
         if (rechargeIndicator != null)
         {
             rechargeIndicator.SetActive(isRecharging);
-            
+
             if (isRecharging && rechargeText != null)
             {
                 float secondsLeft = Mathf.Ceil(rechargeTimer);
@@ -227,7 +226,7 @@ public class FlashlightController : MonoBehaviour, IFlashable
             else
             {
                 float batteryPercent = currentBattery / workingDuration;
-                
+
                 if (batteryPercent > 0.6f)
                     sliderFillImage.color = fullBatteryColor;
                 else if (batteryPercent > 0.3f)
