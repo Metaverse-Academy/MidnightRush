@@ -6693,7 +6693,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &426421306
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7772,7 +7772,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &523819427
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11803,7 +11803,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &817375186
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11844,7 +11844,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: 
-  m_isRightToLeft: 1
+  m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5999c069deb400842bd86552d9ea49f0, type: 2}
   m_sharedMaterial: {fileID: -8350163923429772870, guid: 5999c069deb400842bd86552d9ea49f0, type: 2}
   m_fontSharedMaterials: []
@@ -16227,7 +16227,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1134673655
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21878,7 +21878,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1571182621
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22474,7 +22474,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1617637790
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31010,7 +31010,6 @@ GameObject:
   - component: {fileID: 4317827918284904214}
   - component: {fileID: 4317827918284904213}
   - component: {fileID: 4317827918284904212}
-  - component: {fileID: 4317827918284904209}
   - component: {fileID: 4317827918284904211}
   m_Layer: 9
   m_Name: Boy
@@ -38544,26 +38543,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0024346113, y: 0.331919, z: -0.07993764}
     m_Extent: {x: 0.7083901, y: 0.9821742, z: 0.42110807}
   m_DirtyAABB: 0
---- !u!114 &4317827918284904209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 506666660692591121}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b32d43251633824aa1cfa4f6871e90a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LightRepeller
-  lightSource: {fileID: 1587900385}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  repelDistance: 100
-  repelRadius: 100
-  enableDebug: 0
-  showRayInGame: 1
 --- !u!114 &4317827918284904211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38605,7 +38584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
   cameraTransform: {fileID: 419694338}
   promptCanvas: {fileID: 1053900519}
-  promptText: {fileID: 0}
+  promptText: {fileID: 1134673656}
   promptText2: {fileID: 0}
   interactDistance: 10
   interactDebounce: 0.12
@@ -38616,11 +38595,14 @@ MonoBehaviour:
   fadeDuration: 0.2
   scalePop: 1.1
   handCubeObject: {fileID: 0}
-  startupPromptText: {fileID: 0}
+  startupPromptText: {fileID: 817375187}
   startupPrompts:
-  - Protect yourself and your brother by using the flash light
-  - Press [] To Pick Battaries
-  - Solve the puzzles together
+  - "\u062D\u0644\u0627 \u0627\u0644\u0644\u063A\u0632 \u0642\u0628\u0644 \u0627\u0646\u062A\u0647\u0627\u0652\u0627\u0644\u0648\u0642\u062A"
+  - "\u0627\u0636\u063A\u0637 \u0645\u062B\u0644\u062B \u0644\u0644\u0636\u0648\u0621
+    \u0627\u0644\u0645\u0624\u0642\u062A"
+  - "\u0627\u0636\u063A\u0637 \u0645\u0631\u0628\u0639 \u0644\u062C\u0645\u0639 \u0627\u0644\u0628\u0637\u0627\u0631\u064A\u0627\u062A
+    \u0648\u0627\u0634\u0639\u0627\u0644 \u0627\u0644\u0646\u0648"
+  - "\u0627\u0636\u063A\u0637 \u0645\u0631\u0628\u0639 \u0644\u062D\u0644 \u0627\u0644\u0627\u0644\u063A\u0627\u0632"
   startupDelay: 0
   timeBetweenPrompts: 3
   startupFadeDuration: 0.5
@@ -50203,7 +50185,6 @@ GameObject:
   - component: {fileID: 8763670897915535571}
   - component: {fileID: 8763670897915535570}
   - component: {fileID: 8763670897915535569}
-  - component: {fileID: 8763670897915535568}
   - component: {fileID: 8763670897915535567}
   m_Layer: 9
   m_Name: Girl
@@ -50338,26 +50319,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 100
---- !u!114 &8763670897915535568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8763670897915535563}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b32d43251633824aa1cfa4f6871e90a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LightRepeller
-  lightSource: {fileID: 1587900385}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  repelDistance: 100
-  repelRadius: 100
-  enableDebug: 0
-  showRayInGame: 1
 --- !u!114 &8763670897915535569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50399,9 +50360,12 @@ MonoBehaviour:
   handCubeObject: {fileID: 0}
   startupPromptText: {fileID: 448049476}
   startupPrompts:
-  - "\u0627\u0644\u062D\u0644"
-  - "\u0627\u0644\u062D\u0644"
-  - "\u0627\u0644\u062D\u0644"
+  - "\u062D\u0644\u0627 \u0627\u0644\u0644\u063A\u0632 \u0642\u0628\u0644 \u0627\u0646\u062A\u0647\u0627\u0652\u0627\u0644\u0648\u0642\u062A"
+  - "\u0627\u0636\u063A\u0637 \u0645\u062B\u0644\u062B \u0644\u0644\u0636\u0648\u0621
+    \u0627\u0644\u0645\u0624\u0642\u062A"
+  - "\u0627\u0636\u063A\u0637 \u0645\u0631\u0628\u0639 \u0644\u062C\u0645\u0639 \u0627\u0644\u0628\u0637\u0627\u0631\u064A\u0627\u062A
+    \u0648\u0627\u0634\u0639\u0627\u0644 \u0627\u0644\u0646\u0648"
+  - "\u0627\u0636\u063A\u0637 \u0645\u0631\u0628\u0639 \u0644\u062D\u0644 \u0627\u0644\u0627\u0644\u063A\u0627\u0632"
   startupDelay: 0
   timeBetweenPrompts: 3
   startupFadeDuration: 0.5
