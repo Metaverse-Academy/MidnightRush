@@ -4476,7 +4476,7 @@ Transform:
   m_GameObject: {fileID: 336291111}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02281, y: 0.99456, z: -8.55934}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29749,8 +29749,8 @@ GameObject:
   - component: {fileID: 4317827918284904214}
   - component: {fileID: 4317827918284904213}
   - component: {fileID: 4317827918284904212}
-  - component: {fileID: 4317827918284904211}
   - component: {fileID: 4317827918284904209}
+  - component: {fileID: 4317827918284904211}
   m_Layer: 9
   m_Name: Boy
   m_TagString: Player
