@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using System.Collections;
+using RTLTMPro;
 
 
 public class PlayerInteraction : MonoBehaviour
@@ -9,8 +10,8 @@ public class PlayerInteraction : MonoBehaviour
     [Header("References")]
     [SerializeField] private Transform cameraTransform;
     [SerializeField] private CanvasGroup promptCanvas;
-    [SerializeField] private TMP_Text promptText;
-    [SerializeField] private TMP_Text promptText2;
+    [SerializeField] private RTLTextMeshPro promptText;
+    [SerializeField] private RTLTextMeshPro promptText2;
 
     [Header("Settings")]
     [SerializeField] private float interactDistance = 3f;
@@ -31,7 +32,7 @@ public class PlayerInteraction : MonoBehaviour
 
     [Header("Startup Prompts")]
 
-    [SerializeField] private TMP_Text startupPromptText; // Drag your new Text object here
+    [SerializeField] private RTLTextMeshPro startupPromptText; // Drag your new Text object here
     [SerializeField]
     private string[] startupPrompts = {
     "Use WASD to move, Mouse to look around",
@@ -79,7 +80,7 @@ public class PlayerInteraction : MonoBehaviour
         if (startupPromptText == null) yield break;
 
         // Set the text
-        startupPromptText.text = prompt;
+        startupPromptText.ChangeText(prompt);
 
         // Fade in
         float timer = 0f;
@@ -189,8 +190,8 @@ public class PlayerInteraction : MonoBehaviour
     private void ShowPrompt(string text)
     {
         if (!promptCanvas) return;
-
-        promptText.text = text;
+        promptText.ChangeText(text);
+       
 
         if (!promptVisible)
         {

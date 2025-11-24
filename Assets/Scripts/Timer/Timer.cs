@@ -11,9 +11,9 @@ public class Timer1 : MonoBehaviour
     [SerializeField] float defaultTime = 60f;
 
     // Optional: different times for each trigger entry
-    [SerializeField] float[] timesPerEntry;
+    [SerializeField] float timesPerEntry;
 
-    private float timeRemaining;
+    private static float timeRemaining;
     private bool hasTriggeredGameOver = false;
     private int triggerCount = 0;
 
@@ -75,9 +75,10 @@ public class Timer1 : MonoBehaviour
         // Decide which time to use for this entry
         float newTime;
 
-        if (timesPerEntry != null && timesPerEntry.Length > 0 && triggerCount < timesPerEntry.Length)
+        if (timesPerEntry != null )
         {
-            newTime = timesPerEntry[triggerCount];  // use the next value in the array
+            newTime = timesPerEntry;
+            Debug.Log("NewTime");  // use the next value in the array
         }
         else
         {

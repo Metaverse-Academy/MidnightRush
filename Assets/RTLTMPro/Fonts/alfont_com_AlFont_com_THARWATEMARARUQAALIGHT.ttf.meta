@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: e1fc777649e2cb944af2967ef6d3934f
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - THARWATEMARARUQAALIGHT
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 10b3eaf120c212446be1cd4f09bb823e, type: 3}
+  - {fileID: 12800000, guid: 8c0124b854a242e429ea8cc264547ec7, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
