@@ -3,8 +3,7 @@ using UnityEngine;
 public class GroundBattery : Interactable
 {
     [Header("Battery Settings")]
-    [SerializeField] private GameObject handBattery;
-
+    [SerializeField] private GameObject handBattery, handBattery2;
     private Collider batteryCollider;
     public override void Interact(GameObject interactor)
     {

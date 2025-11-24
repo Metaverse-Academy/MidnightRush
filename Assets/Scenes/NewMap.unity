@@ -6169,7 +6169,7 @@ Camera:
     y: 0
     width: 0.5
     height: 1
-  near clip plane: 0.17
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60.000004
   orthographic: 0
@@ -8945,6 +8945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GroundBattery
   prompt: Press [E] to interact
   handBattery: {fileID: 1171514988}
+  handBattery2: {fileID: 0}
 --- !u!136 &713168377
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9361,7 +9362,7 @@ GameObject:
   - component: {fileID: 722091714}
   - component: {fileID: 722091716}
   m_Layer: 9
-  m_Name: HandBattrey
+  m_Name: GirlBattrey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12603,6 +12604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GroundBattery
   prompt: Press [E] to interact
   handBattery: {fileID: 1171514988}
+  handBattery2: {fileID: 0}
 --- !u!136 &914590572
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -13184,6 +13186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GroundBattery
   prompt: Press [E] to interact
   handBattery: {fileID: 1171514988}
+  handBattery2: {fileID: 0}
 --- !u!136 &977771845
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -15273,7 +15276,7 @@ GameObject:
   - component: {fileID: 1171514992}
   - component: {fileID: 1171514994}
   m_Layer: 9
-  m_Name: HandBattrey
+  m_Name: BoyBattrey
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16592,6 +16595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GroundBattery
   prompt: Press [E] to interact
   handBattery: {fileID: 1171514988}
+  handBattery2: {fileID: 0}
 --- !u!136 &1271203775
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -21554,7 +21558,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1639384431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21562,13 +21566,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1639384430}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4e8e9a36327f194a93dafbe70ef84b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GroundBattery
   prompt: Press [E] to interact
   handBattery: {fileID: 1171514988}
+  handBattery2: {fileID: 0}
 --- !u!136 &1639384433
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -23981,7 +23986,7 @@ Camera:
     y: 0
     width: 0.5
     height: 1
-  near clip plane: 0.16
+  near clip plane: 0.1
   far clip plane: 10
   field of view: 60.000004
   orthographic: 0
@@ -27780,6 +27785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GroundBattery
   prompt: Press [E] to interact
   handBattery: {fileID: 268582212}
+  handBattery2: {fileID: 0}
 --- !u!114 &2072036008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27794,6 +27800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GroundBattery
   prompt: Press [E] to interact
   handBattery: {fileID: 1359794454}
+  handBattery2: {fileID: 0}
 --- !u!1 &2098804543
 GameObject:
   m_ObjectHideFlags: 0
@@ -28052,6 +28059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GroundBattery
   prompt: Press [E] to interact
   handBattery: {fileID: 851830798}
+  handBattery2: {fileID: 0}
 --- !u!114 &2117116573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28066,6 +28074,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GroundBattery
   prompt: Press [E] to interact
   handBattery: {fileID: 815277663}
+  handBattery2: {fileID: 0}
 --- !u!1 &2119701729
 GameObject:
   m_ObjectHideFlags: 0
@@ -29484,6 +29493,7 @@ GameObject:
   - component: {fileID: 4317827918284904214}
   - component: {fileID: 4317827918284904213}
   - component: {fileID: 4317827918284904212}
+  - component: {fileID: 4317827918284904218}
   m_Layer: 9
   m_Name: Boy
   m_TagString: Player
@@ -31765,7 +31775,6 @@ GameObject:
   - component: {fileID: 2536397033483729903}
   - component: {fileID: 6777355440937954888}
   - component: {fileID: 6777355440937954889}
-  - component: {fileID: 6777355440937954890}
   m_Layer: 6
   m_Name: Living room light
   m_TagString: Untagged
@@ -36634,7 +36643,6 @@ GameObject:
   - component: {fileID: 7100075340544214976}
   - component: {fileID: 7100075340544214977}
   - component: {fileID: 7100075340544214978}
-  - component: {fileID: 7100075340544214979}
   m_Layer: 6
   m_Name: Master room light1.004
   m_TagString: Untagged
@@ -37295,6 +37303,21 @@ CapsuleCollider:
   m_Height: 1.964373
   m_Direction: 1
   m_Center: {x: -0.004001856, y: 0.8157158, z: -0.06579459}
+--- !u!114 &4317827918284904218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 506666660692591121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4e8e9a36327f194a93dafbe70ef84b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundBattery
+  prompt: Press [E] to interact
+  handBattery: {fileID: 1171514988}
+  handBattery2: {fileID: 0}
 --- !u!4 &4323911171006129011
 Transform:
   m_ObjectHideFlags: 0
@@ -37405,7 +37428,6 @@ GameObject:
   - component: {fileID: 4300105732112483441}
   - component: {fileID: 5520674336174390680}
   - component: {fileID: 5520674336174390681}
-  - component: {fileID: 5520674336174390682}
   m_Layer: 6
   m_Name: Living room light.001
   m_TagString: Untagged
@@ -39176,22 +39198,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 198248689203289269, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
-      propertyPath: outlineMode
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1231503799265676754, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
       propertyPath: handBattery
       value: 
       objectReference: {fileID: 1171514988}
-    - target: {fileID: 4749109446889456851, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
-      propertyPath: m_Radius
-      value: 0.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 4805961369533060929, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
-      propertyPath: m_Radius
-      value: 0.05
-      objectReference: {fileID: 0}
+    - target: {fileID: 1231503799265676754, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
+      propertyPath: handBattery2
+      value: 
+      objectReference: {fileID: 722091710}
     - target: {fileID: 5141511537276884225, guid: 4b8a50a8cc1a99d46a2e21c041510355, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.61278
@@ -40087,7 +40101,6 @@ GameObject:
   - component: {fileID: 4538943241554772811}
   - component: {fileID: 5451326114872574115}
   - component: {fileID: 5451326114872574116}
-  - component: {fileID: 5451326114872574117}
   m_Layer: 6
   m_Name: Master room light1.001
   m_TagString: Untagged
@@ -40130,41 +40143,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LampBattrey
   prompt: Press [E] to interact
-  handBattery: {fileID: 1171514988}
+  handBattery: {fileID: 722091710}
+  handBattery2: {fileID: 1171514988}
   lampBattery: {fileID: 713168374}
   lampLight: {fileID: 540036643}
-  lightRaycastController: {fileID: 5451326114872574117}
   batteryLifetime: 25
   placeBatteryPrompt: '[]'
   noBatteryPrompt: '[]'
-  LightOnSound: {fileID: 8300000, guid: 00a022513043315409eb683bca585438, type: 3}
-  LightOffSound: {fileID: 8300000, guid: 00a022513043315409eb683bca585438, type: 3}
+  LightOnSound: {fileID: 0}
+  LightOffSound: {fileID: 0}
   audioSource: {fileID: 8827797771834870132}
   BattryPlaceSound: {fileID: 0}
---- !u!114 &5451326114872574117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5451326114872574114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f219b987f60ba4c4d907381f31a59a7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LightRaycast
-  lightSource: {fileID: 540036641}
-  lampLight: {fileID: 540036643}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  barrierDistance: 20
-  barrierWidth: 2
-  barrierHeight: 3
-  repelForce: 10
-  minSafeDistance: 3
-  showDebug: 0
-  showForceField: 1
 --- !u!4 &5473046291984440844
 Transform:
   m_ObjectHideFlags: 0
@@ -40305,41 +40294,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LampBattrey
   prompt: Press [E] to interact
-  handBattery: {fileID: 1171514988}
+  handBattery: {fileID: 722091710}
+  handBattery2: {fileID: 1171514988}
   lampBattery: {fileID: 977771842}
   lampLight: {fileID: 2143441713}
-  lightRaycastController: {fileID: 5520674336174390682}
   batteryLifetime: 25
   placeBatteryPrompt: '[]'
   noBatteryPrompt: '[]'
-  LightOnSound: {fileID: 8300000, guid: 00a022513043315409eb683bca585438, type: 3}
-  LightOffSound: {fileID: 8300000, guid: 00a022513043315409eb683bca585438, type: 3}
+  LightOnSound: {fileID: 0}
+  LightOffSound: {fileID: 0}
   audioSource: {fileID: 8827797771834870132}
   BattryPlaceSound: {fileID: 0}
---- !u!114 &5520674336174390682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4409551617056664841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f219b987f60ba4c4d907381f31a59a7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LightRaycast
-  lightSource: {fileID: 2143441711}
-  lampLight: {fileID: 2143441713}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  barrierDistance: 20
-  barrierWidth: 2
-  barrierHeight: 3
-  repelForce: 10
-  minSafeDistance: 3
-  showDebug: 0
-  showForceField: 1
 --- !u!1 &5544427619375380148
 GameObject:
   m_ObjectHideFlags: 0
@@ -41305,8 +41270,9 @@ GameObject:
   - component: {fileID: 8827797771834870128}
   - component: {fileID: 8827797771834870129}
   - component: {fileID: 8827797771834870130}
-  - component: {fileID: 8827797771834870131}
   - component: {fileID: 8827797771834870132}
+  - component: {fileID: 8827797771834870133}
+  - component: {fileID: 8827797771834870134}
   m_Layer: 6
   m_Name: Kids light
   m_TagString: Untagged
@@ -43053,41 +43019,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LampBattrey
   prompt: Press [E] to interact
-  handBattery: {fileID: 1171514988}
+  handBattery: {fileID: 722091710}
+  handBattery2: {fileID: 1171514988}
   lampBattery: {fileID: 1271203772}
   lampLight: {fileID: 1004827410}
-  lightRaycastController: {fileID: 6777355440937954890}
   batteryLifetime: 25
   placeBatteryPrompt: '[]'
   noBatteryPrompt: '[]'
-  LightOnSound: {fileID: 8300000, guid: 00a022513043315409eb683bca585438, type: 3}
-  LightOffSound: {fileID: 8300000, guid: 00a022513043315409eb683bca585438, type: 3}
+  LightOnSound: {fileID: 0}
+  LightOffSound: {fileID: 0}
   audioSource: {fileID: 8827797771834870132}
   BattryPlaceSound: {fileID: 0}
---- !u!114 &6777355440937954890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1667526834032270109}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f219b987f60ba4c4d907381f31a59a7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LightRaycast
-  lightSource: {fileID: 1004827408}
-  lampLight: {fileID: 1004827410}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  barrierDistance: 20
-  barrierWidth: 2
-  barrierHeight: 3
-  repelForce: 10
-  minSafeDistance: 3
-  showDebug: 0
-  showForceField: 1
 --- !u!1 &6783480700714362268
 GameObject:
   m_ObjectHideFlags: 0
@@ -43936,41 +43878,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LampBattrey
   prompt: Press [E] to interact
-  handBattery: {fileID: 1171514988}
+  handBattery: {fileID: 722091710}
+  handBattery2: {fileID: 1171514988}
   lampBattery: {fileID: 914590569}
   lampLight: {fileID: 1172963743}
-  lightRaycastController: {fileID: 7100075340544214979}
   batteryLifetime: 25
   placeBatteryPrompt: '[]'
   noBatteryPrompt: '[]'
-  LightOnSound: {fileID: 8300000, guid: 00a022513043315409eb683bca585438, type: 3}
-  LightOffSound: {fileID: 8300000, guid: 00a022513043315409eb683bca585438, type: 3}
+  LightOnSound: {fileID: 0}
+  LightOffSound: {fileID: 0}
   audioSource: {fileID: 8827797771834870132}
   BattryPlaceSound: {fileID: 0}
---- !u!114 &7100075340544214979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4234837384517860738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f219b987f60ba4c4d907381f31a59a7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LightRaycast
-  lightSource: {fileID: 1172963741}
-  lampLight: {fileID: 1172963743}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  barrierDistance: 20
-  barrierWidth: 2
-  barrierHeight: 3
-  repelForce: 10
-  minSafeDistance: 3
-  showDebug: 0
-  showForceField: 1
 --- !u!1 &7111451224506234770
 GameObject:
   m_ObjectHideFlags: 0
@@ -48612,6 +48530,7 @@ GameObject:
   - component: {fileID: 8763670897915535571}
   - component: {fileID: 8763670897915535570}
   - component: {fileID: 8763670897915535569}
+  - component: {fileID: 8763670897915535575}
   m_Layer: 9
   m_Name: Girl
   m_TagString: Player
@@ -49012,6 +48931,21 @@ CapsuleCollider:
   m_Height: 1.9276841
   m_Direction: 1
   m_Center: {x: 0.039852858, y: 0.84, z: -0.15912458}
+--- !u!114 &8763670897915535575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8763670897915535563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4e8e9a36327f194a93dafbe70ef84b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundBattery
+  prompt: Press [E] to interact
+  handBattery: {fileID: 722091710}
+  handBattery2: {fileID: 0}
 --- !u!4 &8769682630029721045
 Transform:
   m_ObjectHideFlags: 0
@@ -49440,41 +49374,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LampBattrey
   prompt: Press [E] to interact
-  handBattery: {fileID: 1171514988}
+  handBattery: {fileID: 722091710}
+  handBattery2: {fileID: 1171514988}
   lampBattery: {fileID: 1639384430}
   lampLight: {fileID: 419916576}
-  lightRaycastController: {fileID: 8827797771834870131}
   batteryLifetime: 25
   placeBatteryPrompt: E
   noBatteryPrompt: E
-  LightOnSound: {fileID: 8300000, guid: 00a022513043315409eb683bca585438, type: 3}
-  LightOffSound: {fileID: 8300000, guid: 00a022513043315409eb683bca585438, type: 3}
+  LightOnSound: {fileID: 0}
+  LightOffSound: {fileID: 0}
   audioSource: {fileID: 8827797771834870132}
   BattryPlaceSound: {fileID: 0}
---- !u!114 &8827797771834870131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5922491519688351716}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f219b987f60ba4c4d907381f31a59a7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LightRaycast
-  lightSource: {fileID: 419916574}
-  lampLight: {fileID: 419916576}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  barrierDistance: 20
-  barrierWidth: 2
-  barrierHeight: 3
-  repelForce: 10
-  minSafeDistance: 3
-  showDebug: 0
-  showForceField: 1
 --- !u!82 &8827797771834870132
 AudioSource:
   m_ObjectHideFlags: 0
@@ -49572,6 +49482,40 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &8827797771834870133
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5922491519688351716}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.060339794
+  m_Center: {x: 0.021660542, y: 0.37040776, z: 0.9010041}
+--- !u!114 &8827797771834870134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5922491519688351716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49ee63707326b3740a6a398088617892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  prompt: Press [E] to interact
 --- !u!4 &8829351548099189957
 Transform:
   m_ObjectHideFlags: 0
