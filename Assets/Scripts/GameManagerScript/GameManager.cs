@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
     {
         // if (isGameEnded) return; // <--- أضف هذا السطر
 
-        
+
         hasGameWon = true;
         isGameEnded = true;
         Debug.Log("✅ You won! All objectives completed!");
@@ -212,7 +212,7 @@ public class GameManager : MonoBehaviour
     public void GoToMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("Main Menu");
     }
 
     // دالة للحصول على عدد الأهداف المتبقية
