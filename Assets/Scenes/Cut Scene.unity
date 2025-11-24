@@ -837,8 +837,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170747784}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.018601352, y: -0.0027047873, z: 0.00005061876, w: -0.99982333}
-  m_LocalPosition: {x: 558.338, y: 257.6604, z: -389.49902}
+  m_LocalRotation: {x: -0.013807926, y: -0.0015029665, z: 0.000020885735, w: -0.99990356}
+  m_LocalPosition: {x: 301.40057, y: 148.1755, z: -192.41602}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1251,9 +1251,12 @@ MonoBehaviour:
   storyPanel3: {fileID: 1817125385}
   StoryUI: {fileID: 557076464}
   ComicsUI: {fileID: 1567544302}
-  displayDuration1: 2
-  displayDuration2: 2
-  displayDuration3: 2
+  displayDuration1: 5
+  displayDuration2: 5
+  displayDuration3: 5
+  audioSource: {fileID: 0}
+  backgroundMusic: {fileID: 0}
+  mainMenuSceneName: MainMenu
 --- !u!1 &1567544302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1866,17 +1869,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1929229398}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3546dc4875cda3c449e42bcfede25a08, type: 3}
+  m_Script: {fileID: 11500000, guid: e9d7aec82934c674f91f0a85e89f975a, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::StoryManager
-  storyPanel1: {fileID: 1801380606}
-  storyPanel2: {fileID: 1902036198}
-  storyPanel3: {fileID: 1081157519}
-  StoryUI: {fileID: 0}
-  ComicsUI: {fileID: 0}
-  displayDuration1: 2
-  displayDuration2: 2
-  displayDuration3: 2
+  m_EditorClassIdentifier: Assembly-CSharp::ComicsManager
+  comicImage1: {fileID: 1867430529}
+  comicImage2: {fileID: 1902036198}
+  comicImage3: {fileID: 1081157519}
+  comicImage4: {fileID: 45310258}
+  audioSource: {fileID: 0}
+  backgroundMusic: {fileID: 0}
 --- !u!1 &2009540546
 GameObject:
   m_ObjectHideFlags: 0
