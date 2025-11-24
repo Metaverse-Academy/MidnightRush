@@ -8,6 +8,8 @@ public class TriggerHandler : MonoBehaviour
     public AudioSource audioSource;
 
     public Animator ghostAnimator;
+    private bool isplayed = false;
+    private bool isplayedexit = false;
 
     void Awake()
     {
@@ -25,6 +27,8 @@ public class TriggerHandler : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+
+        if (isplayed) return;
         if (other.CompareTag("Player"))
         {
             if (objectToAppear != null)
@@ -34,19 +38,22 @@ public class TriggerHandler : MonoBehaviour
                 // 👉 Play animation if available
                 if (ghostAnimator != null)
                     ghostAnimator.SetTrigger("Appear");
+                Debug.Log("Animation Triggered");
+                PlayRandomAudio();
+                isplayed = true;
             }
-
-            PlayRandomAudio();
         }
     }
 
     void OnTriggerExit(Collider other)
     {
+        if (isplayedexit) return;
         if (other.CompareTag("Player"))
         {
             if (objectToAppear != null)
             {
                 objectToAppear.SetActive(false);
+                isplayedexit = true;
             }
         }
     }
