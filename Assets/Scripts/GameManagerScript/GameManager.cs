@@ -69,15 +69,20 @@ public class GameManager : MonoBehaviour
 
     public void CheckGameStatus()
     {
-        if ((player1Health != null && player1Health.IsDead()) ||
-            (player2Health != null && player2Health.IsDead()))
-        {
-            string deadPlayer = (player1Health != null && player1Health.IsDead()) ? "Player 1" : "Player 2";
-            StartGameOverSequence(deadPlayer);
-        }
+        // if ((player1Health != null && player1Health.IsDead()) ||
+        //     (player2Health != null && player2Health.IsDead()))
+        // {
+        //     string deadPlayer = (player1Health != null && player1Health.IsDead()) ? "Player 1" : "Player 2";
+        //     StartGameOverSequence(deadPlayer);
+        // }
 
-        // إذا انجزا جميع الأهداف → Game Won
-        if (completedObjectives >= totalObjectives && !hasGameWon)
+        // // إذا انجزا جميع الأهداف → Game Won
+        // if (completedObjectives >= totalObjectives && !hasGameWon)
+        // {
+        //     StartGameWonSequence();
+        // }
+
+            if (completedObjectives >= totalObjectives && !hasGameWon)
         {
             StartGameWonSequence();
         }
@@ -231,4 +236,11 @@ public class GameManager : MonoBehaviour
     {
         return hasGameWon;
     }
+
+    public void OnTimeUp()
+    {
+        if (isGameEnded) return;   // don't trigger twice
+        StartGameOverSequence("Time's Up");
+    }
+
 }
