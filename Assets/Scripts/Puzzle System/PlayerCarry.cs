@@ -79,7 +79,7 @@ public class PlayerCarry : MonoBehaviour
 
         held.linearVelocity   = Vector3.zero;
         held.angularVelocity  = Vector3.zero;
-        held.AddForce(transform.forward * 2f, ForceMode.Impulse);
+        //held.AddForce(transform.forward * 2f, ForceMode.Impulse);
 
         held      = null;
         prevParent = null;

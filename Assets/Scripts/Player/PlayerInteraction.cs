@@ -20,7 +20,11 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float fadeDuration = 0.2f;
     [SerializeField] private float scalePop = 1.1f;
     public bool IsHoldingBattery { get; set; } = false;
-    public bool IsHoldingPazzle { get; set; } = false;
+
+    [Header("Player State")]
+    [SerializeField] private GameObject handCubeObject;
+    private bool _isHoldingCube = false;
+    private int _heldCubeID = 0;
     private IInteractable currentTarget;
     private bool promptVisible;
     private float cooldownUntil;
@@ -256,7 +260,4 @@ public class PlayerInteraction : MonoBehaviour
 
         return "Interacted";
     }
-
-
-
 }

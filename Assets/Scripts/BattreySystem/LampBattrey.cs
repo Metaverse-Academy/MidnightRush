@@ -4,11 +4,12 @@ using System.Collections;
 public class LampBattrey : Interactable
 {
     [Header("Lamp Settings")]
-    [SerializeField] private GameObject handBattery;
+    [SerializeField] private GameObject handBattery , handBattery2;
     [SerializeField] private GameObject lampBattery;
     [SerializeField] private Light lampLight;
-    [Header("Dependencies")]
-    [SerializeField] private LightRaycast lightRaycastController;
+
+    // [Header("Dependencies")]
+    // [SerializeField] private LightRaycast lightRaycastController;
 
     [Header("Battery Lifetime")]
     [Tooltip("Lifetime of the battery in seconds")]
@@ -17,13 +18,14 @@ public class LampBattrey : Interactable
     [Header("UI Feedback")]
     [SerializeField] private string placeBatteryPrompt = "To place the battery, press 'E'";
     [SerializeField] private string noBatteryPrompt = "You need a battery to power the lamp.";
-
     private bool hasBattery = false;
     private Coroutine batteryDestroyCoroutine;
     public bool IsOn => lampLight != null && lampLight.enabled;   // <— ADD
-     [SerializeField] private AudioClip LightOnSound; // Sound to play when the light is turned on
-    [SerializeField] private AudioClip LightOffSound; // Sound to play when the light    [SerializeField] private AudioClip dooropenClip;
-    [SerializeField] private AudioSource audioSource; 
+    [SerializeField] private AudioClip LightOnSound; // Sound to play when the light is turned on
+    [SerializeField] private AudioClip LightOffSound; // Sound to play when the light 
+
+    //[SerializeField] private AudioClip dooropenClip;
+    [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip BattryPlaceSound;
     public override void Interact(GameObject interactor)
     {
@@ -37,7 +39,6 @@ public class LampBattrey : Interactable
         {
         }
     }
-
     public new string GetPrompt()
     {
         if (hasBattery)
@@ -61,13 +62,14 @@ public class LampBattrey : Interactable
     private void PlaceBattery(PlayerInteraction player)
     {
         if (handBattery != null) handBattery.SetActive(false);
+        if (handBattery2 != null) handBattery2.SetActive(false);
 
         if (lampBattery != null) lampBattery.SetActive(true);
 
         if (lampLight != null) lampLight.enabled = true;
 
-        if (lightRaycastController != null)
-            lightRaycastController.enabled = true;
+        // if (lightRaycastController != null)
+        //     lightRaycastController.enabled = true;
 
         player.IsHoldingBattery = false;
         hasBattery = true;
@@ -76,10 +78,7 @@ public class LampBattrey : Interactable
         batteryDestroyCoroutine = StartCoroutine(DestroyBatteryAfterDelay());
         audioSource.PlayOneShot(BattryPlaceSound);
         audioSource.PlayOneShot(LightOnSound);
-
-
     }
-
     private IEnumerator DestroyBatteryAfterDelay()
     {
         yield return new WaitForSeconds(batteryLifetime);
@@ -94,8 +93,8 @@ public class LampBattrey : Interactable
             lampBattery.SetActive(false);
         }
 
-        if (lightRaycastController != null)
-            lightRaycastController.enabled = false;
+        // if (lightRaycastController != null)
+        //     lightRaycastController.enabled = false;
 
         hasBattery = false;
         batteryDestroyCoroutine = null;
@@ -109,7 +108,6 @@ public class LampBattrey : Interactable
     {
         if (!hasBattery || batteryDestroyCoroutine == null)
             return 0f;
-
         return batteryLifetime;
     }
     private void OnDestroy()

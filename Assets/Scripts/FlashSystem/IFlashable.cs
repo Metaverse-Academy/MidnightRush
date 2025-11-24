@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public interface IFlashable
 {
     bool IsWorking { get; }
