@@ -6,9 +6,22 @@ using TMPro;
 public class Timer1 : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI timerText;
-    [SerializeField] float timeRemaining = 60f;
 
+    // Default starting time (used if you run out of custom entries).
+    [SerializeField] float defaultTime = 60f;
+
+    // Optional: different times for each trigger entry
+    [SerializeField] float timesPerEntry;
+
+    private static float timeRemaining;
     private bool hasTriggeredGameOver = false;
+    private int triggerCount = 0;
+
+    void Start()
+    {
+        // Start with default time (or first entry if you want)
+        timeRemaining = defaultTime;
+    }
 
     void Update()
     {
@@ -28,6 +41,7 @@ public class Timer1 : MonoBehaviour
 
         int minutes = Mathf.FloorToInt(timeRemaining / 60f);
         int seconds = Mathf.FloorToInt(timeRemaining % 60f);
+
         if (timerText != null)
             timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
@@ -44,5 +58,38 @@ public class Timer1 : MonoBehaviour
         {
             Debug.LogWarning("GameManager.Instance is null! Make sure there is a GameManager in the scene.");
         }
+    }
+
+    private void ResetTimer(float newDuration)
+    {
+        timeRemaining = newDuration;
+        hasTriggeredGameOver = false; // allow timer to run again
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        // Only react to player (adjust tag name to yours)
+        if (!other.CompareTag("Player"))
+            return;
+
+        // Decide which time to use for this entry
+        float newTime;
+
+        if (timesPerEntry != null )
+        {
+            newTime = timesPerEntry;
+            Debug.Log("NewTime");  // use the next value in the array
+        }
+        else
+        {
+            newTime = defaultTime; // fallback
+        }
+
+        triggerCount++;
+
+        // Restart the timer with the chosen time
+        ResetTimer(newTime);
+
+        Debug.Log($"Trigger entered #{triggerCount}, timer reset to {newTime} seconds.");
     }
 }
