@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     [Header("Player Health")]
-    [SerializeField] private PlayerHealth player1Health;
-    [SerializeField] private PlayerHealth player2Health;
+    // [SerializeField] private PlayerHealth player1Health;
+    // [SerializeField] private PlayerHealth player2Health;
 
     [Header("UI Elements")]
     [SerializeField] private GameObject gameOverUI;

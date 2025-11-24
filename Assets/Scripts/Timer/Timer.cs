@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using NUnit.Framework;
 
 public class Timer1 : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class Timer1 : MonoBehaviour
     private static float timeRemaining;
     private bool hasTriggeredGameOver = false;
     private int triggerCount = 0;
+
+    bool isPlayed =false;
 
     void Start()
     {
@@ -68,9 +71,8 @@ public class Timer1 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // Only react to player (adjust tag name to yours)
-        if (!other.CompareTag("Player"))
-            return;
+        if(isPlayed) return;
+        if (!other.CompareTag("Player")) return;
 
         // Decide which time to use for this entry
         float newTime;
@@ -89,7 +91,7 @@ public class Timer1 : MonoBehaviour
 
         // Restart the timer with the chosen time
         ResetTimer(newTime);
-
+        isPlayed = true;
         Debug.Log($"Trigger entered #{triggerCount}, timer reset to {newTime} seconds.");
     }
 }
