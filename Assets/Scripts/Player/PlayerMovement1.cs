@@ -85,6 +85,8 @@ public class PlayerMovement2 : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.IsGameEnded()) return;
+        if (GameManager.Instance.HasGameWon()) return;
         CheckGrounded();
         HandleLook();
 
@@ -119,7 +121,6 @@ public class PlayerMovement2 : MonoBehaviour
 
     private void HandleLook()
     {
-        if (GameManager.Instance.IsGameEnded()) return;
         if (!cameraTransform) return;
 
         yaw += lookInput.x * mouseSensitivityX;

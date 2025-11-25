@@ -1,8 +1,10 @@
 using UnityEngine;
 
+
 public class Interactable : MonoBehaviour, IInteractable
 {
-    [SerializeField] private string prompt = "Press [E] to interact";
+
+    [SerializeField] private string prompt = "";
 
     public virtual string GetPrompt() => prompt;
 
