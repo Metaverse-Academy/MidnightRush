@@ -40,8 +40,8 @@ public class PlacePoint : Interactable
 
     public override string GetPrompt()
     {
-        if (!IsOccupied) return "Place object";
-        return allowTakeBack ? "Take object" : "Occupied";
+        if (!IsOccupied) return "ضع المكعب هنا";
+        return allowTakeBack ? "استرجع المكعب" : "مكتمل";
     }
 
     public override void Interact(GameObject interactor)
