@@ -251,14 +251,14 @@ public class PlayerInteraction : MonoBehaviour
         // You can customize this based on the type of interaction
         if (interactedObject is PickableItem)
         {
-            return "Item picked up";
+            return "تم التقاط المكعب";
         }
         else if (interactedObject is PlacePoint)
         {
-            return "Item placed";
+            return "تم وضع المكعب";
         }
         // Add more types as needed
 
-        return "Interacted";
+        return "";
     }
 }

@@ -38,7 +38,7 @@ public class InteractableFrame : MonoBehaviour, IInteractable
     // IInteractable implementation
     public string GetPrompt()
     {
-        return "Select Frame";
+        return "انقر مربع على لوحتين لتبديل اللوحة";
     }
     
     public void Interact(GameObject interactor)

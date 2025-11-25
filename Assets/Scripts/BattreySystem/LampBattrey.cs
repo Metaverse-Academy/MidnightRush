@@ -16,8 +16,8 @@ public class LampBattrey : Interactable
     [SerializeField] private float batteryLifetime = 10f;
 
     [Header("UI Feedback")]
-    [SerializeField] private string placeBatteryPrompt = "To place the battery, press 'E'";
-    [SerializeField] private string noBatteryPrompt = "You need a battery to power the lamp.";
+    [SerializeField] private string placeBatteryPrompt = "انقر مربع لوضع البطارية'";
+    [SerializeField] private string noBatteryPrompt = "تحتاج بطارية لتشعل الضوء";
     private bool hasBattery = false;
     private Coroutine batteryDestroyCoroutine;
     public bool IsOn => lampLight != null && lampLight.enabled;   // <— ADD
@@ -43,7 +43,7 @@ public class LampBattrey : Interactable
     {
         if (hasBattery)
         {
-            return "The lamp has a battery installed.";
+            return "تم وضع البطارية";
         }
         else
         {

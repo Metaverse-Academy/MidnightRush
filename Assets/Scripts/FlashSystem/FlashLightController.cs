@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using RTLTMPro;
+
 
 public class FlashlightController : MonoBehaviour, IFlashable
 {
@@ -13,7 +15,7 @@ public class FlashlightController : MonoBehaviour, IFlashable
     [Header("UI Elements")]
     [SerializeField] private Slider batterySlider;
     [SerializeField] private Image sliderFillImage;
-    [SerializeField] private Text batteryText;
+    [SerializeField] private RTLTextMeshPro batteryText;
     [SerializeField] private GameObject rechargeIndicator;
     [SerializeField] private Text rechargeText;
 
@@ -192,12 +194,12 @@ public class FlashlightController : MonoBehaviour, IFlashable
             if (isRecharging)
             {
                 float secondsLeft = Mathf.Ceil(rechargeTimer);
-                batteryText.text = $"Recharging: {secondsLeft:F0}s";
+                batteryText.text = $"البطارية تشحن: {secondsLeft:F0}ثواني";
             }
             else
             {
                 float batteryPercent = (currentBattery / workingDuration) * 100f;
-                batteryText.text = $"Battery: {batteryPercent:F0}%";
+                batteryText.text = $"بطراية الضوء: {batteryPercent:F0}%";
             }
         }
     }
@@ -211,7 +213,7 @@ public class FlashlightController : MonoBehaviour, IFlashable
             if (isRecharging && rechargeText != null)
             {
                 float secondsLeft = Mathf.Ceil(rechargeTimer);
-                rechargeText.text = $"Recharging... {secondsLeft:F0}s";
+                rechargeText.text = $"البطارية تشحن {secondsLeft:F0}s";
             }
         }
     }

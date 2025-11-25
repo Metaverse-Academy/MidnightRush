@@ -16,9 +16,9 @@ public class PickableItem : Interactable
         var carry = GameObject.FindObjectOfType<PlayerCarry>();
         if (carry && carry.IsHolding)
         {
-            return "Drop Item";
+            return "ارمي المكعب";
         }
-        return "Pick Up";
+        return "التقط المكعب";
     }
 
     public override void Interact(GameObject interactor)
