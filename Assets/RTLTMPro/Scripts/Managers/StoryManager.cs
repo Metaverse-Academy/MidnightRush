@@ -22,8 +22,6 @@ public class StoryManager : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip backgroundMusic;
 
-    [Header("Main Menu Scene Name")]
-    [SerializeField] private string mainMenuSceneName = "MainMenu";
 
     private void Start()
     {
@@ -63,7 +61,6 @@ public class StoryManager : MonoBehaviour
         StoryUI.SetActive(false);
         ComicsUI.SetActive(true);
 
-        // الانتقال إلى سين الماين منيو
-        SceneManager.LoadScene(mainMenuSceneName);
     }
+
 }
