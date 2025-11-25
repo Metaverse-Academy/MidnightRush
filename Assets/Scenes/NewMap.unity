@@ -11173,7 +11173,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 819906937}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 1, g: 0.8530495, b: 0.5613208, a: 1}
@@ -16269,7 +16269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Timer1
   timerText: {fileID: 139772564}
   defaultTime: 60
-  timesPerEntry: 120
+  timesPerEntry: 180
 --- !u!65 &1200423022
 BoxCollider:
   m_ObjectHideFlags: 0
