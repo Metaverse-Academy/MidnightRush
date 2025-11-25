@@ -131,7 +131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e8e9a36327f194a93dafbe70ef84b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GroundBattery
-  prompt: "\u0627\u0644\u0639\u0631\u0628\u064A"
+  prompt: "\u0627\u0646\u0642\u0631 \u0645\u0631\u0628\u0639 \u0644\u0627\u0627\u0644\u062A\u0642\u0627\u0637
+    \u0627\u0644\u0628\u0637\u0627\u0631\u064A\u0629"
   handBattery: {fileID: 0}
   handBattery2: {fileID: 0}
 --- !u!114 &198248689203289269
