@@ -83,12 +83,12 @@ public class PowerSwitch : MonoBehaviour , IInteractable
         if (audioSource)
             audioSource.Play();
 
-        if (animator)
-        {
-            // Either use a bool parameter or just play an animation
-            animator.SetBool("On", isOn);
-            animator.Play("Switch"); // change to your state name
-        }
+        
+        
+        animator.SetBool("IsOn", isOn);
+        //animator.Play("Switch"); 
+        Debug.Log("Switch toggled. New state: " + isOn);
+        
 
         // Tell the puzzle manager something changed
         if (puzzleManager != null)
