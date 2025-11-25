@@ -5310,12 +5310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriggerHandler
   objectToAppear: {fileID: 0}
   audioClip:
-  - {fileID: 8300000, guid: ec477b261147ff14489902e495acd05d, type: 3}
-  - {fileID: 8300000, guid: bfced87cd18b4724b9f1c059ed2b22ec, type: 3}
-  - {fileID: 8300000, guid: d4bb65c207175064ebc90a5fef674732, type: 3}
-  - {fileID: 8300000, guid: c864284d952a81344a03519ced3aa7f6, type: 3}
   - {fileID: 8300000, guid: 5fe493ad478bb0449ace236f50ace8cf, type: 3}
-  - {fileID: 8300000, guid: 8fafeb39cbae7a447ad0c74cd3356b9b, type: 3}
   audioSource: {fileID: 0}
   ghostAnimator: {fileID: 0}
 --- !u!4 &386669583
@@ -11126,7 +11121,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &819906938
 Transform:
   m_ObjectHideFlags: 0
@@ -14847,12 +14842,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriggerHandler
   objectToAppear: {fileID: 0}
   audioClip:
-  - {fileID: 8300000, guid: ec477b261147ff14489902e495acd05d, type: 3}
-  - {fileID: 8300000, guid: bfced87cd18b4724b9f1c059ed2b22ec, type: 3}
   - {fileID: 8300000, guid: d4bb65c207175064ebc90a5fef674732, type: 3}
-  - {fileID: 8300000, guid: c864284d952a81344a03519ced3aa7f6, type: 3}
-  - {fileID: 8300000, guid: 5fe493ad478bb0449ace236f50ace8cf, type: 3}
-  - {fileID: 8300000, guid: 8fafeb39cbae7a447ad0c74cd3356b9b, type: 3}
   audioSource: {fileID: 0}
   ghostAnimator: {fileID: 0}
 --- !u!4 &1081787181
@@ -21307,11 +21297,6 @@ MonoBehaviour:
   objectToAppear: {fileID: 0}
   audioClip:
   - {fileID: 8300000, guid: ec477b261147ff14489902e495acd05d, type: 3}
-  - {fileID: 8300000, guid: bfced87cd18b4724b9f1c059ed2b22ec, type: 3}
-  - {fileID: 8300000, guid: d4bb65c207175064ebc90a5fef674732, type: 3}
-  - {fileID: 8300000, guid: c864284d952a81344a03519ced3aa7f6, type: 3}
-  - {fileID: 8300000, guid: 5fe493ad478bb0449ace236f50ace8cf, type: 3}
-  - {fileID: 8300000, guid: 8fafeb39cbae7a447ad0c74cd3356b9b, type: 3}
   audioSource: {fileID: 0}
   ghostAnimator: {fileID: 0}
 --- !u!4 &1537836860
@@ -21753,7 +21738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer1
   timerText: {fileID: 139772564}
-  defaultTime: 60
+  defaultTime: 120
   timesPerEntry: 90
 --- !u!65 &1592644192
 BoxCollider:
@@ -25804,7 +25789,6 @@ MonoBehaviour:
   audioClip:
   - {fileID: 8300000, guid: ec477b261147ff14489902e495acd05d, type: 3}
   - {fileID: 8300000, guid: bfced87cd18b4724b9f1c059ed2b22ec, type: 3}
-  - {fileID: 8300000, guid: d4bb65c207175064ebc90a5fef674732, type: 3}
   - {fileID: 8300000, guid: c864284d952a81344a03519ced3aa7f6, type: 3}
   - {fileID: 8300000, guid: 5fe493ad478bb0449ace236f50ace8cf, type: 3}
   - {fileID: 8300000, guid: 8fafeb39cbae7a447ad0c74cd3356b9b, type: 3}
@@ -27693,12 +27677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriggerHandler
   objectToAppear: {fileID: 2114781959887896399}
   audioClip:
-  - {fileID: 8300000, guid: ec477b261147ff14489902e495acd05d, type: 3}
   - {fileID: 8300000, guid: bfced87cd18b4724b9f1c059ed2b22ec, type: 3}
-  - {fileID: 8300000, guid: d4bb65c207175064ebc90a5fef674732, type: 3}
-  - {fileID: 8300000, guid: c864284d952a81344a03519ced3aa7f6, type: 3}
-  - {fileID: 8300000, guid: 5fe493ad478bb0449ace236f50ace8cf, type: 3}
-  - {fileID: 8300000, guid: 8fafeb39cbae7a447ad0c74cd3356b9b, type: 3}
   audioSource: {fileID: 0}
   ghostAnimator: {fileID: 0}
 --- !u!4 &2016600402
