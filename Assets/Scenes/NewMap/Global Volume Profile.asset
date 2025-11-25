@@ -1,5 +1,33 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-9177682227649032485
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
+  m_Name: ColorAdjustments
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.ColorAdjustments
+  active: 1
+  postExposure:
+    m_OverrideState: 1
+    m_Value: 0.33
+  contrast:
+    m_OverrideState: 1
+    m_Value: 26
+  colorFilter:
+    m_OverrideState: 1
+    m_Value: {r: 0.7936543, g: 0.798299, b: 0.8207547, a: 1}
+  hueShift:
+    m_OverrideState: 1
+    m_Value: 0
+  saturation:
+    m_OverrideState: 1
+    m_Value: 0
 --- !u!114 &-5391196825997661171
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -15,10 +43,10 @@ MonoBehaviour:
   active: 1
   type:
     m_OverrideState: 1
-    m_Value: 7
+    m_Value: 9
   intensity:
     m_OverrideState: 1
-    m_Value: 0.22
+    m_Value: 0.551
   response:
     m_OverrideState: 1
     m_Value: 0.55
@@ -83,6 +111,7 @@ MonoBehaviour:
   - {fileID: 1765317783520215935}
   - {fileID: 2683162300606933460}
   - {fileID: -5391196825997661171}
+  - {fileID: -9177682227649032485}
 --- !u!114 &1345287296071584028
 MonoBehaviour:
   m_ObjectHideFlags: 3

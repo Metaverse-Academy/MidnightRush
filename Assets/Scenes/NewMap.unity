@@ -6273,7 +6273,7 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 50
+  m_FocalLength: 20.78461
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -6286,7 +6286,7 @@ Camera:
     y: 0
     width: 0.5
     height: 1
-  near clip plane: 0.22
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60.000004
   orthographic: 0
@@ -8441,7 +8441,7 @@ Transform:
   m_GameObject: {fileID: 653434143}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: 0.7071068, w: 0}
-  m_LocalPosition: {x: 0.003, y: 0.11, z: 0.057}
+  m_LocalPosition: {x: -0.453, y: 0.11, z: 0.057}
   m_LocalScale: {x: 3.9090602, y: 3.9090607, z: 3.9090607}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17371,6 +17371,7 @@ MonoBehaviour:
   jumpScareSequence: {fileID: 2039386176}
   enableJumpScare: 1
   totalObjectives: 3
+  isGameEnded: 0
 --- !u!4 &1282360435
 Transform:
   m_ObjectHideFlags: 0
@@ -25167,7 +25168,7 @@ Camera:
     y: 0
     width: 0.5
     height: 1
-  near clip plane: 0.1
+  near clip plane: 0.04
   far clip plane: 10
   field of view: 60.000004
   orthographic: 0
@@ -41855,7 +41856,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2723842078571987664}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 95f2991438abad4479c1ac6c5572b7e7, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
