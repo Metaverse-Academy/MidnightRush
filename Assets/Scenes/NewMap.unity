@@ -1483,7 +1483,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd6221b61e91b341bae844f2eeeb406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickableItem
-  prompt: 
+  prompt: "\u0627\u0646\u0642\u0631 \u0645\u0631\u0628\u0639 \u0644\u0627\u0644\u062A\u0642\u0627\u0637
+    \u0627\u0644\u0645\u0643\u0639\u0628"
   audioSource: {fileID: 136685075}
   pickUpSound: {fileID: 8300000, guid: 43ae41b9616e83e41ad23c0732382def, type: 3}
 --- !u!54 &136685072
@@ -6812,6 +6813,7 @@ GameObject:
   - component: {fileID: 472391530}
   - component: {fileID: 472391529}
   - component: {fileID: 472391531}
+  - component: {fileID: 472391532}
   m_Layer: 6
   m_Name: Living room puzzle
   m_TagString: Untagged
@@ -6971,6 +6973,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &472391532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472391528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49ee63707326b3740a6a398088617892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  prompt: "\u0623\u062D\u062F \u0623\u0633\u0645\u0627\u0621 \u0627\u0644\u062D\u064A\u0648\u0627\u0646\u0627\u062A
+    \u0627\u0644\u0645\u0641\u062A\u0631\u0633\u0629"
 --- !u!1 &472919119
 GameObject:
   m_ObjectHideFlags: 0
@@ -9348,7 +9364,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd6221b61e91b341bae844f2eeeb406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickableItem
-  prompt: 
+  prompt: "\u0627\u0646\u0642\u0631 \u0645\u0631\u0628\u0639 \u0644\u0627\u0644\u062A\u0642\u0627\u0637
+    \u0627\u0644\u0645\u0643\u0639\u0628"
   audioSource: {fileID: 136685075}
   pickUpSound: {fileID: 8300000, guid: 43ae41b9616e83e41ad23c0732382def, type: 3}
 --- !u!54 &716678614
@@ -19999,7 +20016,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd6221b61e91b341bae844f2eeeb406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickableItem
-  prompt: 
+  prompt: "\u0627\u0646\u0642\u0631 \u0645\u0631\u0628\u0639 \u0644\u0627\u0644\u062A\u0642\u0627\u0637
+    \u0627\u0644\u0645\u0643\u0639\u0628"
   audioSource: {fileID: 136685075}
   pickUpSound: {fileID: 8300000, guid: 43ae41b9616e83e41ad23c0732382def, type: 3}
 --- !u!54 &1451597242
@@ -20409,7 +20427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd6221b61e91b341bae844f2eeeb406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickableItem
-  prompt: 
+  prompt: "\u0627\u0646\u0642\u0631 \u0645\u0631\u0628\u0639 \u0644\u0627\u0644\u062A\u0642\u0627\u0637
+    \u0627\u0644\u0645\u0643\u0639\u0628"
   audioSource: {fileID: 136685075}
   pickUpSound: {fileID: 8300000, guid: 43ae41b9616e83e41ad23c0732382def, type: 3}
 --- !u!54 &1474291789
@@ -27160,7 +27179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd6221b61e91b341bae844f2eeeb406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickableItem
-  prompt: 
+  prompt: "\u0627\u0646\u0642\u0631 \u0645\u0631\u0628\u0639 \u0644\u0627\u0644\u062A\u0642\u0627\u0637
+    \u0627\u0644\u0645\u0643\u0639\u0628"
   audioSource: {fileID: 136685075}
   pickUpSound: {fileID: 8300000, guid: 43ae41b9616e83e41ad23c0732382def, type: 3}
 --- !u!54 &2005515620
@@ -28455,7 +28475,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd6221b61e91b341bae844f2eeeb406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickableItem
-  prompt: 
+  prompt: "\u0627\u0646\u0642\u0631 \u0645\u0631\u0628\u0639 \u0644\u0627\u0644\u062A\u0642\u0627\u0637
+    \u0627\u0644\u0645\u0643\u0639\u0628"
   audioSource: {fileID: 136685075}
   pickUpSound: {fileID: 8300000, guid: 43ae41b9616e83e41ad23c0732382def, type: 3}
 --- !u!54 &2060554693
@@ -28888,7 +28909,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd6221b61e91b341bae844f2eeeb406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickableItem
-  prompt: 
+  prompt: "\u0627\u0646\u0642\u0631 \u0645\u0631\u0628\u0639 \u0644\u0627\u0644\u062A\u0642\u0627\u0637
+    \u0627\u0644\u0645\u0643\u0639\u0628"
   audioSource: {fileID: 136685075}
   pickUpSound: {fileID: 8300000, guid: 43ae41b9616e83e41ad23c0732382def, type: 3}
 --- !u!54 &2072036003
@@ -29162,7 +29184,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd6221b61e91b341bae844f2eeeb406, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickableItem
-  prompt: 
+  prompt: "\u0627\u0646\u0642\u0631 \u0645\u0631\u0628\u0639 \u0644\u0627\u0644\u062A\u0642\u0627\u0637
+    \u0627\u0644\u0645\u0643\u0639\u0628"
   audioSource: {fileID: 136685075}
   pickUpSound: {fileID: 8300000, guid: 43ae41b9616e83e41ad23c0732382def, type: 3}
 --- !u!54 &2117116568
@@ -40689,6 +40712,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5600995854631321122}
+  - component: {fileID: 5600995854631321123}
   m_Layer: 0
   m_Name: 'Puzzle 3 '
   m_TagString: Untagged
@@ -41689,6 +41713,22 @@ Transform:
   - {fileID: 5905244755156218917}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &5600995854631321123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5111986492751504536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49ee63707326b3740a6a398088617892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  prompt: "\u0627\u0644\u0627\u0628\u064A\u0636 \u064A\u0639\u0646\u064A \u0645\u0634\u062A\u0639\u0644
+    \u0648 \u0627\u0644\u0627\u0633\u0648\u062F \u064A\u0639\u0646\u064A \u0645\u0646\u0637\u0641\u0626
+    \u0627\u0634\u0639\u0644 \u0627\u062A\u0628\u0639 \u0627\u0644\u0635\u0648\u0631
+    \u0644\u0627\u0634\u0639\u0627\u0644 \u0646\u0648\u0631 \u0627\u0644\u0645\u0646\u0632\u0644"
 --- !u!1 &5614764564338787247
 GameObject:
   m_ObjectHideFlags: 0
@@ -50398,6 +50438,7 @@ GameObject:
   - component: {fileID: 8804182919135432286}
   - component: {fileID: 8804182919135432285}
   - component: {fileID: 8804182919135432284}
+  - component: {fileID: 8804182919135432289}
   m_Layer: 6
   m_Name: puzzle cube awns
   m_TagString: Untagged
@@ -50548,6 +50589,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.020487428, y: 0.06068054, z: 0.09206796}
   m_Center: {x: 0.43613434, y: 0.07997505, z: -0.64232945}
+--- !u!114 &8804182919135432289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8804182919135432281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49ee63707326b3740a6a398088617892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  prompt: "\u062A\u0642\u0627\u0644 \u0639\u0646 \u0627\u0644\u062A\u064A \u062A\u0636\u062D\u064A
+    \u0628\u062F\u0648\u0646 \u0645\u0642\u0627\u0628\u0644"
 --- !u!4 &8813069046847472571
 Transform:
   m_ObjectHideFlags: 0

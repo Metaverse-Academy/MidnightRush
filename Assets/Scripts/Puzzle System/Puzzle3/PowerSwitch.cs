@@ -30,7 +30,7 @@ public class PowerSwitch : MonoBehaviour , IInteractable
     // Implement IInteractable.GetPrompt
     public string GetPrompt()
     {
-        return isOn ? "Turn Off" : "Turn On";
+        return isOn ? "اطفئ الضوء" : "اشعل الضوء";
     }
 
     private void OnTriggerEnter(Collider other)
