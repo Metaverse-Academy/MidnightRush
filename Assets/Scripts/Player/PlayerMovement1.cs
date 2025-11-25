@@ -119,6 +119,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     private void HandleLook()
     {
+        if (GameManager.Instance.IsGameEnded()) return;
         if (!cameraTransform) return;
 
         yaw += lookInput.x * mouseSensitivityX;

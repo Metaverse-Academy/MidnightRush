@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
         //     StartGameWonSequence();
         // }
 
-            if (completedObjectives >= totalObjectives && !hasGameWon)
+        if (completedObjectives >= totalObjectives && !hasGameWon)
         {
             StartGameWonSequence();
         }
