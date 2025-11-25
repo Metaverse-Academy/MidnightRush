@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     [Header("Objectives")]
     [SerializeField] private int totalObjectives = 3;
     private int completedObjectives = 0;
-    protected bool isGameEnded = false;
+    public bool isGameEnded = false;
     private bool hasGameWon = false;
 
     void Awake()
