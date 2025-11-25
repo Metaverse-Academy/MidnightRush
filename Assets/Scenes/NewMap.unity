@@ -39379,7 +39379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement2
   cameraTransform: {fileID: 419694338}
-  walkSpeed: 1.5
+  walkSpeed: 2
   sprintSpeed: 2
   acceleration: 5
   jumpForce: 3
@@ -51280,7 +51280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement2
   cameraTransform: {fileID: 1840710950}
-  walkSpeed: 1.5
+  walkSpeed: 2
   sprintSpeed: 2
   acceleration: 5
   jumpForce: 3
