@@ -60,7 +60,6 @@ public class PlayerMovement2 : MonoBehaviour
     public bool IsCrouching { get; private set; }
     public bool IsJumping { get; private set; }
     public Vector3 Velocity => rb.linearVelocity;
-    public static PlayerMovement2 Instance;
 
     // Look state
     private float yaw;
@@ -68,14 +67,6 @@ public class PlayerMovement2 : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
         rb = GetComponent<Rigidbody>();
         capsule = GetComponent<CapsuleCollider>();
         anim = GetComponent<Animator>();
