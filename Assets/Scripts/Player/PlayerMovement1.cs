@@ -31,16 +31,16 @@ public class PlayerMovement2 : MonoBehaviour
     [SerializeField] private float minPitch = -85f;
     [SerializeField] private float maxPitch = 85f;
 
-        [Header("Audio")]
-        [SerializeField] private AudioSource footstepsSource;
-        [SerializeField] private AudioSource breathingSource;
-        [SerializeField] private AudioSource sfxSource;
+    [Header("Audio")]
+    [SerializeField] private AudioSource footstepsSource;
+    [SerializeField] private AudioSource breathingSource;
+    [SerializeField] private AudioSource sfxSource;
 
-        [SerializeField] private AudioClip[] footstepClips; // random footsteps
-        [SerializeField] private float footstepIntervalWalk = 0.5f;
-        [SerializeField] private float footstepIntervalSprint = 0.35f;
+    [SerializeField] private AudioClip[] footstepClips; // random footsteps
+    [SerializeField] private float footstepIntervalWalk = 0.5f;
+    [SerializeField] private float footstepIntervalSprint = 0.35f;
 
-        [SerializeField] private AudioClip jumpClip;
+    [SerializeField] private AudioClip jumpClip;
 
     private float footstepTimer;
 
@@ -52,14 +52,15 @@ public class PlayerMovement2 : MonoBehaviour
     // Input
     private Vector2 moveInput;
     private Vector2 lookInput;
-    
-    private Animator anim;      
+
+    private Animator anim;
     public bool IsGrounded { get; private set; }
     public bool IsMoving => moveInput.magnitude > 0.1f;
     public bool IsSprinting { get; private set; }
     public bool IsCrouching { get; private set; }
     public bool IsJumping { get; private set; }
     public Vector3 Velocity => rb.linearVelocity;
+    public static PlayerMovement2 Instance;
 
     // Look state
     private float yaw;
@@ -67,6 +68,14 @@ public class PlayerMovement2 : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         rb = GetComponent<Rigidbody>();
         capsule = GetComponent<CapsuleCollider>();
         anim = GetComponent<Animator>();
@@ -103,8 +112,8 @@ public class PlayerMovement2 : MonoBehaviour
             anim.SetBool("IsLooking", true);
         }
 
-          HandleBreathing();
-            HandleFootsteps(); 
+        HandleBreathing();
+        HandleFootsteps();
 
     }
 
@@ -173,11 +182,18 @@ public class PlayerMovement2 : MonoBehaviour
         moveInput = ctx.ReadValue<Vector2>();
     }
 
+
     public void OnLook(InputAction.CallbackContext ctx)
     {
         lookInput = ctx.ReadValue<Vector2>();
     }
-
+    public void OnPause(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            GameManager.Instance.TogglePauseGame();
+        }
+    }
     public void OnJump(InputAction.CallbackContext ctx)
     {
         if (ctx.performed && IsGrounded)
@@ -192,9 +208,9 @@ public class PlayerMovement2 : MonoBehaviour
         }
 
         if (sfxSource != null && jumpClip != null)
-            {
-                sfxSource.PlayOneShot(jumpClip);
-            }
+        {
+            sfxSource.PlayOneShot(jumpClip);
+        }
     }
 
     public void OnSprint(InputAction.CallbackContext ctx)
@@ -227,12 +243,19 @@ public class PlayerMovement2 : MonoBehaviour
                 IsCrouching = false;
                 ApplyCrouchState();
 
-                
+
             }
         }
     }
-
-        private void HandleBreathing()
+    // public void OnPause(InputAction.CallbackContext ctx)
+    // {
+    //     if (ctx.performed)
+    //     {
+    //         GameManager.Instance.TogglePauseGame();
+    //         GameManager.Instance.PauseMenuUIIsActive();
+    //     }
+    // }
+    private void HandleBreathing()
     {
         if (breathingSource == null) return;
 
@@ -267,19 +290,19 @@ public class PlayerMovement2 : MonoBehaviour
             // Reset so step happens quickly when you start moving again
             footstepTimer = 0f;
         }
-        }
+    }
 
-        private void PlayRandomFootstep()
-        {
-            if (footstepClips.Length == 0) return;
+    private void PlayRandomFootstep()
+    {
+        if (footstepClips.Length == 0) return;
 
-            int index = Random.Range(0, footstepClips.Length);
-            AudioClip clip = footstepClips[index];
+        int index = Random.Range(0, footstepClips.Length);
+        AudioClip clip = footstepClips[index];
 
-            // Slight pitch variation so it doesn’t sound like a looped robot
-            footstepsSource.pitch = Random.Range(0.95f, 1.05f);
-            footstepsSource.PlayOneShot(clip);
-        }
+        // Slight pitch variation so it doesn’t sound like a looped robot
+        footstepsSource.pitch = Random.Range(0.95f, 1.05f);
+        footstepsSource.PlayOneShot(clip);
+    }
 
     private void OnDrawGizmosSelected()
     {

@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private GameObject gameWonUI;
+    [SerializeField] private GameObject PauseMenuUI;
+    private bool isPaused = false;
     [SerializeField] private TMP_Text gameStatusText;
 
     [Header("Scene Management")]
@@ -49,6 +51,8 @@ public class GameManager : MonoBehaviour
 
         if (gameWonUI != null)
             gameWonUI.SetActive(false);
+        if (PauseMenuUI != null)
+            PauseMenuUI.SetActive(false);
 
         Time.timeScale = 1f;
 
@@ -60,7 +64,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // تحقق من صحة اللاعبين باستمرار
+        if (Input.GetButtonDown("Submit") || Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePauseGame();
+        }
         if (!isGameEnded)
         {
             CheckGameStatus();
@@ -219,6 +226,28 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("Main Menu");
     }
+    public void TogglePauseGame()
+    {
+        if (isGameEnded || hasGameWon) return;
+
+        isPaused = !isPaused;
+
+        if (isPaused)
+        {
+            Time.timeScale = 0f;
+            PauseMenuUI.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            PauseMenuUI.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+
 
     // دالة للحصول على عدد الأهداف المتبقية
     public int GetRemainingObjectives()
