@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class StoryManager : MonoBehaviour
 {
     [Header("Story Panels")]

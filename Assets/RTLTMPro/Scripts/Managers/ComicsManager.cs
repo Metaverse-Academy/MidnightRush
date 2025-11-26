@@ -8,11 +8,14 @@ public class ComicsManager : MonoBehaviour
     [SerializeField] private GameObject comicImage2;
     [SerializeField] private GameObject comicImage3;
     [SerializeField] private GameObject comicImage4;
-    [SerializeField] private GameObject comicImage5;
+    
 
     [Header("Background Music")]
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip backgroundMusic;
+    
+
+    [Header("Extra Sound")]
+    [SerializeField] private AudioClip extraSound; 
 
     [Header("Timing Settings")]
     [SerializeField] private float switchTime = 3f; 
@@ -26,19 +29,10 @@ public class ComicsManager : MonoBehaviour
 
     private void Start()
     {
-        // تشغيل الموسيقى الخاصة بالكوميك
         
-        if (audioSource != null && backgroundMusic != null)
-        {
-            audioSource.clip = backgroundMusic;
-            audioSource.loop = true;
-            audioSource.Play();
-        }
 
-      
         images = new GameObject[] { comicImage1, comicImage2, comicImage3, comicImage4 };
 
-       
         ShowOnly(currentIndex);
     }
 
@@ -57,7 +51,6 @@ public class ComicsManager : MonoBehaviour
     {
         currentIndex++;
 
-       
         if (currentIndex >= images.Length)
         {
             SceneManager.LoadScene(nextSceneName);
