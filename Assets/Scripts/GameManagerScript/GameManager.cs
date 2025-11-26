@@ -187,15 +187,16 @@ public class GameManager : MonoBehaviour
     public void ShowGameWonUI()
     {
 
-        if (gameWonUI != null)
-        {
-            gameWonUI.SetActive(true);
-        }
+        // if (gameWonUI != null)
+        // {
+        //     gameWonUI.SetActive(true);
+        // }
 
-        if (gameStatusText != null)
-        {
-            gameStatusText.text = "You Won!\nAll Objectives Completed";
-        }
+        // if (gameStatusText != null)
+        // {
+        //     gameStatusText.text = "You Won!\nAll Objectives Completed";
+        // }
+        SceneManager.LoadSceneAsync("Credits");
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0f;
