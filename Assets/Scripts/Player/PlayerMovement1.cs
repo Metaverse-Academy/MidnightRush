@@ -12,6 +12,10 @@ public class PlayerMovement2 : MonoBehaviour
     [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private float sprintSpeed = 9f;
     [SerializeField] private float acceleration = 12f;
+    [Header("Slope Settings")]
+    [SerializeField] private float maxSlopeAngle = 45f;
+    [SerializeField] private LayerMask stairsLayer;
+    private RaycastHit slopeHit;
 
     [Header("Jump Settings")]
     [SerializeField] private float jumpForce = 5f;
@@ -64,6 +68,8 @@ public class PlayerMovement2 : MonoBehaviour
     // Look state
     private float yaw;
     private float pitch;
+
+
 
     private void Awake()
     {
@@ -142,8 +148,22 @@ public class PlayerMovement2 : MonoBehaviour
         Vector3 planarMoveDir = desiredPlanar.sqrMagnitude > 1e-4f ? desiredPlanar.normalized : Vector3.zero;
 
         float targetSpeed = IsCrouching ? crouchSpeed : (IsSprinting ? sprintSpeed : walkSpeed);
-        Vector3 targetVelH = planarMoveDir * targetSpeed;
+        // Vector3 targetVelH = planarMoveDir * targetSpeed;
+        bool isOnSlope = OnSlope();
+        bool isOnStairs = (stairsLayer.value & (1 << slopeHit.collider.gameObject.layer)) > 0;
 
+        Vector3 targetVelH;
+
+        if (isOnSlope || isOnStairs)
+        {
+            // إذا كنا على منحدر، نعدل اتجاه الحركة ليوازي سطح المنحدر
+            targetVelH = Vector3.ProjectOnPlane(planarMoveDir, slopeHit.normal).normalized * targetSpeed;
+        }
+        else
+        {
+            // إذا كنا على أرض مستوية، نستخدم الحركة الأفقية العادية
+            targetVelH = planarMoveDir * targetSpeed;
+        }
         Vector3 v = rb.linearVelocity;
         Vector3 vH = Vector3.Lerp(new Vector3(v.x, 0f, v.z), targetVelH, acceleration * Time.fixedDeltaTime);
         rb.linearVelocity = new Vector3(vH.x, v.y, vH.z);
@@ -234,10 +254,18 @@ public class PlayerMovement2 : MonoBehaviour
             {
                 IsCrouching = false;
                 ApplyCrouchState();
-
-
             }
         }
+    }
+
+    private bool OnSlope()
+    {
+        if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, capsule.height * 0.5f + 0.3f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopeHit.normal);
+            return angle < maxSlopeAngle && angle != 0;
+        }
+        return false;
     }
     // public void OnPause(InputAction.CallbackContext ctx)
     // {
