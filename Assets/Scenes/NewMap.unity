@@ -3881,9 +3881,10 @@ MonoBehaviour:
   sprintSpeed: 9
   acceleration: 12
   maxSlopeAngle: 45
-  stairsLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  stepRayUpper: {fileID: 0}
+  stepRayLower: {fileID: 0}
+  stepHeight: 0.3
+  stepSmooth: 0.1
   jumpForce: 3
   groundLayer:
     serializedVersion: 2
@@ -4150,6 +4151,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 826505769}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &292689591
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 292689592}
+  m_Layer: 9
+  m_Name: GameObject (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &292689592
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292689591}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.798, z: 0.051}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8274520523671566961}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &294660543
 GameObject:
@@ -4768,7 +4800,7 @@ Transform:
   m_GameObject: {fileID: 348088907}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: -0.67, z: 0.91}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7988,6 +8020,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 552797963}
   m_CullTransparentMesh: 1
+--- !u!1 &555778167
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 555778168}
+  m_Layer: 9
+  m_Name: GameObject (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &555778168
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555778167}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.152, z: 0.051}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 883789680337606827}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &576427159
 GameObject:
   m_ObjectHideFlags: 0
@@ -11255,6 +11318,37 @@ Transform:
   - {fileID: 1389360842}
   m_Father: {fileID: 528883537}
   m_LocalEulerAnglesHint: {x: 14.515085, y: -36.953068, z: 20.202724}
+--- !u!1 &778053315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 778053316}
+  m_Layer: 9
+  m_Name: GameObject (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &778053316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778053315}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.896, z: 0.051}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8274520523671566961}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &789611103
 GameObject:
   m_ObjectHideFlags: 0
@@ -14393,6 +14487,37 @@ Transform:
   - {fileID: 407190333}
   m_Father: {fileID: 657579571}
   m_LocalEulerAnglesHint: {x: 8.20031, y: -0.30301273, z: -1.449637}
+--- !u!1 &979443304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 979443305}
+  m_Layer: 9
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &979443305
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979443304}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0.051}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 883789680337606827}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &996265747
 GameObject:
   m_ObjectHideFlags: 0
@@ -17889,9 +18014,10 @@ MonoBehaviour:
   sprintSpeed: 9
   acceleration: 12
   maxSlopeAngle: 45
-  stairsLayer:
-    serializedVersion: 2
-    m_Bits: 0
+  stepRayUpper: {fileID: 0}
+  stepRayLower: {fileID: 0}
+  stepHeight: 0.3
+  stepSmooth: 0.1
   jumpForce: 3
   groundLayer:
     serializedVersion: 2
@@ -34298,6 +34424,8 @@ Transform:
   - {fileID: 1171514989}
   - {fileID: 9067207101423149273}
   - {fileID: 419694338}
+  - {fileID: 979443305}
+  - {fileID: 555778168}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!23 &892452649545187764
@@ -41048,9 +41176,10 @@ MonoBehaviour:
   sprintSpeed: 3
   acceleration: 5
   maxSlopeAngle: 45
-  stairsLayer:
-    serializedVersion: 2
-    m_Bits: 8192
+  stepRayUpper: {fileID: 555778167}
+  stepRayLower: {fileID: 979443304}
+  stepHeight: 0.2
+  stepSmooth: 0.4
   jumpForce: 3
   groundLayer:
     serializedVersion: 2
@@ -51184,6 +51313,8 @@ Transform:
   - {fileID: 722091711}
   - {fileID: 301300636467005078}
   - {fileID: 1840710950}
+  - {fileID: 778053316}
+  - {fileID: 292689592}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &8276653251360915538
@@ -52984,9 +53115,10 @@ MonoBehaviour:
   sprintSpeed: 3
   acceleration: 5
   maxSlopeAngle: 45
-  stairsLayer:
-    serializedVersion: 2
-    m_Bits: 8192
+  stepRayUpper: {fileID: 778053315}
+  stepRayLower: {fileID: 778053315}
+  stepHeight: 0.4
+  stepSmooth: 0.2
   jumpForce: 3
   groundLayer:
     serializedVersion: 2

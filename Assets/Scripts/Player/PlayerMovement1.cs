@@ -14,8 +14,15 @@ public class PlayerMovement2 : MonoBehaviour
     [SerializeField] private float acceleration = 12f;
     [Header("Slope Settings")]
     [SerializeField] private float maxSlopeAngle = 45f;
-    [SerializeField] private LayerMask stairsLayer;
     private RaycastHit slopeHit;
+
+    // START MODIFICATION: Stair climbing settings
+    [Header("Stair Settings")]
+    [SerializeField] private GameObject stepRayUpper;
+    [SerializeField] private GameObject stepRayLower;
+    [SerializeField] private float stepHeight = 0.3f;
+    [SerializeField] private float stepSmooth = 0.1f;
+    // END MODIFICATION
 
     [Header("Jump Settings")]
     [SerializeField] private float jumpForce = 5f;
@@ -69,8 +76,6 @@ public class PlayerMovement2 : MonoBehaviour
     private float yaw;
     private float pitch;
 
-
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -87,6 +92,13 @@ public class PlayerMovement2 : MonoBehaviour
         Cursor.visible = false;
 
         yaw = transform.eulerAngles.y;
+
+        // START MODIFICATION: Initialize stair raycast positions
+        if (stepRayUpper != null)
+        {
+            stepRayUpper.transform.position = new Vector3(stepRayUpper.transform.position.x, stepHeight, stepRayUpper.transform.position.z);
+        }
+        // END MODIFICATION
     }
 
     private void Update()
@@ -117,13 +129,35 @@ public class PlayerMovement2 : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // START MODIFICATION: Call HandleStairs before HandleMovement
+        HandleStairs();
+        // END MODIFICATION
         HandleMovement();
     }
+
+    // START MODIFICATION: New function to handle stair climbing
+    private void HandleStairs()
+    {
+        if (!IsMoving || !IsGrounded) return;
+
+        Vector3 moveDirection = (transform.forward * moveInput.y + transform.right * moveInput.x).normalized;
+
+        RaycastHit hitLower;
+        if (Physics.Raycast(stepRayLower.transform.position, moveDirection, out hitLower, 0.5f))
+        {
+            RaycastHit hitUpper;
+            if (!Physics.Raycast(stepRayUpper.transform.position, moveDirection, out hitUpper, 0.6f))
+            {
+                rb.position -= new Vector3(0f, -stepSmooth * Time.fixedDeltaTime, 0f);
+            }
+        }
+    }
+    // END MODIFICATION
 
     private void CheckGrounded()
     {
         Vector3 rayOrigin = transform.position + Vector3.up * rayStartOffset;
-        IsGrounded = Physics.Raycast(rayOrigin, Vector3.down, groundDistanceCheck, groundLayer, QueryTriggerInteraction.Ignore);
+        IsGrounded = Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, groundDistanceCheck, groundLayer, QueryTriggerInteraction.Ignore);
     }
 
     private void HandleLook()
@@ -148,20 +182,15 @@ public class PlayerMovement2 : MonoBehaviour
         Vector3 planarMoveDir = desiredPlanar.sqrMagnitude > 1e-4f ? desiredPlanar.normalized : Vector3.zero;
 
         float targetSpeed = IsCrouching ? crouchSpeed : (IsSprinting ? sprintSpeed : walkSpeed);
-        // Vector3 targetVelH = planarMoveDir * targetSpeed;
-        bool isOnSlope = OnSlope();
-        bool isOnStairs = (stairsLayer.value & (1 << slopeHit.collider.gameObject.layer)) > 0;
 
         Vector3 targetVelH;
 
-        if (isOnSlope || isOnStairs)
+        if (OnSlope())
         {
-            // إذا كنا على منحدر، نعدل اتجاه الحركة ليوازي سطح المنحدر
             targetVelH = Vector3.ProjectOnPlane(planarMoveDir, slopeHit.normal).normalized * targetSpeed;
         }
         else
         {
-            // إذا كنا على أرض مستوية، نستخدم الحركة الأفقية العادية
             targetVelH = planarMoveDir * targetSpeed;
         }
         Vector3 v = rb.linearVelocity;
@@ -215,8 +244,6 @@ public class PlayerMovement2 : MonoBehaviour
             rb.linearVelocity = cur;
 
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-
-            // anim.SetBool("isJumping", IsGrounded);
         }
 
         if (sfxSource != null && jumpClip != null)
@@ -229,7 +256,6 @@ public class PlayerMovement2 : MonoBehaviour
     {
         if (ctx.performed) IsSprinting = true;
         else if (ctx.canceled) IsSprinting = false;
-        // anim.SetBool("IsRunning", IsSprinting);
     }
 
     public void OnCrouch(InputAction.CallbackContext ctx)
@@ -267,19 +293,11 @@ public class PlayerMovement2 : MonoBehaviour
         }
         return false;
     }
-    // public void OnPause(InputAction.CallbackContext ctx)
-    // {
-    //     if (ctx.performed)
-    //     {
-    //         GameManager.Instance.TogglePauseGame();
-    //         GameManager.Instance.PauseMenuUIIsActive();
-    //     }
-    // }
+
     private void HandleBreathing()
     {
         if (breathingSource == null) return;
 
-        // Make sure breathing plays all the time
         if (!breathingSource.isPlaying)
         {
             breathingSource.loop = true;
@@ -292,7 +310,6 @@ public class PlayerMovement2 : MonoBehaviour
         if (footstepsSource == null || footstepClips == null || footstepClips.Length == 0)
             return;
 
-        // Only play footsteps when grounded and actually moving
         if (IsGrounded && IsMoving && !IsCrouching)
         {
             footstepTimer -= Time.deltaTime;
@@ -307,7 +324,6 @@ public class PlayerMovement2 : MonoBehaviour
         }
         else
         {
-            // Reset so step happens quickly when you start moving again
             footstepTimer = 0f;
         }
     }
@@ -319,7 +335,6 @@ public class PlayerMovement2 : MonoBehaviour
         int index = Random.Range(0, footstepClips.Length);
         AudioClip clip = footstepClips[index];
 
-        // Slight pitch variation so it doesn’t sound like a looped robot
         footstepsSource.pitch = Random.Range(0.95f, 1.05f);
         footstepsSource.PlayOneShot(clip);
     }
@@ -329,5 +344,16 @@ public class PlayerMovement2 : MonoBehaviour
         Gizmos.color = Color.green;
         Vector3 rayOrigin = transform.position + Vector3.up * rayStartOffset;
         Gizmos.DrawLine(rayOrigin, rayOrigin + Vector3.down * groundDistanceCheck);
+
+        // START MODIFICATION: Gizmos for stair detection
+        if (stepRayLower != null && stepRayUpper != null)
+        {
+            Vector3 moveDirection = (transform.forward * moveInput.y + transform.right * moveInput.x).normalized;
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(stepRayLower.transform.position, moveDirection * 0.5f);
+            Gizmos.color = Color.blue;
+            Gizmos.DrawRay(stepRayUpper.transform.position, moveDirection * 0.6f);
+        }
+        // END MODIFICATION
     }
 }
