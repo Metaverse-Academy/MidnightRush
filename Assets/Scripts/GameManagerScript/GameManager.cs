@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -47,7 +46,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         if (gameOverUI != null)
+        {
             gameOverUI.SetActive(false);
+        }
+
 
         if (gameWonUI != null)
             gameWonUI.SetActive(false);
@@ -214,7 +216,7 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadSceneAsync("NewMap");
     }
 
     public void GoToMainMenu()
