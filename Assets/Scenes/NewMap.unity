@@ -53100,7 +53100,7 @@ MonoBehaviour:
   acceleration: 5
   maxSlopeAngle: 45
   stepRayUpper: {fileID: 778053315}
-  stepRayLower: {fileID: 778053315}
+  stepRayLower: {fileID: 292689591}
   stepHeight: 0.4
   stepSmooth: 0.2
   jumpForce: 3
@@ -53323,7 +53323,7 @@ CapsuleCollider:
   m_Radius: 0.23
   m_Height: 1.9276841
   m_Direction: 1
-  m_Center: {x: 0.0046965666, y: -0.040639997, z: -0.15912448}
+  m_Center: {x: 0.0046965666, y: 1, z: -0.15912448}
 --- !u!54 &8763670897915535578
 Rigidbody:
   m_ObjectHideFlags: 0
