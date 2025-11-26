@@ -172,7 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriggerHandler
   objectToAppear: {fileID: 0}
   audioClip:
-  - {fileID: 8300000, guid: c864284d952a81344a03519ced3aa7f6, type: 3}
+  - {fileID: 8300000, guid: b048cf4be405a0e409159e53465f7530, type: 3}
   audioSource: {fileID: 0}
   ghostAnimator: {fileID: 0}
 --- !u!4 &541966
@@ -524,7 +524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriggerHandler
   objectToAppear: {fileID: 0}
   audioClip:
-  - {fileID: 8300000, guid: bfced87cd18b4724b9f1c059ed2b22ec, type: 3}
+  - {fileID: 8300000, guid: 7b352a74c388a9c4a9839bc162e75ec4, type: 3}
   audioSource: {fileID: 0}
   ghostAnimator: {fileID: 0}
 --- !u!4 &24799245
@@ -5583,7 +5583,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriggerHandler
   objectToAppear: {fileID: 0}
   audioClip:
-  - {fileID: 8300000, guid: 5fe493ad478bb0449ace236f50ace8cf, type: 3}
+  - {fileID: 8300000, guid: 95351091b9dcb9c4fac83d409bad7e89, type: 3}
   audioSource: {fileID: 0}
   ghostAnimator: {fileID: 0}
 --- !u!4 &386669583
@@ -13276,7 +13276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriggerHandler
   objectToAppear: {fileID: 0}
   audioClip:
-  - {fileID: 8300000, guid: 5fe493ad478bb0449ace236f50ace8cf, type: 3}
+  - {fileID: 8300000, guid: b048cf4be405a0e409159e53465f7530, type: 3}
   audioSource: {fileID: 0}
   ghostAnimator: {fileID: 0}
 --- !u!4 &881052578
@@ -22793,7 +22793,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriggerHandler
   objectToAppear: {fileID: 0}
   audioClip:
-  - {fileID: 8300000, guid: ec477b261147ff14489902e495acd05d, type: 3}
+  - {fileID: 8300000, guid: b048cf4be405a0e409159e53465f7530, type: 3}
   audioSource: {fileID: 0}
   ghostAnimator: {fileID: 0}
 --- !u!4 &1537836860
@@ -29336,7 +29336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriggerHandler
   objectToAppear: {fileID: 0}
   audioClip:
-  - {fileID: 8300000, guid: d4bb65c207175064ebc90a5fef674732, type: 3}
+  - {fileID: 8300000, guid: 7b352a74c388a9c4a9839bc162e75ec4, type: 3}
   audioSource: {fileID: 0}
   ghostAnimator: {fileID: 0}
 --- !u!4 &1994516568
@@ -29755,7 +29755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriggerHandler
   objectToAppear: {fileID: 2061761180}
   audioClip:
-  - {fileID: 8300000, guid: 2fe4f8dab87e03e4c9f905b3df70e0b8, type: 3}
+  - {fileID: 8300000, guid: bfced87cd18b4724b9f1c059ed2b22ec, type: 3}
   audioSource: {fileID: 0}
   ghostAnimator: {fileID: 0}
 --- !u!4 &2010380255
@@ -29985,7 +29985,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TriggerHandler
   objectToAppear: {fileID: 2114781959887896399}
   audioClip:
-  - {fileID: 8300000, guid: bfced87cd18b4724b9f1c059ed2b22ec, type: 3}
+  - {fileID: 8300000, guid: 95351091b9dcb9c4fac83d409bad7e89, type: 3}
   audioSource: {fileID: 0}
   ghostAnimator: {fileID: 0}
 --- !u!4 &2016600402
@@ -41147,15 +41147,7 @@ MonoBehaviour:
   scalePop: 1.1
   handCubeObject: {fileID: 0}
   startupPromptText: {fileID: 1765491977}
-  startupPrompts:
-  - "\u062D\u0644\u0627 \u0627\u0644\u0644\u063A\u0632 \u0642\u0628\u0644 \u0627\u0646\u062A\u0647\u0627\u0621
-    \u0627\u0644\u0648\u0642\u062A"
-  - "\u0627\u0646\u0642\u0631 \u0627\u0644\u0645\u0644\u062B\u0644\u062B \u0644\u0627\u0633\u062A\u062E\u062F\u0627\u0645
-    \u0645\u0635\u0628\u0627\u062D \u064A\u062F\u0648\u064A"
-  - "\u0627\u0646\u0642\u0631 \u0627\u0644\u0645\u0631\u0628\u0639 \u0644\u062C\u0645\u0639
-    \u0627\u0644\u0628\u0637\u0627\u0631\u064A\u0627\u062A \u0648\u0627\u0634\u0639\u0627\u0644
-    \u0627\u0644\u0645\u0635\u0628\u0627\u062D"
-  - "\u0627\u0646\u0642\u0631 \u0645\u0631\u0628\u0639 \u0644\u062D\u0644 \u0627\u0644\u0627\u0644\u063A\u0627\u0632"
+  startupPrompts: []
   startupDelay: 0
   timeBetweenPrompts: 3
   startupFadeDuration: 0.5
@@ -53086,15 +53078,7 @@ MonoBehaviour:
   scalePop: 1.1
   handCubeObject: {fileID: 0}
   startupPromptText: {fileID: 1636941566}
-  startupPrompts:
-  - "\u062D\u0644\u0627 \u0627\u0644\u0644\u063A\u0632 \u0642\u0628\u0644 \u0627\u0646\u062A\u0647\u0627\u0621
-    \u0627\u0644\u0648\u0642\u062A"
-  - "\u0627\u0646\u0642\u0631 \u0627\u0644\u0645\u0644\u062B\u0644\u062B \u0644\u0627\u0633\u062A\u062E\u062F\u0627\u0645
-    \u0645\u0635\u0628\u0627\u062D \u064A\u062F\u0648\u064A"
-  - "\u0627\u0646\u0642\u0631 \u0627\u0644\u0645\u0631\u0628\u0639 \u0644\u062C\u0645\u0639
-    \u0627\u0644\u0628\u0637\u0627\u0631\u064A\u0627\u062A \u0648\u0627\u0634\u0639\u0627\u0644
-    \u0627\u0644\u0645\u0635\u0628\u0627\u062D"
-  - "\u0627\u0646\u0642\u0631 \u0645\u0631\u0628\u0639 \u0644\u062D\u0644 \u0627\u0644\u0627\u0644\u063A\u0627\u0632"
+  startupPrompts: []
   startupDelay: 0
   timeBetweenPrompts: 3
   startupFadeDuration: 0.5

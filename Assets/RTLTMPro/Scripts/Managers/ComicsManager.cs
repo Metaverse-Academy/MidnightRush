@@ -8,14 +8,12 @@ public class ComicsManager : MonoBehaviour
     [SerializeField] private GameObject comicImage2;
     [SerializeField] private GameObject comicImage3;
     [SerializeField] private GameObject comicImage4;
-    [SerializeField] private GameObject comicImage5;
-
-    [Header("Background Music")]
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip backgroundMusic;
 
     [Header("Timing Settings")]
-    [SerializeField] private float switchTime = 3f; 
+    [SerializeField] private float switchTime = 3f;
+
+    // 🔥 الإضافة المطلوبة: مدة كل صورة
+    [SerializeField] private float[] imageDurations;
 
     [Header("Next Scene")]
     [SerializeField] private string nextSceneName; 
@@ -26,19 +24,8 @@ public class ComicsManager : MonoBehaviour
 
     private void Start()
     {
-        // تشغيل الموسيقى الخاصة بالكوميك
-        
-        if (audioSource != null && backgroundMusic != null)
-        {
-            audioSource.clip = backgroundMusic;
-            audioSource.loop = true;
-            audioSource.Play();
-        }
-
-      
         images = new GameObject[] { comicImage1, comicImage2, comicImage3, comicImage4 };
 
-       
         ShowOnly(currentIndex);
     }
 
@@ -46,7 +33,8 @@ public class ComicsManager : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer >= switchTime)
+        // 🔥 الإضافة المطلوبة: استخدم مدة الصورة الحالية بدل switchTime
+        if (timer >= imageDurations[currentIndex])
         {
             timer = 0f;
             NextImage();
@@ -57,10 +45,9 @@ public class ComicsManager : MonoBehaviour
     {
         currentIndex++;
 
-       
         if (currentIndex >= images.Length)
         {
-            SceneManager.LoadScene(nextSceneName);
+            gameObject.transform.parent.gameObject.SetActive(false);
             return;
         }
 
