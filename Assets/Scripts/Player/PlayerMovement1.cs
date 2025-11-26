@@ -85,6 +85,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.GamePaused()) return;
         if (GameManager.Instance.IsGameEnded()) return;
         if (GameManager.Instance.HasGameWon()) return;
         CheckGrounded();

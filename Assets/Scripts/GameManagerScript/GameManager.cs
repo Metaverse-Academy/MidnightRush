@@ -14,9 +14,8 @@ public class GameManager : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private GameObject gameWonUI;
-    [SerializeField] private GameObject PauseMenuUI;
-    private bool isPaused = false;
     [SerializeField] private TMP_Text gameStatusText;
+    [SerializeField] private GameObject PauseMenuUI;
 
     [Header("Scene Management")]
     [Tooltip("Name of the main menu scene to load")]
@@ -31,8 +30,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int totalObjectives = 3;
     private int completedObjectives = 0;
     public bool isGameEnded = false;
-    private bool hasGameWon = false;
-
+    public bool hasGameWon = false;
+    private bool isPaused = false;
     void Awake()
     {
         if (Instance == null)
@@ -65,10 +64,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Submit") || Input.GetKeyDown(KeyCode.Escape))
-        {
-            TogglePauseGame();
-        }
         if (!isGameEnded)
         {
             CheckGameStatus();
@@ -239,6 +234,7 @@ public class GameManager : MonoBehaviour
             PauseMenuUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            isPaused = true;
         }
         else
         {
@@ -246,6 +242,7 @@ public class GameManager : MonoBehaviour
             PauseMenuUI.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+            isPaused = false;
         }
     }
 
@@ -265,6 +262,10 @@ public class GameManager : MonoBehaviour
     public bool HasGameWon()
     {
         return hasGameWon;
+    }
+    public bool GamePaused()
+    {
+        return isPaused;
     }
 
     public void OnTimeUp()
