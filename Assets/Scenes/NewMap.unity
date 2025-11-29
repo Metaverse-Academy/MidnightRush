@@ -17116,8 +17116,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer1
   timerText: {fileID: 139772564}
-  defaultTime: 600
-  timesPerEntry: 600
+  defaultTime: 300
+  timesPerEntry: 300
 --- !u!65 &1200423022
 BoxCollider:
   m_ObjectHideFlags: 0
